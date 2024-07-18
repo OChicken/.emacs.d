@@ -1,0 +1,23 @@
+auto-save-list/
+ctags/TAGS-linux
+elpa/
+eshell/history
+eshell/lastdir
+history
+ido.last
+network-security.data
+lisp/init-gnus.el
+lisp/init-opt.el
+org-clock-save.el
+projectile-bookmarks.eld
+projectile.cache
+projects
+recentf
+tramp
+transient/
+url/
+xenops/
+
+# backup
+openedf
+backupf

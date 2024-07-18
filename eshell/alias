@@ -1,0 +1,4 @@
+alias ll ls -al $1
+alias la ls -A $1
+alias l  ls -C $1
+alias grep grep --color=always $*
