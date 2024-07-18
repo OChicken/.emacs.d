@@ -72,33 +72,34 @@ Currently only support distance of integers."
       a)))
 
 (defun math-gf2x-mul (a b &optional r)
-  "Calculate poly(A)*poly(B) => poly(R) on GF(2)."
+  "Calculate poly(A) * poly(B) => poly(R) on char(2) finite field."
   (unless (and (Math-integerp a) (Math-integerp b))
     (math-reject-arg))
   (let ((r (or r 0)))
     (if (> b 0)
-        (math-gf2x-mul (ash a 1)
-                       (ash b -1)
+        (math-gf2x-mul (ash a 1) (ash b -1)
                        (if (= (logand b 1) 1)
                            (logxor r a)
                          r))
       r)))
 
 (defun math-gf2x-mulm (a b m)
-  "Calculate poly(A) * poly(B) % poly(M)."
+  "Calculate poly(A) * poly(B) % poly(M) on char(2) finite field."
   (unless (and (Math-integerp a) (Math-integerp b) (Math-integerp m))
     (math-reject-arg))
   (math-gf2x-mod (math-gf2x-mul a b) m))
 
-(defun math-gf2x-pow (a n)
-  "Calculate pow(poly(A), N) on GF(2)."
-  (let ((r 1))
-    (while (> n 0)
-      (if (= (logand n 1) 1)
-          (setq r (math-gf2x-mul r a)))
-      (setq a (math-gf2x-mul a a))
-      (setq n (/ n 2)))
-    r))
+(defun math-gf2x-pow (a n &optional r)
+  "Calculate pow(poly(A), N) => poly(R) on char(2) finite field."
+  (unless (and (Math-integerp a) (Math-integerp n))
+    (math-reject-arg))
+  (let ((r (or r 1)))
+    (if (> n 0)
+        (math-gf2x-pow (math-gf2x-mul a a) (/ n 2)
+                       (if (= (logand n 1) 1)
+                           (math-gf2x-mul r a)
+                         r))
+      r)))
 
 (defun math-gf2x-pow-mod (a n f)
   "Calculate pow(poly(A), N) % poly(F) on GF(2^deg(F))."
