@@ -101,15 +101,17 @@ Currently only support distance of integers."
                          r))
       r)))
 
-(defun math-gf2x-pow-mod (a n f)
-  "Calculate pow(poly(A), N) % poly(F) on GF(2^deg(F))."
-  (let ((r 1))
-    (while (> n 0)
-      (if (= (logand n 1) 1)
-          (setq r (math-gf2x-mod (math-gf2x-mul r a) f)))
-      (setq a (math-gf2x-mod (math-gf2x-mul a a) f))
-      (setq n (/ n 2)))
-    r))
+(defun math-gf2x-powm (a n m &optional r)
+  "Calculate pow(poly(A), N) % poly(M) => poly(R) on char(2) finite field."
+  (unless (and (Math-integerp a) (Math-integerp n))
+    (math-reject-arg))
+  (let ((r (or r 1)))
+    (if (> n 0)
+        (math-gf2x-powm (math-gf2x-mulm a a m) (/ n 2) m
+                        (if (= (logand n 1) 1)
+                            (math-gf2x-mulm r a m)
+                          r))
+      r)))
 
 (defun math-gf2x-div-mod (a f)
   "Calculate poly(A) / poly(F) on GF(2^deg(F))."
@@ -136,7 +138,7 @@ Currently only support distance of integers."
 	  (message "trivial case."))
       (dolist (m factors)   ; m = #subgroups
 	(setq n (/ 255 m))  ; n = #(elements in a subgroup)
-        (setq r (math-gf2x-pow-mod a n f))
+        (setq r (math-gf2x-powm a n f))
         (if (= r 1)
 	    (setq o n))))
     o))
@@ -183,7 +185,7 @@ Currently only support distance of integers."
   (let ((g (car (math-gf2x-get-generators #x11b)))
 	(table '()))
     (dotimes (n 256)
-      (push (math-gf2x-pow-mod g n #x11b) table))
+      (push (math-gf2x-powm g n #x11b) table))
     (reverse table)))
 
 (defvar crypto-aes-log-table
@@ -203,7 +205,7 @@ Currently only support distance of integers."
   ; Calc a^{-1} for a in (0,255)
   (let ((l '()))
     (dotimes (a 256)
-      (push (math-gf2x-pow-mod a 254 #x11b) l))
+      (push (math-gf2x-powm a 254 #x11b) l))
     (reverse l)))
 
 (defun crypto-aes-subbytes (x)
