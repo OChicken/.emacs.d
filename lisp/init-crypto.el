@@ -1,4 +1,4 @@
-;;; init-crypto.el --- Day-to-day editing helpers -*- lexical-binding: t -*-
+;;; init-crypto.el --- A tiny calculator for crypto research -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
