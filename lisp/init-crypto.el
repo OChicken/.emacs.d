@@ -16,13 +16,13 @@
 (defun math-hamming-distance (a b)
   "Calculate the Hamming distance of the input A and B.
 Currently only support distance of integers."
-  (if (and (Math-integerp a) (Math-integerp b))
+  (if (and (integerp a) (integerp b))
       (logcount (logxor a b)) ; logcount is the hamming weight
     (math-reject-arg "Only accept integer arguments." 'integerp)))
 
 (defun math-hamming-mul (a b)
   "Calculate the Hamming product of the input A and B."
-  (if (and (Math-integerp a) (Math-integerp b))
+  (if (and (integerp a) (integerp b))
       (logand (logcount (logand a b)) 1)
     (math-reject-arg "Only accept integer arguments." 'integerp)))
 
@@ -43,7 +43,7 @@ Currently only support distance of integers."
 
 (defun math-gf2x-dec2binvec (x &optional b)
   "Convert decimal input X to binary vector B (little endian)."
-  (unless (Math-integerp x)
+  (unless (integerp x)
     (math-reject-arg))
   (let ((b (or b '())))
     (if (> x 0)
@@ -53,7 +53,7 @@ Currently only support distance of integers."
 
 (defun math-gf2x-deg (f &optional n)
   "Return the degree N of the polynomial F."
-  (unless (Math-integerp f)
+  (unless (integerp f)
     (math-reject-arg))
   (let ((n (or n 0)))
     (if (> f 1)
@@ -62,7 +62,7 @@ Currently only support distance of integers."
 
 (defun math-gf2x-mod (a m)
   "Calculate poly(A) % poly(M)."
-  (unless (and (Math-integerp a) (Math-integerp m))
+  (unless (and (integerp a) (integerp m))
     (math-reject-arg))
   (let* ((deg-a (math-gf2x-deg a))
          (deg-m (math-gf2x-deg m))
@@ -73,7 +73,7 @@ Currently only support distance of integers."
 
 (defun math-gf2x-mul (a b &optional r)
   "Calculate poly(A) * poly(B) => poly(R) on char(2) finite field."
-  (unless (and (Math-integerp a) (Math-integerp b))
+  (unless (and (integerp a) (integerp b))
     (math-reject-arg))
   (let ((r (or r 0)))
     (if (> b 0)
@@ -85,13 +85,13 @@ Currently only support distance of integers."
 
 (defun math-gf2x-mulm (a b m)
   "Calculate poly(A) * poly(B) % poly(M) on char(2) finite field."
-  (unless (and (Math-integerp a) (Math-integerp b) (Math-integerp m))
+  (unless (and (integerp a) (integerp b) (integerp m))
     (math-reject-arg))
   (math-gf2x-mod (math-gf2x-mul a b) m))
 
 (defun math-gf2x-pow (a n &optional r)
   "Calculate pow(poly(A), N) => poly(R) on char(2) finite field."
-  (unless (and (Math-integerp a) (Math-integerp n))
+  (unless (and (integerp a) (integerp n))
     (math-reject-arg))
   (let ((r (or r 1)))
     (if (> n 0)
@@ -103,7 +103,7 @@ Currently only support distance of integers."
 
 (defun math-gf2x-powm (a n m &optional r)
   "Calculate pow(poly(A), N) % poly(M) => poly(R) on char(2) finite field."
-  (unless (and (Math-integerp a) (Math-integerp n))
+  (unless (and (integerp a) (integerp n))
     (math-reject-arg))
   (let ((r (or r 1)))
     (if (> n 0)
