@@ -43,8 +43,8 @@
 (require 'init-utils)
 (require 'init-opt)        ; Wakatime, sunshine
 (require 'init-gnus)
-(require 'init-math)
-(require 'init-crypto)
+(require 'math)
+(require 'crypto)
 
 ; Personal key-bindings preferences
 (when *use-personal-kbd*
