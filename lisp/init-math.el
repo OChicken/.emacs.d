@@ -25,6 +25,21 @@
 		     (= (length (car a)) len)))
 	 (null a))))
 
+(defun math-mat-dim (m)                                         ; [l x] [Public]
+  "Return the dimensions of a matrix M as a list."
+  (if (listp m)
+      (if (math-matrixp m)
+	  (cons (length m)
+		(math-mat-dim (nth 0 m)))
+	(list (length m)))
+    nil))
+
+(defun math-square-matrixp (a)                                  ; [P V] [Public]
+  "True if A is a square matrix."
+  (let ((dim (math-mat-dim a)))
+    (and (cdr dim)
+	 (= (car dim) (nth 1 dim)))))
+
 
 (defun math-mat-idx (A m n)
   "Get the index M,N from matrix A."
