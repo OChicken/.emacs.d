@@ -13,19 +13,18 @@
                                         ;                Matrix               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun math-matrixp (a)
-  "True if A is a matrix.  [P x] [Public]."
-  (and (vectorp a)
-       (vectorp (aref a 0))
-       (> (length a) 0)
-       (> (length (aref a 0)) 0)
-       (let ((len (length (aref a 0))))
-         (catch 'not-a-matrix
-           (dotimes (i (length a))
-             (if (or (not (vectorp (aref a i)))
-                     (/= (length (aref a i)) len))
-                 (throw 'not-a-matrix nil)))
-           t))))
+(defun math-matrixp (a)                                         ; [P x] [Public]
+  "True if A is a matrix."
+  (and (listp a)
+       (listp (nth 0 a))
+       (cdr (nth 0 a))
+       (let ((len (length (nth 0 a))))
+	 (setq a (cdr a))
+	 (while (and (setq a (cdr a))
+		     (listp (car a))
+		     (= (length (car a)) len)))
+	 (null a))))
+
 
 (defun math-mat-idx (A m n)
   "Get the index M,N from matrix A."
