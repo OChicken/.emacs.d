@@ -132,6 +132,7 @@
 ;; load theme ;;
 ;;;;;;;;;;;;;;;;
 
+(customize-set-variable 'vscode-dark-plus-box-org-todo nil)
 (load-theme 'vscode-dark-plus t)
 
 (require 'em-prompt)

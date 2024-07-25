@@ -205,7 +205,7 @@
 ; https://github.com/io12/org-fragtog
 (add-hook 'org-mode-hook 'org-fragtog-mode) ; for latex live previous
 
-(require 'xenops)
+;(require 'xenops)
 ; An editing environment for LaTeX mathematical documents
 ; https://github.com/dandavison/xenops
 
