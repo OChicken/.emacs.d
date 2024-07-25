@@ -16,7 +16,7 @@
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-;; (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
 
 (defconst *use-personal-kbd* t) ;; Enable with t if you prefer, and disable with nil if not
 
@@ -43,8 +43,6 @@
 (require 'init-utils)
 (require 'init-opt)        ; Wakatime, sunshine
 (require 'init-gnus)
-(require 'math)
-(require 'crypto)
 
 ; Personal key-bindings preferences
 (when *use-personal-kbd*
