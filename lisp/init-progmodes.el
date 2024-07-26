@@ -148,6 +148,9 @@
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
 
+(require 'inf-lisp)
+(setq inferior-lisp-program "sbcl")
+
 (require 'immortal-scratch)
 ; Respawn the scratch buffer when it's killed
 ; https://github.com/jpkotta/immortal-scratch
