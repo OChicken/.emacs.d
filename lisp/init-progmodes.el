@@ -141,7 +141,9 @@
       (concat initial-scratch-message
        ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 
-(add-hook 'lisp-interaction-mode-hook 'display-line-numbers-mode)
+(dolist (hook '(lisp-mode-hook lisp-interaction-mode-hook))
+  (add-hook hook 'display-line-numbers-mode))
+
 (add-hook 'emacs-lisp-mode-hook
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
