@@ -181,10 +181,6 @@ With numeric prefix ARG, move current line to window-line ARG."
 (define-key comint-mode-map (kbd "M-q") 'comint-previous-input)
 (define-key comint-mode-map (kbd "M-z") 'comint-next-input)
 
-(require 'slime-repl)
-(define-key slime-repl-mode-map (kbd "M-q") 'slime-repl-previous-input)
-(define-key slime-repl-mode-map (kbd "M-z") 'slime-repl-next-input)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;          Beginning of line          ;
