@@ -56,6 +56,9 @@
 (add-hook 'after-init-hook 'whole-line-or-region-global-mode)
 (with-eval-after-load 'whole-line-or-region
   (diminish 'whole-line-or-region-local-mode))
+(define-key whole-line-or-region-local-mode-map
+	    (kbd "C-x C-d")
+	    'whole-line-or-region-delete-region) ; origin: ido-list-directory
 
 (require 'multiple-cursors)
 ; Multiple cursors for emacs
