@@ -182,6 +182,14 @@
 ; file:///usr/share/emacs/29.1/lisp/progmodes/python.el.gz
 (setq python-indent-offset 4)
 
+(add-hook 'python-mode 'display-line-numbers-mode)
+;; (define-key minibuffer-local-map (kbd "M-q") 'previous-history-element)
+
+(require 'elpy)
+(define-key elpy-mode-map
+            (kbd "C-c C-e")  ; origin: elpy-multiedit-python-symbol-at-point
+            'elpy-shell-send-statement-and-step)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;             LaTeX config            ;

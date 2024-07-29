@@ -1,6 +1,7 @@
 auto-save-list/
 ctags/TAGS-linux
 elpa/
+elpy/
 eshell/history
 eshell/lastdir
 history
