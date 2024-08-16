@@ -201,6 +201,7 @@
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
 (add-hook 'LaTeX-mode-hook (lambda ()
   (prettify-symbols-mode t)
+  (outline-minor-mode t)
   (add-to-list 'TeX-view-program-selection '(output-pdf "qpdfview"))
   (add-to-list 'TeX-view-program-list '("qpdfview" "qpdfview --unique  %o"))
   (setq
