@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-babel-insert-hyphen
         TeX-insert-backslash
         asm-comment
         backward-delete-word
