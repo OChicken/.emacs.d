@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: gnuplot
+# key:  gp-qt
+# --
+#+begin_src gnuplot :session :var data=input
+set term qt
+set title "The title"
+set xlabel "x"
+set ylabel "y"
+set xrange [-pi:pi]
+set yrange [-1:1]
+$0
+#+end_src

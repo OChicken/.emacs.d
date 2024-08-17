@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: gnuplot
+# key:  gp-png
+# --
+#+begin_src gnuplot :session :var data=input :file /tmp/gnuplot.png :exports both
+set term png size 400,300
+set title "The title"
+set xlabel "x"
+set ylabel "y"
+set xrange [-pi:pi]
+set yrange [-1:1]
+set xtics -10:0.1:10
+set ytics -1,0.1,1
+$0
+#+end_src
