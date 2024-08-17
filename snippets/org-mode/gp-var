@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: gnuplot
-# key:  gp-qt
+# key:  gp-var
 # --
 #+begin_src gnuplot :session :var data=input
 set term qt

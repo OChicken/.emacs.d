@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
-# name: gnuplot
-# key:  gp-png
+# name: gnuplot-data
+# key:  gp-data
 # --
-#+begin_src gnuplot :session :var data=input :file /tmp/gnuplot.png :exports both
-set term png size 400,300
+#+begin_src gnuplot :session :file /tmp/gnuplot.png :exports both
+set term png size 400,300  # or qt, postscript, epslatex
 set title "The title"
 set xlabel "x"
 set ylabel "y"
