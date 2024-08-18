@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: gnuplot-mono
-# key:  gp-mono
+# name: gnuplot-multi
+# key:  gp-multi
 # --
 #+begin_src gnuplot :var data=\"data.csv\" :file /tmp/gnuplot.png :exports both
 set datafile separator ","
