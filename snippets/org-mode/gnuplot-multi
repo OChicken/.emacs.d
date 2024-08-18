@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: gnuplot-mono
+# key:  gp-mono
+# --
+#+begin_src gnuplot :var data=\"data.csv\" :file /tmp/gnuplot.png :exports both
+set datafile separator ","
+set term png size 400,300  # or qt, postscript, epslatex
+set multiplot layout 2,1   # margins 0.12,0.96,0.1,.96 spacing 0.1,0.1
+set title "The title"
+set xlabel "x"
+set ylabel "y"
+set key bottom right
+set zeroaxis
+set grid
+set xrange [-pi:pi]
+set yrange [-1:1]
+plot data using 1:2 with linespoints linewidth 1 title "sin",\
+     data using 1:3 with linespoints linewidth 1 title "cos"
+#+end_src
