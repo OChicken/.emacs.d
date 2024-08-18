@@ -5,15 +5,21 @@
 #+begin_src gnuplot :var data=\"data.csv\" :file /tmp/gnuplot.png :exports both
 set datafile separator ","
 set term png size 400,300  # or qt, postscript, epslatex
-set multiplot layout 2,1   # margins 0.12,0.96,0.1,.96 spacing 0.1,0.1
-set title "The title"
-set xlabel "x"
+set multiplot layout 2,1 title "Multiplot"  # margins 0.2, 0.95, 0.15, 0.9 spacing 0.1,0.1
+set xrange [-pi:pi]
 set ylabel "y"
 set key bottom right
 set zeroaxis
 set grid
-set xrange [-pi:pi]
+
+unset xlabel
 set yrange [-1:1]
 plot data using 1:2 with linespoints linewidth 1 title "sin",\
      data using 1:3 with linespoints linewidth 1 title "cos"
+
+set xlabel "x"
+set yrange [-10:10]
+plot data using 1:2 with linespoints linewidth 1 title "tan"
+
+unset multiplot
 #+end_src
