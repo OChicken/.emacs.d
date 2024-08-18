@@ -3,6 +3,7 @@
 # key:  gp-data
 # --
 #+begin_src gnuplot :var data=\"data.csv\" :file /tmp/gnuplot.png :exports both
+set datafile separator ","
 set term png size 400,300  # or qt, postscript, epslatex
 set title "The title"
 set xlabel "x"
@@ -11,8 +12,7 @@ set zeroaxis
 set grid
 set xrange [-pi:pi]
 set yrange [-1:1]
-set datafile separator ","
-plot   '' using 1:2 with linespoints linewidth 1 title "1st sample"
-replot '' using 1:3 with linespoints linewidth 1 title "2nd sample"
+plot data using 1:2 with linespoints linewidth 1 title "1st sample",\
+     data using 1:3 with linespoints linewidth 1 title "2nd sample"
 $0
 #+end_src
