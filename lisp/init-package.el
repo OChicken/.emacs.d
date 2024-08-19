@@ -32,6 +32,7 @@
   wrap-region
   ; lang
   cmake-mode crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
+  cython-mode
   ; view
   htmlize
   highlight-escape-sequences
