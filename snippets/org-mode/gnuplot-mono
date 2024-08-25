@@ -3,6 +3,7 @@
 # key:  gp-mono
 # --
 #+begin_src gnuplot :var data=\"data.csv\" :file /tmp/gnuplot.png :exports both
+reset
 set datafile separator ","
 set term png size 400,300  # or qt, postscript, epslatex
 set title "The title"
