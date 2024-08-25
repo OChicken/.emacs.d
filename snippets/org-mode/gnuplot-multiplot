@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: gnuplot-multi
+# name: gnuplot-multiplot
 # key:  gp-multiplot
 # --
 #+begin_src gnuplot :file /tmp/gp-multiplot.png :exports both

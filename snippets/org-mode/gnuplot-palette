@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: gnuplot-palette
+# key:  gp-palette
+# --
+#+begin_src gnuplot :file /tmp/gp-palette.png :exports both
+# http://gnuplot.info/demo/pm3dcolors.html
+reset
+set term png
+unset key
+
+set xrange [0:pi/8]
+
+set colorbox user horizontal origin 0.15,0.15 size 0.18,0.035 front
+set cbrange [2:13]
+set cbtics ('2' 2,'13' 13) offset 0,0.5 scale 0
+set palette model CMY # rgbformulae 7,5,15, model: RGB or HSV
+plot for [n=2:13] cos(x*(n+2)) with lines linecolor palette frac ((n-1)/12.0)
+#+end_src
