@@ -194,7 +194,7 @@
 ; https://www.gnu.org/software/auctex/
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
-(add-hook 'LaTeX-mode-hook (lambda ()
+(with-eval-after-load 'latex
   (prettify-symbols-mode t)
   (outline-minor-mode t)
   (add-to-list 'TeX-view-program-selection '(output-pdf "qpdfview"))
@@ -209,7 +209,7 @@
                      (1.0  1.0  1.0)
                      (nil  nil  nil))
     ; preview-pdf-color-adjust-method
-)))
+))
 
 ;; RefTeX
 (require 'reftex)
