@@ -1,4 +1,4 @@
-;;; init-modes.el --- Major modes settings -*- lexical-binding: t -*-
+;;; init-lang.el --- Major modes for various languages -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -47,5 +47,5 @@
 ; https://web-mode.org/
 (add-to-list 'html-mode-hook 'web-mode)
 
-(provide 'init-modes)
-;;; init-modes.el ends here
+(provide 'init-lang)
+;;; init-lang.el ends here
