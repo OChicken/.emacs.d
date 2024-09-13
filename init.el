@@ -34,7 +34,7 @@
 (require 'init-package)  ; Machinery for installing required packages
 
 ;; Load configs for specific features and modes
-(require 'init-modes)
+(require 'init-lang)
 (require 'init-view)       ; rainbow
 (require 'init-edit)       ; multi-line edit, spell check, git, dir navigation
 (require 'init-sessions)   ; recentf, session, desktop

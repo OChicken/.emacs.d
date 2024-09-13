@@ -30,14 +30,14 @@
   anzu
   move-dup xclip multiple-cursors symbol-overlay whole-line-or-region
   wrap-region
-  ; lang
-  cmake-mode crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
-  cython-mode
   ; view
   htmlize
   highlight-escape-sequences
   vertico rainbow-delimiters mode-line-bell page-break-lines diminish
   vscode-dark-plus-theme
+  ; lang
+  cmake-mode crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
+  cython-mode cuda-mode
   ; keyring
   gnu-elpa-keyring-update))
 
