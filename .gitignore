@@ -9,7 +9,6 @@ network-security.data
 
 lisp/init-gnus.el
 lisp/init-opt.el
-lisp/math
 
 org-clock-save.el
 projectile-bookmarks.eld
