@@ -109,12 +109,13 @@ With numeric prefix ARG, move current line to window-line ARG."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;          Copy & paste/yank          ;
+                                        ;                 Edit                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Nobody would resist the sweet C-v paste/yank, especially when the original
 ;; C-v scrolls the full screen to distract your attention.
-(global-set-key (kbd "C-v") 'yank)
+;; (global-set-key (kbd "C-v") 'yank)
+
 
 ; Mark the symbol at point.
 (defun mark-symbol-at-point ()
