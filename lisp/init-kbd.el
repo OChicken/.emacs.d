@@ -116,6 +116,8 @@ With numeric prefix ARG, move current line to window-line ARG."
 ;; C-v scrolls the full screen to distract your attention.
 ;; (global-set-key (kbd "C-v") 'yank)
 
+;; Comment
+(global-set-key (kbd "C-x M-c") 'whole-line-or-region-comment-dwim-2)
 
 ; Mark the symbol at point.
 (defun mark-symbol-at-point ()

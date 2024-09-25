@@ -5,6 +5,7 @@
       '(
         LaTeX-babel-insert-hyphen
         TeX-insert-backslash
+        TeX-insert-sub-or-superscript
         asm-comment
         backward-delete-word
         backward-sexp
