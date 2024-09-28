@@ -15,6 +15,12 @@
 ; Search for and list unicode characters in Emacs
 ; https://github.com/purcell/list-unicode-display
 
+(defun unfill-region (start end)
+  "Transform a multi-line region between START & END into a single line."
+  (interactive "r")
+  (let ((fill-column (point-max)))
+    (fill-region start end nil)))
+
 (defun kill-dired-buffers ()
   "Kill all Dired buffers."
   (interactive)
