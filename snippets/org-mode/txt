@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: txt
+# key:  txt_
+# --
+#+begin_src txt
+$0
+#+end_src
