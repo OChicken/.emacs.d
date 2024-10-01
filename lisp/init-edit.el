@@ -15,6 +15,12 @@
       set-mark-command-repeat-pop t
       truncate-partial-width-windows nil)
 
+(require 'files)
+; File input and output commands for Emacs
+; file:///usr/share/emacs/29.1/lisp/files.el.gz
+(setq auto-save-default nil
+      make-backup-files nil)
+
 (require 'elec-pair)
 ; Automatic parenthesis pairing
 ; file:///usr/share/emacs/29.1/lisp/elec-pair.el.gz

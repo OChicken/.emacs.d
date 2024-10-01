@@ -2,12 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'files)
-; File input and output commands for Emacs
-; file:///usr/share/emacs/29.1/lisp/files.el.gz
-(setq auto-save-default nil
-      make-backup-files nil)
-
 (require 'recentf)
 ; keep track of recently opened files
 ; file:///usr/share/emacs/29.1/lisp/recentf.el.gz
