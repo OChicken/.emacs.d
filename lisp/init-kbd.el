@@ -231,6 +231,23 @@ With argument ARG, do this that many times."
 (if window-system
     (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-window-any-frame)) ; origin: tab-previous
 
+(defvar last-window (list (selected-window) nil)
+  "Last selected window.")
+
+(defun store-current-and-last-window (frame)
+  "Doc FRAME."
+  (setq last-window (butlast last-window))
+  (setq last-window (cons (selected-window) last-window)))
+
+(defun select-last-window ()
+  "Jump to the last window."
+  (interactive)
+  (select-window (cadr last-window)))
+
+(add-hook 'window-selection-change-functions 'store-current-and-last-window)
+
+(global-set-key (kbd "C-x C-<tab>") 'select-last-window)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;         Toggling among tabs         ;
