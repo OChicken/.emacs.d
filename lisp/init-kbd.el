@@ -234,8 +234,9 @@ With argument ARG, do this that many times."
 (defvar last-window (list (selected-window) nil)
   "Last selected window.")
 
-(defun store-current-and-last-window (frame)
-  "Doc FRAME."
+(defun store-current-and-last-window (_frame)
+  "Store the current and last window in the form (current last).
+The `last-last' window will be pop out if this function is executed again."
   (setq last-window (butlast last-window))
   (setq last-window (cons (selected-window) last-window)))
 
