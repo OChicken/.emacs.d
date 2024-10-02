@@ -231,16 +231,16 @@ With argument ARG, do this that many times."
 ;; escape from the magit-status window. So I use "C-x C-<tab>" instead.
 
 (global-set-key (kbd "C-<tab>") 'next-window-any-frame)                    ; origin: tab-next
+(global-set-key (kbd "C-S-<tab>") 'previous-window-any-frame)              ; origin: tab-previous
 (if window-system
-    (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-window-any-frame)  ; origin: tab-previous
-  (global-set-key (kbd "C-S-<tab>") 'previous-window-any-frame))           ; origin: tab-previous
+    (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-window-any-frame)) ; origin: tab-previous
 
 (defun magit-status-toggle-window ()
   "The kbds enable you to escape from the matig-status window to the next window."
-  (global-set-key (kbd "C-x C-<tab>")           'next-window-any-frame)          ; origin: undefined
+  (global-set-key (kbd "C-x C-<tab>")           'next-window-any-frame)           ; origin: undefined
+  (global-set-key (kbd "C-x C-S-<tab>") 'previous-window-any-frame)               ; origin: undefined
   (if window-system
-      (global-set-key (kbd "C-x C-S-<iso-lefttab>") 'previous-window-any-frame)  ; origin: undefined
-    (global-set-key (kbd "C-x C-S-<tab>") 'previous-window-any-frame)))          ; origin: undefined
+      (global-set-key (kbd "C-x C-S-<iso-lefttab>") 'previous-window-any-frame))) ; origin: undefined
 (add-hook 'magit-status-mode-hook 'magit-status-toggle-window)
 
 

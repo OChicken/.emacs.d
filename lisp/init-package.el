@@ -19,7 +19,6 @@
   yaml yaml-mode
   rust-mode sage-shell-mode gnuplot-mode
   ; progmodes
-  slime
   flycheck flycheck-clang-tidy flycheck-rust
   yasnippet-snippets yasnippet
   company-math company-c-headers company-auctex company
