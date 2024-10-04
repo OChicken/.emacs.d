@@ -117,7 +117,7 @@ With numeric prefix ARG, move current line to window-line ARG."
 ;; (global-set-key (kbd "C-v") 'yank)
 
 ;; Comment
-(global-set-key (kbd "C-x M-c") 'whole-line-or-region-comment-dwim-2)
+(global-set-key (kbd "C-x C-M-c") 'whole-line-or-region-comment-dwim-2) ; origin: undefined
 
 ; Mark the symbol at point.
 (defun mark-symbol-at-point ()
