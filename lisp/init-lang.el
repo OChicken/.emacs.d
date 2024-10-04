@@ -10,6 +10,7 @@
 (add-to-list 'auto-mode-alist '("\\Makefile\\(?:\\..*\\)\\'" . makefile-mode))
 (add-to-list 'auto-mode-alist '("\\.bash\\(rc\\|_\\w+\\)\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.styl\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 
 ; crontab-mode - MELPA
 ; https://melpa.org/#/crontab-mode
