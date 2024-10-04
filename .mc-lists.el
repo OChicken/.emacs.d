@@ -50,6 +50,7 @@
         eval-last-sexp
         goto-line
         ignore
+        mark-sexp
         org-ctrl-c-ctrl-c
         previous-window-any-frame
         recenter-top-bottom-hl

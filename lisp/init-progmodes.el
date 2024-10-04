@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-package)
+
 (require 'grep)
 ; run `grep' and display the results
 ; file:///usr/share/emacs/29.1/lisp/progmodes/grep.el.gz
@@ -19,11 +21,12 @@
                                         ;              Projectile             ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'projectile)
 ; Project Interaction Library for Emacs
 ; https://github.com/bbatsov/projectile
+(package-install-init 'projectile)
 (projectile-mode +1)
 ; Recommended keymap prefix on Windows/Linux
+(require 'projectile)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 ; A list of files considered to mark the root of a project
 (dolist (file '(".gitignore" ".dir-locals.el" "compile_commands.json"))
@@ -33,6 +36,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;   Flycheck syntax checker settings  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq-local package-list
+            '(flycheck
+              flycheck-clang-tidy
+              flycheck-rust))
+(dolist (package package-list)
+  (package-install-init package))
 
 (require 'flycheck)
 ; Flycheck --- Syntax checking for GNU Emacs --- Flycheck 33-cvs documentation
@@ -61,20 +71,36 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;              Completion             ;
+                                        ;              yasnippet              ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; yasnippet
-(require 'yasnippet)
+; A template system for Emacs
+; https://github.com/joaotavora/yasnippet
+(package-install-init 'yasnippet)
 (yas-global-mode 1)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (diminish 'yas-global-mode)
 
-(require 'yasnippet-snippets)
+; a collection of yasnippet snippets for many languages
+; https://github.com/AndreaCrotti/yasnippet-snippets
+(package-install-init 'yasnippet-snippets)
 
-(require 'company)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;              Completion             ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq-local package-list
+            '(company
+              company-math
+              company-c-headers
+              company-auctex))
+(dolist (package package-list)
+  (package-install-init package))
+
 ; company-mode for Emacs
 ; https://company-mode.github.io/
+(require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-tooltip-align-annotations t
       company-idle-delay 0.0
@@ -86,17 +112,12 @@
   (define-key company-active-map (kbd "M-q") 'company-select-previous))
 (diminish 'company-mode)
 
-(require 'company-c-headers)
 (add-to-list 'company-backends 'company-c-headers)
 
 ;; company-math
-(require 'company-math)
 (add-to-list 'company-backends 'company-math-symbols-latex)
 (add-to-list 'company-backends 'company-math-symbols-unicode)
 
-(require 'company-auctex)
-; company-mode autocompletion for auctex
-; https://github.com/alexeyr/company-auctex
 (company-auctex-init)
 
 (require 'company-org-block)
@@ -106,25 +127,6 @@
           (lambda ()
             (add-to-list (make-local-variable 'company-backends)
                          'company-org-block)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;             wrap-region             ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'wrap-region)
-; Wrap text with punctation or tag
-; https://github.com/rejeep/wrap-region.el
-(wrap-region-global-mode t)
-(wrap-region-add-wrappers
- '(("\(" "\)" nil c-mode)
-   ("\"" "\"" nil c-mode)
-   ("*" "*" nil org-mode)
-   ("/" "/" nil org-mode)
-   ("~" "~" nil org-mode)
-   ("=" "=" nil org-mode)
-   ("+" "+" nil org-mode)))
-(diminish 'wrap-region-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -153,13 +155,25 @@
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
 
-(require 'inf-lisp)
-(setq inferior-lisp-program "sbcl")
-
 (require 'immortal-scratch)
 ; Respawn the scratch buffer when it's killed
 ; https://github.com/jpkotta/immortal-scratch
 (add-hook 'after-init-hook 'immortal-scratch-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;             Lisp config             ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(package-install-init 'slime)
+
+(require 'inf-lisp)
+(setq inferior-lisp-program "sbcl")
+
+(require 'slime-repl)
+(with-eval-after-load 'slime
+  (define-key slime-repl-mode-map (kbd "M-q") 'slime-repl-previous-input)
+  (define-key slime-repl-mode-map (kbd "M-z") 'slime-repl-next-input))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -197,6 +211,7 @@
 
 ; AUCTeX - Sophisticated document creation
 ; https://www.gnu.org/software/auctex/
+(package-install-init 'auctex)
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
 (with-eval-after-load 'latex

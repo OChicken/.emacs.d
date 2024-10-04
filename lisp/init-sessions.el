@@ -2,21 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'recentf)
 ; keep track of recently opened files
 ; file:///usr/share/emacs/29.1/lisp/recentf.el.gz
+(require 'recentf)
 (add-hook 'after-init-hook 'recentf-mode)
 (setq recentf-max-saved-items 100
       recentf-exclude `("/tmp/" ,(concat package-user-dir "/.*-autoloads\\.el\\'")))
 
-(require 'savehist)
-; Save minibuffer history, and restore histories and registers after saving
+; Save minibuffer history
 ; file:///usr/share/emacs/29.1/lisp/savehist.el.gz
 (add-hook 'after-init-hook 'savehist-mode)
 
-(require 'desktop)
 ; Save partial status of Emacs when killed
 ; file:///usr/share/emacs/29.1/lisp/desktop.el.gz
+(require 'desktop)
 (setq desktop-path (list user-emacs-directory)
       desktop-load-locked-desktop 'check-pid
       desktop-globals-to-save

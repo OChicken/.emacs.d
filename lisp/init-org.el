@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-package)
+
 (require 'org)
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)) ; origin: backward-up-list
@@ -109,6 +111,8 @@
 ;; Org Refile ;;
 ;;;;;;;;;;;;;;;;
 
+(package-install-init 'org-ref)
+
 (require 'org-refile)
 ; Refile Org Subtrees
 ; file:///usr/share/emacs/29.1/lisp/org/org-refile.el.gz
@@ -140,6 +144,13 @@
 (require 'ob)
 ; Working with Code Blocks in Org
 ; file:///usr/share/emacs/29.1/lisp/org/ob.el.gz
+
+(setq-local package-list
+            '(ob-go
+              ob-php
+              ob-sagemath))
+(dolist (package package-list)
+  (package-install-init package))
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -203,11 +214,13 @@
 (require 'org-fragtog)
 ; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 ; https://github.com/io12/org-fragtog
+(package-install-init 'org-fragtog)
 (add-hook 'org-mode-hook 'org-fragtog-mode) ; for latex live previous
 
-;(require 'xenops)
 ; An editing environment for LaTeX mathematical documents
 ; https://github.com/dandavison/xenops
+(package-install-init 'xenops)
+;(require 'xenops)
 
 
 

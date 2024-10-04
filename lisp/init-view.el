@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-package)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Common view settings (of both TTY frames & GUI frames) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -25,17 +27,22 @@
               fill-column 80)
 (add-hook 'find-file-hook 'display-fill-column-indicator-mode)
 
-;; disable the tool bar (It's very ugly and provides limited functionalities)
-(tool-bar-mode -1)
-
 (window-divider-mode t)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;               tab-bar               ;
+                                        ;                 bar                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (tab-bar-mode t)
 ;; (set-face-attribute 'tab-bar nil :height 100)
+
+;; disable the tool bar (It's very ugly and provides limited functionalities)
+(tool-bar-mode -1)
+
+; Diminished modes are minor modes with no modeline display
+; https://github.com/myrjola/diminish.el
+(package-install-init 'diminish)
 
 (require 'time)
 ; display time, load and mail indicator in mode line of Emacs
@@ -91,7 +98,6 @@
                     :height  68     ; (Hack 7: height 68; Hack 8: height 83)
                     :width   'normal)
 
-(require 'frame)
 ; multi-frame management independent of window systems
 ; file:///usr/share/emacs/29.1/lisp/frame.el.gz
 (blink-cursor-mode t)
@@ -120,11 +126,10 @@
 	  ((control) . text-scale))
       mouse-wheel-progressive-speed nil)  ; don"t accelerate scrolling
 
-(require 'pixel-scroll)
 ; Scroll a line smoothly
 ; file:///usr/share/emacs/29.1/lisp/pixel-scroll.el.gz
-;(pixel-scroll-mode nil)
 ; you can enable smooth scrolling, but I don't think it's useful
+; (pixel-scroll-mode nil)
 
 
 
@@ -132,6 +137,9 @@
 ;; load theme ;;
 ;;;;;;;;;;;;;;;;
 
+; An accurate port of the default Visual Studio Code Dark+ theme for Emacs
+; https://github.com/ianyepan/vscode-dark-plus-emacs-theme
+(package-install-init 'vscode-dark-plus-theme)
 (customize-set-variable 'vscode-dark-plus-box-org-todo nil)
 (load-theme 'vscode-dark-plus t)
 
@@ -142,51 +150,57 @@
                 (format-time-string "%T" (current-time))
                 (if (= (user-uid) 0) " # " " $ "))))
 
+; Highlight escape sequences in Emacs
+; https://github.com/dgutov/highlight-escape-sequences
+(package-install-init 'highlight-escape-sequences)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Elements in a frame ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'simple)
+;; (require 'simple)
 ; basic editing commands for Emacs
 ; file:///usr/share/emacs/29.1/lisp/simple.el.gz
 (global-visual-line-mode t)
 (column-number-mode t)
 (diminish 'visual-line-mode)
 
-(require 'hl-line)
 ; highlight the current line
 ; file:///usr/share/emacs/29.1/lisp/hl-line.el.gz
 (global-hl-line-mode t)
 
-(require 'rainbow-delimiters)
 ; Fanael/rainbow-delimiters: Emacs rainbow delimiters mode
 ; A "rainbow parentheses"-like mode which highlights delimiters such as
 ; parentheses, brackets or braces according to their depth.
 ; https://github.com/Fanael/rainbow-delimiters
+(package-install-init 'rainbow-mode)
+(package-install-init 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
+  (add-hook hook 'rainbow-mode))
 
-(require 'mode-line-bell)
 ; purcell/mode-line-bell: Flash the Emacs mode line instead of ringing the bell
 ; Flash the Emacs mode line instead of ringing the bell
 ; https://github.com/purcell/mode-line-bell
+(package-install-init 'mode-line-bell)
 (add-hook 'after-init-hook 'mode-line-bell-mode)
 
-(require 'page-break-lines)
 ; Display ugly ^L page breaks as tidy horizontal lines
 ; https://github.com/purcell/page-break-lines
+(package-install-init 'page-break-lines)
 (add-hook 'git-gutter-mode-hook 'page-break-lines-mode)
 (diminish 'page-break-lines-mode)
 
-(require 'highlight-escape-sequences)
+(package-install-init 'highlight-escape-sequences)
 ; Highlight escape sequences in Emacs
 ; https://github.com/dgutov/highlight-escape-sequences
 (add-hook 'after-init-hook 'hes-mode)
 (put 'hes-escape-backslash-face 'face-alias 'font-lock-builtin-face)
 (put 'hes-escape-sequence-face 'face-alias 'font-lock-builtin-face)
 
-(require 'vertico)
+(package-install-init 'vertico)
 ; VERTical Interactive COmpletion
 ; https://github.com/minad/vertico
 ; (add-hook 'after-init-hook 'vertico-mode)
