@@ -68,6 +68,7 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
+(diminish 'yas-global-mode)
 
 (require 'yasnippet-snippets)
 
