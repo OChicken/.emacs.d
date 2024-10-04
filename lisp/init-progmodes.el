@@ -81,6 +81,9 @@
       company-show-quick-access t  ; Use M-1、M-2 to choose
       company-selection-wrap-around t
       company-transformers '(company-sort-by-occurrence))
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-z") 'company-select-next)
+  (define-key company-active-map (kbd "M-q") 'company-select-previous))
 (diminish 'company-mode)
 
 (require 'company-c-headers)
