@@ -38,6 +38,7 @@
         overwrite-mode
         previous-buffer
         scroll-down-line
+        slime-autodoc-space
         whole-line-or-region-comment-dwim-2
         whole-line-or-region-kill-ring-save
         ))
