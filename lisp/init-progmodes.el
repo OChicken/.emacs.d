@@ -170,10 +170,12 @@
 (require 'inf-lisp)
 (setq inferior-lisp-program "sbcl")
 
-(add-hook 'lisp-mode-hook (lambda ()
-                            (unless (featurep 'slime)
-                              (require 'slime)
-                              (normal-mode))))
+(add-hook 'lisp-mode-hook
+          (lambda ()
+            (unless (featurep 'slime)
+              (require 'slime)
+              (normal-mode))
+            (setq indent-tabs-mode nil)))
 
 (require 'slime-repl)
 (with-eval-after-load 'slime
