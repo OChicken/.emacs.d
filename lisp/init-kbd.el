@@ -221,6 +221,13 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "M-d")
                 'delete-word)           ; origin:          kill-word
 
+(defun zap-up-to-nonspace-char ()
+  "The ARG."
+  (interactive)
+  (while (eq (char-after) ?\s)
+    (delete-char 1)))
+(global-set-key (kbd "M-z") 'zap-up-to-nonspace-char)  ; origin: zap-to-char
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;        Togging among windows        ;
