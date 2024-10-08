@@ -140,6 +140,9 @@ With numeric prefix ARG, move current line to window-line ARG."
         (message "Copied '%s' to kill ring" word))))
 (global-set-key (kbd "C-x M-w") 'copy-word-at-point)
 
+;; undo
+(global-set-key (kbd "M-#") 'undo)  ; origin: none
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;           Left-hand 'RET'           ;
