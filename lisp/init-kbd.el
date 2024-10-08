@@ -226,10 +226,13 @@ With argument ARG, do this that many times."
 ;; barely used. You can still use tab-next command via "C-x t o" or simply mouse
 ;; click.
 
-(global-set-key (kbd "C-<tab>") 'next-window-any-frame)                    ; origin: tab-next
-(global-set-key (kbd "C-S-<tab>") 'previous-window-any-frame)              ; origin: tab-previous
-(if window-system
-    (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-window-any-frame)) ; origin: tab-previous
+(global-set-key (kbd "C-<tab>") 'other-window) ; origin: tab-next
+(global-set-key (kbd (if (window-system)
+                         "C-S-<iso-lefttab>"
+                       "C-<tab>"))
+                (lambda (n)
+                  (interactive "p")
+                  (other-window (- n))))       ; origin: tab-previous
 
 (defvar last-window (list (selected-window) nil)
   "Last selected window.")
