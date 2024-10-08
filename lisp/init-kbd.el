@@ -213,8 +213,10 @@ With argument ARG, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
 
-(global-set-key (kbd "C-<backspace>") 'backward-delete-word)  ; origin: backward-kill-word
-(global-set-key (kbd "C-<delete>")             'delete-word)  ; origin:          kill-word
+(global-set-key (kbd "C-<backspace>")
+                'backward-delete-word)  ; origin: backward-kill-word
+(global-set-key (kbd "M-d")
+                'delete-word)           ; origin:          kill-word
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
