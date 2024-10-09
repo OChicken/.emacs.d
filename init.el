@@ -17,6 +17,7 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (defconst *use-personal-kbd* t) ;; Enable with t if you prefer, and disable with nil if not
 

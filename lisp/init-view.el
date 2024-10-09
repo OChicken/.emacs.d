@@ -139,9 +139,9 @@
 
 ; An accurate port of the default Visual Studio Code Dark+ theme for Emacs
 ; https://github.com/ianyepan/vscode-dark-plus-emacs-theme
-(package-install-init 'vscode-dark-plus-theme)
+; Modified by me
 (customize-set-variable 'vscode-dark-plus-box-org-todo nil)
-(load-theme 'vscode-dark-plus t)
+(load-theme 'vscode-dark t)
 
 (require 'em-prompt)
 (setq eshell-prompt-function
