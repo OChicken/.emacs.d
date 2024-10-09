@@ -58,16 +58,6 @@
 (package-install-init 'xclip)
 (xclip-mode t)
 
-;(require 'whole-line-or-region)
-; Operate (cut/copy) on current line if no region is active
-; https://github.com/purcell/whole-line-or-region
-(add-hook 'after-init-hook 'whole-line-or-region-global-mode)
-(require 'whole-line-or-region)
-(define-key whole-line-or-region-local-mode-map
-	    (kbd "C-x C-d")
-	    'whole-line-or-region-delete-region) ; origin: ido-list-directory
-(diminish 'whole-line-or-region-local-mode)
-
 ; Multiple cursors for emacs
 ; https://github.com/magnars/multiple-cursors.el
 (package-install-init 'multiple-cursors)

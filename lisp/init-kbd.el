@@ -116,8 +116,10 @@ With numeric prefix ARG, move current line to window-line ARG."
 ;; C-v scrolls the full screen to distract your attention.
 ;; (global-set-key (kbd "C-v") 'yank)
 
+(global-set-key (kbd "C-x C-d") 'delete-region)
+
 ;; Comment
-(global-set-key (kbd "C-x C-M-c") 'whole-line-or-region-comment-dwim-2) ; origin: undefined
+(global-set-key (kbd "C-x C-M-c") 'comment-dwim) ; origin: undefined
 
 ; Mark the symbol at point.
 (defun mark-symbol-at-point ()
