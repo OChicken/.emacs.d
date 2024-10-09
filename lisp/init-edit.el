@@ -55,8 +55,10 @@
 
 ; Copy&paste GUI clipboard from text terminal
 ; https://github.com/emacsmirror/xclip/tree/master
-(package-install-init 'xclip)
-(xclip-mode t)
+(when (or (getenv "DISPLAY")
+          (getenv "WAYLAND_DISPLAY"))
+  (package-install-init 'xclip)
+  (xclip-mode t))
 
 ; Multiple cursors for emacs
 ; https://github.com/magnars/multiple-cursors.el
