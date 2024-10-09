@@ -45,17 +45,17 @@
 (deftheme vscode-dark)
 
 (defcustom vscode-dark-box-org-todo t
-  "Set box around TODO items in org-mode"
+  "Set box around TODO items in `org-mode'."
   :type 'boolean
   :group 'dark-plus)
 
 (defcustom vscode-dark-scale-org-faces t
-  "Scale headlines and other org faces"
+  "Scale headlines and other org faces."
   :type 'boolean
   :group 'dark-plus)
 
 (defcustom vscode-dark-invert-hl-todo t
-  "Set (:invert-video t) on hl-todo face"
+  "Set (:invert-video t) on hl-todo face."
   :type 'boolean
   :group 'dark-plus)
 
