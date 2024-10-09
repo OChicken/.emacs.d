@@ -150,10 +150,6 @@
                 (format-time-string "%T" (current-time))
                 (if (= (user-uid) 0) " # " " $ "))))
 
-; Highlight escape sequences in Emacs
-; https://github.com/dgutov/highlight-escape-sequences
-(package-install-init 'highlight-escape-sequences)
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;

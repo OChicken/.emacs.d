@@ -37,16 +37,21 @@
 (require 'init-lang)
 (require 'init-view)       ; rainbow
 (require 'init-edit)       ; multi-line edit, spell check, git, dir navigation
-(require 'init-sessions)   ; recentf, session, desktop
-(require 'init-progmodes)  ; Flycheck, auto-complete
-(require 'init-org)
-(require 'init-utils)
-(require 'init-opt)        ; Wakatime, sunshine
-(require 'init-gnus)
 
 ; Personal key-bindings preferences
 (when *use-personal-kbd*
   (require 'init-kbd))
+
+(let ((lite-mode (member "--lite" command-line-args)))
+  (setq command-line-args (delete "--lite" command-line-args))
+  (when (not lite-mode)
+    (require 'init-sessions)   ; recentf, session, desktop
+    (require 'init-progmodes)  ; Flycheck, auto-complete
+    (require 'init-org)
+    (require 'init-utils)
+    (require 'init-opt)        ; Wakatime, sunshine
+    (require 'init-gnus))
+  )
 
 (provide 'init)
 
