@@ -111,8 +111,6 @@
 ;; Org Refile ;;
 ;;;;;;;;;;;;;;;;
 
-(package-install-init 'org-ref)
-
 (require 'org-refile)
 ; Refile Org Subtrees
 ; file:///usr/share/emacs/29.1/lisp/org/org-refile.el.gz
@@ -216,11 +214,6 @@
 ; https://github.com/io12/org-fragtog
 (package-install-init 'org-fragtog)
 (add-hook 'org-mode-hook 'org-fragtog-mode) ; for latex live previous
-
-; An editing environment for LaTeX mathematical documents
-; https://github.com/dandavison/xenops
-(package-install-init 'xenops)
-;(require 'xenops)
 
 
 

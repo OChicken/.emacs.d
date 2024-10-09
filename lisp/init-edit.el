@@ -119,11 +119,6 @@
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
 (diminish 'symbol-overlay-mode)
 
-(require 'avy)
-; Jump to things in Emacs tree-style
-; https://github.com/abo-abJJump to things in Emaco/avy
-(global-set-key (kbd "C-:") 'avy-goto-char-timer)
-
 ; Displays current match and total matches info in the mode-line
 ; https://github.com/emacsorphanage/anzu
 (package-install-init 'anzu)
