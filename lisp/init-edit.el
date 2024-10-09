@@ -250,8 +250,9 @@ Feel free to use command to toggle between them."
 (require 'ispell)
 ; interface to spell checkers
 ; file:///usr/share/emacs/29.1/lisp/textmodes/ispell.el.gz
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(when (executable-find "aspell")
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 (setq ispell-dictionary "en")
 
 
