@@ -227,11 +227,5 @@
 (setq dired-listing-switches "-alFo --time-style=long-iso")
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Syntax (auto-mode): auto major mode for file name pattern (extensions) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 (provide 'init-view)
 ;;; init-view.el ends here
