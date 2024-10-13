@@ -224,6 +224,21 @@
 	      (local-set-key (kbd "M-e") (kbd "RET"))                   ; origin: c-end-of-statement
 	      (local-set-key (kbd "M-a") 'beginning-of-visual-line))))  ; origin: c-beginning-of-statement
 
+(defun c-format-linux ()
+  "Format the current buffer with clang-format using the specified style file."
+  (interactive)
+  (when (and buffer-file-name (string-match "\\.c\\'" buffer-file-name))
+    ;; Save the buffer if it's modified
+    (when (buffer-modified-p)
+      (save-buffer))
+    ;; Call clang-format with the specified style
+    (let* ((style-file (expand-file-name "~/.emacs.d/.clang-format"))
+           (current-file (buffer-name))
+           (style-arg (concat "-style=file:" style-file)))
+      (call-process "clang-format" nil nil nil style-arg "-i" current-file))
+    (revert-buffer t t t)))
+(define-key c-mode-map (kbd "C-c C-f") 'c-format-linux)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;            Python config            ;
