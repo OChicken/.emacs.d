@@ -51,10 +51,6 @@
   (add-hook hook 'flycheck-mode))
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-(setq flycheck-clang-include-path
-      (list
-       (expand-file-name "~/.local/include/")
-       "/usr/share/verilator/include/"))
 (setq flycheck-emacs-lisp-load-path 'inherit)
 
 (setq-default flycheck-disabled-checkers '(python-pylint))
@@ -213,9 +209,10 @@
 					;             C/C++ config            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'cc-vars)
-; User customization variables for CC Mode
-; file:///usr/share/emacs/29.1/lisp/progmodes/cc-vars.el.gz
+(require 'cc-mode)
+; major mode for editing C and similar languages
+; file:///usr/share/emacs/29.1/lisp/progmodes/cc-mode.el.gz
+
 (setq c-default-style "linux")
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
@@ -223,6 +220,12 @@
 	      (local-set-key (kbd "C-c C-c") 'compile)                  ; origin: whole-line-or-region-comment-region
 	      (local-set-key (kbd "M-e") (kbd "RET"))                   ; origin: c-end-of-statement
 	      (local-set-key (kbd "M-a") 'beginning-of-visual-line))))  ; origin: c-beginning-of-statement
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq flycheck-gcc-language-standard   '("c11")
+                  flycheck-clang-language-standard '("c11")
+                  flycheck-clang-include-path `((expand-file-name "~/.local/include/")
+                                                "/usr/share/verilator/include/"))))
 
 (defun c-format-linux ()
   "Format the current buffer with clang-format using the specified style file."
