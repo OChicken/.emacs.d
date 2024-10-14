@@ -28,6 +28,14 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;            Buffer Switch            ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-x C-M-q") 'previous-buffer)
+(global-set-key (kbd "C-x C-M-z") 'next-buffer)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;       Scroll one line up/down       ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -62,6 +70,8 @@
     (forward-line 1)))
 (global-set-key (kbd "C-M-z") 'scroll-up-line-keep-cur)    ; origin: suspend-frame
 (global-set-key (kbd "C-M-q") 'scroll-down-line-keep-cur)  ; origin: quoted-insert
+(define-key prog-mode-map (kbd "C-M-z") 'scroll-up-line-keep-cur)
+(define-key prog-mode-map (kbd "C-M-q") 'scroll-down-line-keep-cur)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
