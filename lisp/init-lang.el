@@ -6,7 +6,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.emacs\\.grep\\'"   . grep-mode))
 (add-to-list 'auto-mode-alist '("\\.emacs\\.eshell\\'" . eshell-mode))
-
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\Makefile\\(?:\\..*\\)\\'" . makefile-mode))
 (add-to-list 'auto-mode-alist '("\\.bash\\(rc\\|_\\w+\\)\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.styl\\'" . css-mode))
