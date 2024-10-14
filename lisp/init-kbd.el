@@ -96,7 +96,6 @@ With numeric prefix ARG, move current line to window-line ARG."
   (progn
     (move-to-window-line -1)
     (recenter)))
-(global-set-key (kbd "C-x C-v") 'scroll-up-half) ; origin: ido-find-alternative-file
 
 ;; scroll-down-half
 (defun scroll-down-half ()
@@ -105,7 +104,15 @@ With numeric prefix ARG, move current line to window-line ARG."
   (progn
     (move-to-window-line 0)
     (recenter)))
-(global-set-key (kbd "C-x C-S-v") 'scroll-down-half)
+; (global-set-key (kbd "C-x C-S-v") 'scroll-down-half)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;                 View                ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-x C-v") 'end-of-buffer) ; origin: ido-find-alternative-file
+(global-set-key (kbd "C-x M-v") 'beginning-of-buffer) ; origin: undefined
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
