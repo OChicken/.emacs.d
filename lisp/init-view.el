@@ -8,27 +8,9 @@
 ;; Common view settings (of both TTY frames & GUI frames) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Attention: the variables re-defined here are all defined in 'C source code'
-;; of Emacs, so that you must use 'setq-default' instead of 'setq'.
-
-
-(setq-default indicate-buffer-boundaries 'left
-              display-fill-column-indicator-character ?\u254e
-(add-hook 'find-file-hook 'display-fill-column-indicator-mode)
-
-
 ; Diminished modes are minor modes with no modeline display
 ; https://github.com/myrjola/diminish.el
 (package-install-init 'diminish)
-
-(require 'time)
-; display time, load and mail indicator in mode line of Emacs
-; file:///usr/share/emacs/29.3/lisp/time.el.gz
-;; (dolist (format '(tab-bar-format-align-right tab-bar-format-global))
-;;   (add-to-list 'tab-bar-format format t))
-(setq display-time-format "%F %T %z")
-(setq display-time-interval 1)
-;; (display-time-mode)
 
 
 

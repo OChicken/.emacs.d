@@ -97,6 +97,14 @@ disabled. Please upgrade if possible." emacs-version))
 (setq dired-listing-switches "-alFo --time-style=long-iso")
 
 
+;; display-fill-column-indicator.el --- interface for display-fill-column-indicator
+
+(if (version< emacs-version "28.1")
+    (warn "'display-fill-column-indicator.el' does not exist for Emacs \
+version < 28.1." )
+  (display-fill-column-indicator-mode t))
+
+
 ;; display-line-numbers.el --- interface for display-line-numbers ;;;;;;;;;;;;;
 
 (setq-default display-line-numbers-width 4)
@@ -289,7 +297,7 @@ With argument ARG, do this that many times."
 
 (if (version< emacs-version "27.1")
     ; There was no tab-bar on Ubuntu 20.04.6 LTS.
-    (warn "'tab-bar.el' does not exist due to your old Emacs.")
+    (warn "'tab-bar.el' does not exist for Emacs version < 27.1.")
   (progn
     (tab-bar-mode t)
     ; (set-face-attribute 'tab-bar nil :height 100)
@@ -318,6 +326,16 @@ With argument ARG, do this that many times."
         (kill-new word)
         (message "Copied '%s' to kill ring" word))))
 (global-set-key (kbd "C-x M-w") 'copy-word-at-point)
+
+
+;; time.el --- display time, load and mail indicator in mode line of Emacs ;;;;
+
+(require 'time)
+; (dolist (format '(tab-bar-format-align-right tab-bar-format-global))
+;   (add-to-list 'tab-bar-format format t))
+(setq display-time-format "%F %T %z")
+(setq display-time-interval 1)
+; (display-time-mode)
 
 
 ;; tool-bar.el --- setting up the tool bar ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -406,7 +424,7 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'em-hist)
 (if (version<= emacs-version "27.1")
-    (warn "'eshell-hist-mode-map' is void due to your old Emacs.")
+    (warn "'eshell-hist-mode-map' is void for Emacs version <= 27.1.")
   (progn
     (define-key eshell-hist-mode-map (kbd "M-q")
                 'eshell-previous-matching-input-from-input)
