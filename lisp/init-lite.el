@@ -541,6 +541,5 @@ The `last-last' window will be pop out if this function is executed again."
         ediff-window-setup-function 'ediff-setup-windows-plain))
 
 
-
 (provide 'init-lite)
 ;;; init-lite.el ends here
