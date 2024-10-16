@@ -18,7 +18,6 @@
 
 (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
 
-(defconst *use-personal-kbd* t) ;; Enable with t if you prefer, and disable with nil if not
 
 
 ;; Adjust garbage collection thresholds during startup, and thereafter

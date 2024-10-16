@@ -17,15 +17,6 @@
 (add-hook 'find-file-hook 'display-fill-column-indicator-mode)
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ;                 bar                 ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(tab-bar-mode t)
-;; (set-face-attribute 'tab-bar nil :height 100)
-
-
 ; Diminished modes are minor modes with no modeline display
 ; https://github.com/myrjola/diminish.el
 (package-install-init 'diminish)

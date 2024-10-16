@@ -30,9 +30,7 @@
 ;;; Code:
 
 (when (version<= emacs-version "27.1")
-  ; "26.1" is the version number appears in Purcell's config on 20230905.
-  ; If this file is suitable for an older Emacs version, I shall decrease this
-  ; number.
+  ; "27.1" is the Emacs version of Ubuntu 22.04.5 LTS.
   (warn "Your Emacs %s is old, and some functionality in this config will be \
 disabled. Please upgrade if possible." emacs-version))
 
@@ -287,9 +285,17 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "C-x C-d") 'delete-logic-line) ; list-directory
 
 
-;; tool-bar.el --- setting up the tool bar ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; tab-bar.el --- frame-local tabs with named persistent window configurations
 
-(tool-bar-mode -1) ; disable (It's ugly and provides limited functionalities)
+(if (version< emacs-version "27.1")
+    ; There was no tab-bar on Ubuntu 20.04.6 LTS.
+    (warn "'tab-bar.el' does not exist due to your old Emacs.")
+  (progn
+    (tab-bar-mode t)
+    ; (set-face-attribute 'tab-bar nil :height 100)
+    (global-set-key (kbd "C-<prior>") 'tab-bar-switch-to-prev-tab) ; scroll-right
+    (global-set-key (kbd "C-<next>")  'tab-bar-switch-to-next-tab) ; scroll-left
+))
 
 
 ;; thingatpt.el --- get the `thing' at point ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -312,6 +318,11 @@ With argument ARG, do this that many times."
         (kill-new word)
         (message "Copied '%s' to kill ring" word))))
 (global-set-key (kbd "C-x M-w") 'copy-word-at-point)
+
+
+;; tool-bar.el --- setting up the tool bar ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(tool-bar-mode -1) ; disable (It's ugly and provides limited functionalities)
 
 
 ;; uniquify.el --- unique buffer names dependent on file name ;;;;;;;;;;;;;;;;;
@@ -395,7 +406,7 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'em-hist)
 (if (version<= emacs-version "27.1")
-    (warn "`eshell-hist-mode-map' is void due to your old Emacs.")
+    (warn "'eshell-hist-mode-map' is void due to your old Emacs.")
   (progn
     (define-key eshell-hist-mode-map (kbd "M-q")
                 'eshell-previous-matching-input-from-input)
