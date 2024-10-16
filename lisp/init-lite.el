@@ -147,6 +147,9 @@
 (blink-cursor-mode t)
 (window-divider-mode t) ; so that you can adjust the width of left/right window
 
+; https://emacs.stackexchange.com/questions/2999/how-to-maximize-my-emacs-frame-on-start-up
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
 
 ;; hl-line.el --- highlight the current line ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
