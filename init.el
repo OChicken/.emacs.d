@@ -16,9 +16,6 @@
 
 (require 'init-lite)
 
-(when (version< emacs-version "27.1")
-  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
-
 (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
 
 (defconst *use-personal-kbd* t) ;; Enable with t if you prefer, and disable with nil if not

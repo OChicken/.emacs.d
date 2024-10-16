@@ -29,12 +29,13 @@
 ;;;
 ;;; Code:
 
-(let ((minver "26.1"))
+(when (version<= emacs-version "27.1")
   ; "26.1" is the version number appears in Purcell's config on 20230905.
   ; If this file is suitable for an older Emacs version, I shall decrease this
   ; number.
-  (when (version< emacs-version minver)
-    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+  (message "Your Emacs %s is old, and some functionality in this config will \
+be disabled. Please upgrade if possible." emacs-version))
+
 
 
 ;; C source code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -393,8 +394,13 @@ The `last-last' window will be pop out if this function is executed again."
 ;; em-hist.el --- history list management ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'em-hist)
-(define-key eshell-hist-mode-map (kbd "M-q") 'eshell-previous-matching-input-from-input)
-(define-key eshell-hist-mode-map (kbd "M-z") 'eshell-next-matching-input-from-input)
+(if (version<= emacs-version "27.1")
+    (message "`eshell-hist-mode-map' is void due to your old Emacs.")
+  (progn
+    (define-key eshell-hist-mode-map (kbd "M-q")
+                'eshell-previous-matching-input-from-input)
+    (define-key eshell-hist-mode-map (kbd "M-z")
+                'eshell-next-matching-input-from-input)))
 
 
 ;; em-prompt.el --- command prompts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
