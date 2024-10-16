@@ -8,23 +8,38 @@
 ;; Some basic preferences ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq set-mark-command-repeat-pop t
-      truncate-partial-width-windows nil)
+;; (setq set-mark-command-repeat-pop t
+;;       truncate-partial-width-windows nil)
 
-(transient-mark-mode t)
+;; (transient-mark-mode t)
 
 (diminish 'hs-minor-mode)
 
+;; flyspell.el --- On-the-fly spell checker ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Copy&paste GUI clipboard from text terminal
+(when (executable-find "aspell")
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
+
+
+;; ispell.el --- interface to spell checkers ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ispell)
+(setq ispell-dictionary "en")
+
+
+;; Copy&paste GUI clipboard from text terminal ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/emacsmirror/xclip/tree/master
+
 (when (or (getenv "DISPLAY")
           (getenv "WAYLAND_DISPLAY"))
   (package-install-init 'xclip)
   (xclip-mode t))
 
-; Multiple cursors for emacs
+
+;; Multiple cursors for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/magnars/multiple-cursors.el
+
 (package-install-init 'multiple-cursors)
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (global-set-key (kbd "C-M-l")   'mc/mark-next-like-this)     ; origin: reposition-window
@@ -76,8 +91,10 @@
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
 (diminish 'symbol-overlay-mode)
 
-; Displays current match and total matches info in the mode-line
+
+;; Displays current match and total matches info in the mode-line ;;;;;;;;;;;;;
 ; https://github.com/emacsorphanage/anzu
+
 (package-install-init 'anzu)
 (global-anzu-mode +1)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
