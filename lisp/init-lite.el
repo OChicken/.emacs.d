@@ -33,8 +33,8 @@
   ; "26.1" is the version number appears in Purcell's config on 20230905.
   ; If this file is suitable for an older Emacs version, I shall decrease this
   ; number.
-  (message "Your Emacs %s is old, and some functionality in this config will \
-be disabled. Please upgrade if possible." emacs-version))
+  (warn "Your Emacs %s is old, and some functionality in this config will be \
+disabled. Please upgrade if possible." emacs-version))
 
 
 
@@ -395,7 +395,7 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'em-hist)
 (if (version<= emacs-version "27.1")
-    (message "`eshell-hist-mode-map' is void due to your old Emacs.")
+    (warn "`eshell-hist-mode-map' is void due to your old Emacs.")
   (progn
     (define-key eshell-hist-mode-map (kbd "M-q")
                 'eshell-previous-matching-input-from-input)
