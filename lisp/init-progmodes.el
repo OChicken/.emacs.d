@@ -4,18 +4,6 @@
 
 (require 'init-package)
 
-(require 'grep)
-; run `grep' and display the results
-; file:///usr/share/emacs/29.1/lisp/progmodes/grep.el.gz
-(setq grep-use-null-device nil
-      grep-command "grep --color=auto -nr -F --exclude-dir=.git --exclude-dir=fs --exclude-dir=drivers --exclude-dir=Documentation --exclude-dir=net --exclude=TAGS --exclude=.emacs.desktop ")
-
-(require 'em-unix)
-; UNIX command aliases
-; file:///usr/share/emacs/29.3/lisp/eshell/em-unix.el.gz
-(setq eshell-plain-grep-behavior t)
-; https://emacs.stackexchange.com/questions/57714/how-to-keep-grep-results-in-eshell-buffer
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;              Projectile             ;
@@ -140,10 +128,6 @@
 					;          Emacs Lisp config          ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq initial-scratch-message
-      (concat initial-scratch-message
-       ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
-
 (dolist (hook '(lisp-mode-hook lisp-interaction-mode-hook))
   (add-hook hook 'display-line-numbers-mode))
 
@@ -162,9 +146,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (package-install-init 'slime)
-
-(require 'inf-lisp)
-(setq inferior-lisp-program "sbcl")
 
 (add-hook 'lisp-mode-hook
           (lambda ()
@@ -210,16 +191,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'cc-mode)
-; major mode for editing C and similar languages
-; file:///usr/share/emacs/29.1/lisp/progmodes/cc-mode.el.gz
-
-(setq c-default-style "linux")
-(dolist (hook '(c-mode-hook c++-mode-hook))
-  (add-hook hook
-	    (lambda()
-	      (local-set-key (kbd "C-c C-c") 'compile)                  ; origin: whole-line-or-region-comment-region
-	      (local-set-key (kbd "M-e") (kbd "RET"))                   ; origin: c-end-of-statement
-	      (local-set-key (kbd "M-a") 'beginning-of-visual-line))))  ; origin: c-beginning-of-statement
 (add-hook 'c-mode-hook
           (lambda ()
             (setq flycheck-gcc-language-standard   '("c11")
@@ -252,8 +223,6 @@
 ; file:///usr/share/emacs/29.1/lisp/progmodes/python.el.gz
 (setq python-indent-offset 4)
 
-(add-hook 'python-mode 'display-line-numbers-mode)
-;; (define-key minibuffer-local-map (kbd "M-q") 'previous-history-element)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

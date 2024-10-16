@@ -8,50 +8,13 @@
 ;; Some basic preferences ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; y-or-n instead of yes-or-no
-(fset 'yes-or-no-p 'y-or-n-p)
-
-(setq create-lockfiles nil
-      mouse-yank-at-point t
-      save-interprogram-paste-before-kill t
-      set-mark-command-repeat-pop t
+(setq set-mark-command-repeat-pop t
       truncate-partial-width-windows nil)
 
-(require 'files)
-; File input and output commands for Emacs
-; file:///usr/share/emacs/29.1/lisp/files.el.gz
-(setq auto-save-default nil
-      make-backup-files nil)
+(transient-mark-mode t)
 
-(require 'elec-pair)
-; Automatic parenthesis pairing
-; file:///usr/share/emacs/29.1/lisp/elec-pair.el.gz
-(electric-pair-mode   t)  ; paired parentheses, brackets, and quotes
-(electric-indent-mode t)  ; adjust indentation according to the context
-
-(require 'autorevert)
-; revert buffers when files on disk change
-; file:///usr/share/emacs/29.1/lisp/autorevert.el.gz
-(add-hook 'after-init-hook 'global-auto-revert-mode)
-(setq global-auto-revert-non-file-buffers t
-      auto-revert-verbose nil)
-
-(add-hook 'after-init-hook (lambda()
-  (delete-selection-mode   t)
-  (transient-mark-mode     t)))
-
-(require 'hideshow)
-; minor mode cmds to selectively display code/comment blocks
-; file:///usr/share/emacs/29.1/lisp/progmodes/hideshow.el.gz
-(add-hook 'prog-mode-hook 'hs-minor-mode)  ; Enable code folding
-(setq hs-hide-comments-when-hiding-all nil
-      hs-isearch-open t)
 (diminish 'hs-minor-mode)
 
-(require 'ido)
-; interactively do things with buffers and files
-; file:///usr/share/emacs/29.1/lisp/ido.el.gz
-(ido-mode t)
 
 ; Copy&paste GUI clipboard from text terminal
 ; https://github.com/emacsmirror/xclip/tree/master
@@ -100,14 +63,6 @@
 ;; isearch ;;
 ;;;;;;;;;;;;;
 
-(require 'isearch)
-; incremental search minor mode
-; file:///usr/share/emacs/29.1/lisp/isearch.el.gz
-; DEL during isearch should edit the search string, not jump back to the previous result
-(define-key isearch-mode-map [remap isearch-delete-char] 'isearch-del-char)
-; Activate occur easily inside isearch
-(define-key isearch-mode-map (kbd "C-c C-o") 'isearch-occur)
-
 ; Highlight symbols with keymap-enabled overlays
 ; https://github.com/wolray/symbol-overlay
 (package-install-init 'symbol-overlay)
@@ -137,12 +92,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; VC: Version Control ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'ediff)
-; A comprehensive visual interface to diff & patch
-; file:///usr/share/emacs/29.1/lisp/vc/ediff.el.gz
-(setq ediff-split-window-function 'split-window-horizontally
-      ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ; It's Magit! A Git Porcelain inside Emacs
 ; https://magit.vc/
@@ -193,54 +142,6 @@ Feel free to use command to toggle between them."
   (unless (eq ibuffer-sorting-mode 'filename/process)
     (ibuffer-do-sort-by-filename/process)))
 (add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
-
-(setq ibuffer-show-empty-filter-groups nil)
-
-
-(with-eval-after-load 'ibuffer
-  ;; Use human readable Size column instead of original one
-  (define-ibuffer-column size-h
-    (:name "Size" :inline t)
-    (file-size-human-readable (buffer-size))))
-
-
-;; Modify the default ibuffer-formats (toggle with `)
-(setq ibuffer-formats
-      '((mark modified read-only vc-status-mini " "
-              (name 22 22 :left :elide)
-              " "
-              (size-h 9 -1 :right)
-              " "
-              (mode 14 14 :left :elide)
-              " "
-              vc-relative-file)
-        (mark modified read-only vc-status-mini " "
-              (name 22 22 :left :elide)
-              " "
-              (size-h 9 -1 :right)
-              " "
-              (mode 14 14 :left :elide)
-              " "
-              (vc-status 12 12 :left)
-              " "
-              vc-relative-file)))
-
-(setq ibuffer-filter-group-name-face 'font-lock-doc-face)
-(global-set-key (kbd "C-x C-b") 'ibuffer)  ; origin: list-buffers
-
-
-
-;;;;;;;;;;;;;;;;;
-;; Spell check ;;
-;;;;;;;;;;;;;;;;;
-
-(require 'ispell)
-; interface to spell checkers
-; file:///usr/share/emacs/29.1/lisp/textmodes/ispell.el.gz
-(when (executable-find "aspell")
-  (add-hook 'text-mode-hook 'flyspell-mode)
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
-(setq ispell-dictionary "en")
 
 
 

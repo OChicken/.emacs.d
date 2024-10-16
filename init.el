@@ -9,12 +9,17 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 ;;(setq debug-on-error t)
 
+(add-to-list 'load-path
+             (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "themes" user-emacs-directory))
+
+(require 'init-lite)
+
 (when (version< emacs-version "27.1")
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
-(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (defconst *use-personal-kbd* t) ;; Enable with t if you prefer, and disable with nil if not
 
@@ -36,9 +41,6 @@
 (require 'init-view)       ; rainbow
 (require 'init-edit)       ; multi-line edit, spell check, git, dir navigation
 
-; Personal key-bindings preferences
-(when *use-personal-kbd*
-  (require 'init-kbd))
 
 (let ((lite-mode (member "--lite" command-line-args)))
   (setq command-line-args (delete "--lite" command-line-args))

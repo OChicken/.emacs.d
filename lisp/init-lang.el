@@ -4,14 +4,6 @@
 
 (require 'init-package)
 
-(add-to-list 'auto-mode-alist '("\\.emacs\\.grep\\'"   . grep-mode))
-(add-to-list 'auto-mode-alist '("\\.emacs\\.eshell\\'" . eshell-mode))
-(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
-(add-to-list 'auto-mode-alist '("\\Makefile\\(?:\\..*\\)\\'" . makefile-mode))
-(add-to-list 'auto-mode-alist '("\\.bash\\(rc\\|_\\w+\\)\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.styl\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
-
 ; crontab-mode - MELPA
 ; https://melpa.org/#/crontab-mode
 (package-install-init 'crontab-mode)
