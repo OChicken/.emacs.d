@@ -99,10 +99,11 @@ disabled. Please upgrade if possible." emacs-version))
 
 ;; display-fill-column-indicator.el --- interface for display-fill-column-indicator
 
+;(require 'display-fill-column-indicator)
 (if (version< emacs-version "28.1")
     (warn "'display-fill-column-indicator.el' does not exist for Emacs \
 version < 28.1." )
-  (display-fill-column-indicator-mode t))
+  (add-hook 'find-file-hook 'display-fill-column-indicator-mode))
 
 
 ;; display-line-numbers.el --- interface for display-line-numbers ;;;;;;;;;;;;;
@@ -273,6 +274,8 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "C-q") 'previous-line)       ; quoted-insert
 (global-set-key (kbd "C-M-z") 'scroll-up-line)    ; suspend-frame
 (global-set-key (kbd "C-M-q") 'scroll-down-line)  ; quoted-insert
+(global-set-key (kbd "C-x C-v") (kbd "M->"))      ; find-alternative-file
+(global-set-key (kbd "C-x M-v") (kbd "M-<"))      ; undefined
 
 
 ;; startup.el --- process Emacs shell arguments ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -362,10 +365,8 @@ With numeric prefix ARG, move current line to window-line ARG."
   (pulse-momentary-highlight-one-line (point)))
 (global-set-key (kbd "C-l") 'recenter-top-bottom-hl)
 
-(global-set-key (kbd "C-x C-M-q") 'previous-buffer)   ; undefined
-(global-set-key (kbd "C-x C-M-z") 'next-buffer)       ; undefined
-(global-set-key (kbd "C-x C-v") 'end-of-buffer)       ; find-alternative-file
-(global-set-key (kbd "C-x M-v") 'beginning-of-buffer) ; undefined
+(global-set-key (kbd "C-x C-M-q") 'previous-buffer) ; undefined
+(global-set-key (kbd "C-x C-M-z") 'next-buffer)     ; undefined
 
 ; Toggling among windows. This modifies the default "C-<tab>" and "C-S-<tab>"
 ; behaviour, that toggling among tabs. In practice, toggling among tabs is
