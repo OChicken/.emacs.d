@@ -26,23 +26,20 @@ Ubuntu 18.04 LTS.)" emacs-version))
 
 
 ;; Bootstrap config
-(require 'init-package)  ; Machinery for installing required packages
 
 ;; Load configs for specific features and modes
-(require 'init-lang)
-(require 'init-view)       ; rainbow
-(require 'init-edit)       ; multi-line edit, spell check, git, dir navigation
-
 
 (let ((lite-mode (member "--lite" command-line-args)))
   (setq command-line-args (delete "--lite" command-line-args))
   (when (not lite-mode)
     (require 'init-sessions)   ; recentf, session, desktop
+    (require 'init-dev)
     (require 'init-progmodes)  ; Flycheck, auto-complete
     (require 'init-org)
     (require 'init-utils)
     (require 'init-opt)        ; Wakatime, sunshine
-    (require 'init-gnus))
+    (require 'init-gnus)
+    )
   )
 
 (provide 'init)

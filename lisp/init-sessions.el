@@ -1,5 +1,10 @@
 ;;; init-sessions.el --- Keep track of the recent files, history and sessions. -*- lexical-binding: t -*-
 ;;; Commentary:
+;;;
+;;; This config need not to install any packages, but keeping track the sessions
+;;; are vital to backup your works if you want to do development or any other
+;;; works on your personal computer.
+;;;
 ;;; Code:
 
 ; keep track of recently opened files
