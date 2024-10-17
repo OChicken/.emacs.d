@@ -300,7 +300,7 @@ With argument ARG, do this that many times."
   "Delete the logic line."
   (interactive)
   (delete-region (progn (beginning-of-line) (point))
-                 (progn (end-of-line) (point))))
+                 (progn (forward-line 1) (point))))
 (global-set-key (kbd "C-x C-d") 'delete-logic-line) ; list-directory
 
 
