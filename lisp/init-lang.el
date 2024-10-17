@@ -4,7 +4,7 @@
 
 (require 'init-package)
 
-; crontab-mode - MELPA
+;; crontab-mode - MELPA --- Major mode for crontab(5) files ;;;;;;;;;;;;;;;;;;;
 ; https://melpa.org/#/crontab-mode
 (package-install-init 'crontab-mode)
 (add-to-list 'auto-mode-alist '("\\.?cron\\(tab\\)?\\'" . crontab-mode))
@@ -26,7 +26,7 @@
 (dolist (package package-list)
   (package-install-init package))
 
-; Markdown Mode for Emacs
+;; Markdown Mode for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://jblevins.org/projects/markdown-mode/
 (package-install-init 'markdown-mode)
 (autoload 'markdown-mode "markdown-mode"
@@ -37,7 +37,8 @@
   "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
-; web-mode.el - html template editing for emacs
+
+;; web-mode.el - html template editing for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://web-mode.org/
 (package-install-init 'web-mode)
 (require 'css-mode)

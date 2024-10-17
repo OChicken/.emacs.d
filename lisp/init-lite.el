@@ -213,6 +213,7 @@ version < 28.1." )
 
 ; DEL during isearch should edit the search string, not jump back to the previous result
 (define-key isearch-mode-map [remap isearch-delete-char] 'isearch-del-char)
+(define-key isearch-mode-map (kbd "M-q") 'isearch-ring-retreat)
 ; Activate occur easily inside isearch
 (define-key isearch-mode-map (kbd "C-c C-o") 'isearch-occur)
 

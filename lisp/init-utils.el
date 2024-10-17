@@ -2,21 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-package)
-
-; Displays available keybindings in popup
-; https://github.com/justbur/emacs-which-key
-(package-install-init 'which-key)
-(require 'which-key)
-(add-hook 'after-init-hook 'which-key-mode)
-(which-key-setup-side-window-right)
-(setq which-key-idle-delay 5
-      which-key-popup-type 'side-window)
-(diminish 'which-key-mode)
-
-; Search for and list unicode characters in Emacs
-; https://github.com/purcell/list-unicode-display
-(package-install-init 'list-unicode-display)
 
 (defun unfill-region (start end)
   "Transform a multi-line region between START & END into a single line."

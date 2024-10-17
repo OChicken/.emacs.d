@@ -75,6 +75,7 @@
 (require 'org-cliplink)
 ; Insert org-mode links from clipboard
 ; https://github.com/rexim/org-cliplink
+(package-install-init 'org-cliplink)
 (global-set-key (kbd "C-c y") 'org-cliplink)
 (setq org-cliplink-max-length 120)  ; cuts any title that exceeds the limit
 

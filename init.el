@@ -33,6 +33,9 @@ Ubuntu 18.04 LTS.)" emacs-version))
   (setq command-line-args (delete "--lite" command-line-args))
   (when (not lite-mode)
     (require 'init-sessions)   ; recentf, session, desktop
+    (require init-lang)
+    (require 'init-view)
+    (require 'init-edit)
     (require 'init-dev)
     (require 'init-progmodes)  ; Flycheck, auto-complete
     (require 'init-org)
