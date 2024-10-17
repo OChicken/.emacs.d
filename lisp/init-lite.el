@@ -8,24 +8,29 @@
 ;;; it at your own risk 🙂
 ;;;
 ;;; Noticed that the original
-;;; - "z" kbds like `C-z' (suspend-frame), `M-z' (zap-to-char) and
-;;; - "q" kbds like `C-q' (quoted-insert), `M-q' (fill-paragraph)
+;;; - "z" kbds like "C-z" (suspend-frame), "M-z" (zap-to-char) and
+;;; - "q" kbds like "C-q" (quoted-insert), "M-q" (fill-paragraph)
 ;;; are barely used, so I exploit them to the <down> and <up> respectively.
 ;;;
-;;; Perhaps `C-z' the suspend-frame, is also, to some extend, a frequently used
-;;; command.  Actually, suspend-frame bounds to both `C-z' and "C-x C-z", so
+;;; Perhaps "C-z" the suspend-frame, is also, to some extend, a frequently used
+;;; command.  Actually, suspend-frame bounds to both "C-z" and "C-x C-z", so
 ;;; that you can still use the latter one.
 ;;;
-;;; Notice that, `M-e' (forward-sentence) is also barely used.  Instead, an
-;;; <RET> for left-hand is desired, so `M-e' where "e" for "enter" is the
+;;; Notice that, "M-e" (forward-sentence) is also barely used.  Instead, an
+;;; <RET> for left-hand is desired, so "M-e" where "e" for "enter" is the
 ;;; suitable name.
 ;;;
 ;;; So that you will see the ubiquitous "z", "q", "e" in this config.  By the
 ;;; above settings, you can do almost everything solely with your left hand.
 ;;; For example, during compiling, you will do
-;;; 1. `M-!': shell-command, revoke minibuffer-local-shell-command-map
-;;; 2. `M-q' (instead of `M-p'): previous-history-element in the minibuffer
-;;; 3. `M-e' (instead of `RET'): hit `<return>'
+;;; 1. "M-!": shell-command, revoke minibuffer-local-shell-command-map
+;;; 2. "M-q" (instead of "M-p"): previous-history-element in the minibuffer
+;;; 3. "M-e" (instead of "RET"): hit `<return>'
+;;;
+;;; The HIGH RISK for you to know is, I bind "C-x C-c" to "comment-dwim" so you
+;;; cannot use this shortcut to close Emacs; instead, use "C-x C-M-c" to close
+;;; Emacs (deliberately add some inconvenience to exit Emacs is nice to your
+;;; ongoing work 🙂)
 ;;;
 ;;; Code:
 
@@ -156,6 +161,12 @@ version < 28.1." )
 (add-to-list 'auto-mode-alist '("\\.styl\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 
+; I want a quick comment cmd for my left-hand quirk. Some days ago I use
+; "C-x C-M-c" to do so, but very easily to hit "C-x C-c" that close the Emacs.
+; So I bind "C-x C-M-c" to close Emacs, and bind "C-x C-c" to comment-dwim.
+; Check the position "newcomment.el" for detail.
+(global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-terminal) ; undefined
+
 
 ;; frame.el --- multi-frame management independent of window systems ;;;;;;;;;;
 
@@ -235,7 +246,7 @@ version < 28.1." )
 
 ;; newcomment.el --- (un)comment regions of buffers ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-x C-M-c") 'comment-dwim) ; undefined
+(global-set-key (kbd "C-x C-c") 'comment-dwim) ; undefined
 
 
 ;; scroll-bar.el --- window system-independent scroll bar support ;;;;;;;;;;;;;
