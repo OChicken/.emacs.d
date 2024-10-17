@@ -432,13 +432,15 @@ The `last-last' window will be pop out if this function is executed again."
 ;; em-hist.el --- history list management ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'em-hist)
-(if (version<= emacs-version "27.1")
-    (warn "'eshell-hist-mode-map' is void for Emacs version <= 27.1.")
-  (progn
-    (define-key eshell-hist-mode-map (kbd "M-q")
-                'eshell-previous-matching-input-from-input)
-    (define-key eshell-hist-mode-map (kbd "M-z")
-                'eshell-next-matching-input-from-input)))
+;; (if (version<= emacs-version "27.1")
+;;     (warn "'eshell-hist-mode-map' is void for Emacs version <= 27.1.")
+;;   (progn
+;;     (define-key eshell-hist-mode-map (kbd "M-q")
+;;                 'eshell-previous-matching-input-from-input)
+;;     (define-key eshell-hist-mode-map (kbd "M-z")
+;;                 'eshell-next-matching-input-from-input)))
+(define-key eshell-mode-map (kbd "M-q") 'eshell-previous-matching-input-from-input)
+(define-key eshell-mode-map (kbd "M-z") 'eshell-next-matching-input-from-input)
 
 
 ;; em-prompt.el --- command prompts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
