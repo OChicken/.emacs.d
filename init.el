@@ -36,8 +36,8 @@ Ubuntu 18.04 LTS.)" emacs-version))
     (require init-lang)
     (require 'init-view)
     (require 'init-edit)
+    (require 'init-progmodes)
     (require 'init-dev)
-    (require 'init-progmodes)  ; Flycheck, auto-complete
     (require 'init-org)
     (require 'init-utils)
     (require 'init-opt)        ; Wakatime, sunshine

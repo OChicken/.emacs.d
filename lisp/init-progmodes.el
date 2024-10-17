@@ -21,6 +21,37 @@
   (add-to-list 'projectile-project-root-files-bottom-up file t))
 (diminish 'projectile-mode)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ibuffer: operate on buffers according to git or projectile ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; We have two choices when using ibuffer: filter by either .git or project
+
+;; Let Emacs' ibuffer-mode group files by git project etc., and show file state
+; https://github.com/purcell/ibuffer-vc
+(package-install-init 'ibuffer-vc)
+
+;; Group buffers in Emacs ibuffer-mode by their projectile root directory ;;;;;
+; https://github.com/purcell/ibuffer-projectile
+(package-install-init 'ibuffer-projectile)
+(require 'ibuffer-projectile)
+
+;; Set up the preferred filter.
+(defun ibuffer-set-up-preferred-filters ()
+  "Let ibuffer setup preferred filters.
+Use either
+  (ibuffer-vc-set-filter-groups-by-vc-root)
+or
+  (ibuffer-projectile-set-filter-groups)
+Feel free to use command to toggle between them."
+  (ibuffer-projectile-set-filter-groups)
+  ;(ibuffer-vc-set-filter-groups-by-vc-root)
+  (unless (eq ibuffer-sorting-mode 'filename/process)
+    (ibuffer-do-sort-by-filename/process)))
+(add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;   Flycheck syntax checker settings  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,22 +83,6 @@
 ; Cross-referencing commands
 ; file:///usr/share/emacs/29.1/lisp/progmodes/xref.el.gz
 (setq tags-table-list '("~/.emacs.d/ctags/TAGS"))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ;              yasnippet              ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; A template system for Emacs
-; https://github.com/joaotavora/yasnippet
-(package-install-init 'yasnippet)
-(yas-global-mode 1)
-(add-hook 'prog-mode-hook #'yas-minor-mode)
-(diminish 'yas-global-mode)
-
-; a collection of yasnippet snippets for many languages
-; https://github.com/AndreaCrotti/yasnippet-snippets
-(package-install-init 'yasnippet-snippets)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -117,9 +132,9 @@
 					;                Eglot                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; eglot --- The Emacs Client for LSP servers ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'eglot)
-; The Emacs Client for LSP servers
-; file:///usr/share/emacs/29.1/lisp/progmodes/eglot.el.gz
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 
 

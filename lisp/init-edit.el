@@ -116,13 +116,28 @@
 (diminish 'wrap-region-mode)
 
 
-;; Copy&paste GUI clipboard from text terminal ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; xclip --- Copy&paste GUI clipboard from text terminal ;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/emacsmirror/xclip/tree/master
 
 (when (or (getenv "DISPLAY")
           (getenv "WAYLAND_DISPLAY"))
   (package-install-init 'xclip)
   (xclip-mode t))
+
+
+;; yasnippet --- A template system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; https://github.com/joaotavora/yasnippet
+
+(package-install-init 'yasnippet)
+(yas-global-mode 1)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+(diminish 'yas-global-mode)
+
+
+;; yasnippet-snippets --- a collection of yasnippet snippets for many languages
+; https://github.com/AndreaCrotti/yasnippet-snippets
+
+(package-install-init 'yasnippet-snippets)
 
 
 

@@ -4,9 +4,7 @@
 
 (require 'init-package)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Common view settings (of both TTY frames & GUI frames) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'package)
 
 ; Diminished modes are minor modes with no modeline display
 ; https://github.com/myrjola/diminish.el
@@ -31,28 +29,35 @@
 (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
   (add-hook hook 'rainbow-mode))
 
-; purcell/mode-line-bell: Flash the Emacs mode line instead of ringing the bell
+
+;; mode-line-bell: Flash the Emacs mode line instead of ringing the bell ;;;;;;
 ; Flash the Emacs mode line instead of ringing the bell
 ; https://github.com/purcell/mode-line-bell
 (package-install-init 'mode-line-bell)
 (mode-line-bell-mode t)
 
-; Display ugly ^L page breaks as tidy horizontal lines
+
+;; Display ugly ^L page breaks as tidy horizontal lines ;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/purcell/page-break-lines
 (package-install-init 'page-break-lines)
 (add-hook 'git-gutter-mode-hook 'page-break-lines-mode)
 (diminish 'page-break-lines-mode)
 
-(package-install-init 'highlight-escape-sequences)
-; Highlight escape sequences in Emacs
+
+;; Highlight escape sequences in Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/dgutov/highlight-escape-sequences
+
+(package-install-init 'highlight-escape-sequences)
 (add-hook 'after-init-hook 'hes-mode)
 (put 'hes-escape-backslash-face 'face-alias 'font-lock-builtin-face)
 (put 'hes-escape-sequence-face 'face-alias 'font-lock-builtin-face)
 
-(package-install-init 'vertico)
-; VERTical Interactive COmpletion
+
+;; Vertical Interactive Completion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/minad/vertico
+; ATTENTION! Raise "'emacs-28.1' is unavailable" warning!
+
+(package-install-init 'vertico)
 ; (add-hook 'after-init-hook 'vertico-mode)
 (global-set-key (kbd "C-x C-M-v") 'vertico-mode)
 
