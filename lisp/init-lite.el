@@ -515,7 +515,7 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'inf-lisp)
 (when (executable-find "sbcl")
-  (setq inferior-lisp-buffer "sbcl"))
+  (setq inferior-lisp-program "sbcl"))
 
 
 ;; prog-mode.el --- Generic major mode for programming ;;;;;;;;;;;;;;;;;;;;;;;;

@@ -160,6 +160,7 @@ Feel free to use command to toggle between them."
             (setq indent-tabs-mode nil)))
 
 (require 'slime-repl)
+
 (with-eval-after-load 'slime
   (define-key slime-repl-mode-map (kbd "M-q") 'slime-repl-previous-input)
   (define-key slime-repl-mode-map (kbd "M-z") 'slime-repl-next-input))
