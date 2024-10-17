@@ -1,6 +1,9 @@
-;;; init-package.el --- package management -*- lexical-binding: t -*-
+;;; init-package.el --- package management and keyring preparation -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
+;; package.el --- Simple package system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Mandatory before installing packages
 
 (require 'package)
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
@@ -15,7 +18,15 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-(package-install-init 'gnu-elpa-keyring-update)
+(unless (package-installed-p 'gnu-elpa-keyring-update)
+  ; gnu-elpa-keyring-update need special treatment since without the keyring
+  ; you cannot install any packages.
+  ; https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure
+  (setq package-check-signature nil)
+  (package-refresh-contents)
+  (package-install 'gnu-elpa-keyring-update)
+  (setq package-check-signature 'allow-unsigned) ; set back to default
+)
 
 (provide 'init-package)
 ;;; init-package.el ends here
