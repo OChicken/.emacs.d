@@ -230,7 +230,7 @@ version < 28.1." )
 	  ((meta))
 	  ((control meta) . global-text-scale)
 	  ((control) . text-scale))
-      mouse-wheel-progressive-speed nil)  ; don"t accelerate scrolling
+      mouse-wheel-progressive-speed nil)  ; don't accelerate scrolling
 
 
 ;; newcomment.el --- (un)comment regions of buffers ;;;;;;;;;;;;;;;;;;;;;;;;;;;
