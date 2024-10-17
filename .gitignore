@@ -24,3 +24,7 @@ xenops/
 # backup
 openedf
 backupf
+
+# Emacs desktop
+.emacs.desktop
+.emacs.desktop.lock
