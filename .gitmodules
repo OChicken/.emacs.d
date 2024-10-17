@@ -1,3 +1,0 @@
-[submodule "lisp/math"]
-	path = lisp/math
-	url = git@github.com:OChicken/emacs-math.git

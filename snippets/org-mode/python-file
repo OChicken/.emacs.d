@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: python-file
-# key:  pyf
-# --
-#+begin_src python :session :results output file link :exports both
-$0
-#+end_src
