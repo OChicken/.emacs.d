@@ -13,8 +13,6 @@
 
 ;; (transient-mark-mode t)
 
-(diminish 'hs-minor-mode)
-
 ;; flyspell.el --- On-the-fly spell checker ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (when (executable-find "aspell")
@@ -101,6 +99,7 @@
 (which-key-setup-side-window-right)
 (setq which-key-idle-delay 5
       which-key-popup-type 'side-window)
+(diminish 'which-key-mode)
 
 
 ;; wrap-region --- Wrap text with punctation or tag ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -135,7 +134,7 @@
 (package-install-init 'yasnippet)
 (yas-global-mode 1)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
-(diminish 'yas-global-mode)
+(diminish 'yas-minor-mode)
 
 
 ;; yasnippet-snippets --- a collection of yasnippet snippets for many languages

@@ -23,21 +23,16 @@ Ubuntu 18.04 LTS.)" emacs-version))
 
 (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
 
-
-
-;; Bootstrap config
-
 ;; Load configs for specific features and modes
 
 (let ((lite-mode (member "--lite" command-line-args)))
   (setq command-line-args (delete "--lite" command-line-args))
   (when (not lite-mode)
     (require 'init-sessions)   ; recentf, session, desktop
-    (require init-lang)
+    (require 'init-lang)
     (require 'init-view)
     (require 'init-edit)
     (require 'init-progmodes)
-    (require 'init-dev)
     (require 'init-org)
     (require 'init-utils)
     (require 'init-opt)        ; Wakatime, sunshine

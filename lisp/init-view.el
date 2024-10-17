@@ -4,22 +4,16 @@
 
 (require 'init-package)
 
-(require 'package)
-
-; Diminished modes are minor modes with no modeline display
+;; diminish --- Diminished modes are minor modes with no modeline display ;;;;;
 ; https://github.com/myrjola/diminish.el
+
 (package-install-init 'diminish)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Elements in a frame ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
+(require 'diminish)
+(diminish 'abbrev-mode)
+(diminish 'hs-minor-mode)
 (diminish 'visual-line-mode)
 
-; Fanael/rainbow-delimiters: Emacs rainbow delimiters mode
+;; rainbow-delimiters: Emacs rainbow delimiters mode ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; A "rainbow parentheses"-like mode which highlights delimiters such as
 ; parentheses, brackets or braces according to their depth.
 ; https://github.com/Fanael/rainbow-delimiters
@@ -40,8 +34,9 @@
 ;; Display ugly ^L page breaks as tidy horizontal lines ;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/purcell/page-break-lines
 (package-install-init 'page-break-lines)
-(add-hook 'git-gutter-mode-hook 'page-break-lines-mode)
-(diminish 'page-break-lines-mode)
+(add-hook 'find-file-hook 'page-break-lines-mode)
+(add-hook 'page-break-lines-mode-hook
+          (lambda() (diminish 'page-break-lines-mode)))
 
 
 ;; Highlight escape sequences in Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -208,10 +208,11 @@ Feel free to use command to toggle between them."
 (require 'cc-mode)
 (add-hook 'c-mode-hook
           (lambda ()
-            (setq flycheck-gcc-language-standard   '("c11")
-                  flycheck-clang-language-standard '("c11")
-                  flycheck-clang-include-path `((expand-file-name "~/.local/include/")
-                                                "/usr/share/verilator/include/"))))
+            (setq flycheck-gcc-language-standard   "c11"
+                  flycheck-clang-language-standard "c11"
+                  flycheck-clang-include-path '("~/.local/include/"
+                                                "/usr/share/verilator/include/"
+                                                ))))
 
 (defun c-format-linux ()
   "Format the current buffer with clang-format using the specified style file."

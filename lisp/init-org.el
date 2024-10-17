@@ -190,6 +190,7 @@
 (require 'ob-sagemath)
 ; org-babel integration with SageMath
 ; https://github.com/sagemath/ob-sagemath
+(package-install-init 'ob-sagemath)
 (set-variable 'sage-shell:use-prompt-toolkit nil)  ; for Ipython >=7 (sage-shell-mode.el) (same below)
 (set-variable 'sage-shell:use-simple-prompt  t)
 (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)
