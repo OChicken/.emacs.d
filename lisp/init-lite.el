@@ -281,11 +281,13 @@ With argument ARG, do this that many times."
 
 (global-visual-line-mode t)
 (column-number-mode t)
-(global-set-key (kbd "C-a") 'beginning-of-line)   ; beginning-of-visual-line
+; ATTENTION: C-a, C-e, M-a, M-e are heavily modified
+(global-set-key (kbd "M-a") 'beginning-of-line)   ; backward-sentence
+(global-set-key (kbd "C-a") 'back-to-indentation) ; beginning-of-visual-line
 (global-set-key (kbd "C-e") 'end-of-line)         ; end-of-visual-line
-(global-set-key (kbd "M-a") 'back-to-indentation) ; backward-sentence
 (global-set-key (kbd "M-e") (kbd "RET"))          ; forward-sentence
 (global-set-key (kbd "M-E") (kbd "C-o"))
+; Other shortcuts
 (global-set-key (kbd "M-#") 'undo)                ; undefined
 (global-set-key (kbd "C-x C-q") 'quoted-insert)   ; read-only-mode
 (global-set-key (kbd "C-x C-r") 'read-only-mode)  ; find-file-read-only
