@@ -35,8 +35,8 @@ Ubuntu 18.04 LTS.)" emacs-version))
     (require 'init-progmodes)
     (require 'init-org)
     (require 'init-utils)
-    (require 'init-opt)        ; Wakatime, sunshine
-    (require 'init-gnus)
+    (require 'init-opt)   ; comment this since this is personal
+    (require 'init-gnus)  ; comment this since this is personal
     )
   )
 
