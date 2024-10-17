@@ -274,7 +274,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "C-e") 'end-of-line)         ; end-of-visual-line
 (global-set-key (kbd "M-a") 'back-to-indentation) ; backward-sentence
 (global-set-key (kbd "M-e") (kbd "RET"))          ; forward-sentence
-(global-set-key (kbd "M-S-e") (kbd "C-o"))
+(global-set-key (kbd "M-E") (kbd "C-o"))
 (global-set-key (kbd "M-#") 'undo)                ; undefined
 (global-set-key (kbd "C-x C-q") 'quoted-insert)   ; read-only-mode
 (global-set-key (kbd "C-x C-r") 'read-only-mode)  ; find-file-read-only
