@@ -28,7 +28,7 @@
 (setq ispell-dictionary "en")
 
 
-;; Displays current match and total matches info in the mode-line ;;;;;;;;;;;;;
+;; anzu -- Displays current match and total matches info in the mode-line ;;;;;
 ; https://github.com/emacsorphanage/anzu
 
 (package-install-init 'anzu)
@@ -38,9 +38,10 @@
 (set-face-attribute 'anzu-mode-line nil
 		    :foreground "white"
 		    :weight 'bold)
+(diminish 'anzu-mode)
 
 
-;; Show the current buffer's imenu entries in a separate buffer ;;;;;;;;;;;;;;;
+;; imenu-list --- Show the current buffer's imenu entries in a separate buffer
 ; https://github.com/bmag/imenu-list
 
 (package-install-init 'imenu-list)
@@ -53,7 +54,7 @@
 (package-install-init 'list-unicode-display)
 
 
-;; Moving and duplications of lines or selections with convenient key bindings;
+;; move-dup --- Moving and duplications of lines or selections ;;;;;;;;;;;;;;;;
 ; https://github.com/wyuenho/move-dup
 
 (package-install-init 'move-dup)
@@ -64,7 +65,7 @@
 (global-set-key (kbd "M-S-<down>") 'move-dup-move-lines-down)
 
 
-;; Multiple cursors for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; multiple-cursors --- Multiple cursors for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/magnars/multiple-cursors.el
 
 (package-install-init 'multiple-cursors)
@@ -76,8 +77,9 @@
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
 
-;; Highlight symbols with keymap-enabled overlays ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; symbol-overlay --- Highlight symbols with keymap-enabled overlays ;;;;;;;;;;
 ; https://github.com/wolray/symbol-overlay
+
 (package-install-init 'symbol-overlay)
 (require 'symbol-overlay)
 (dolist (hook '(prog-mode-hook html-mode-hook yaml-mode-hook conf-mode-hook))
@@ -87,9 +89,10 @@
   (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
   (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
+(diminish 'symbol-overlay-mode)
 
 
-;; Displays available keybindings in popup ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; which-key --- Displays available keybindings in popup ;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/justbur/emacs-which-key
 
 (package-install-init 'which-key)
@@ -100,8 +103,9 @@
       which-key-popup-type 'side-window)
 
 
-;; Wrap text with punctation or tag ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; wrap-region --- Wrap text with punctation or tag ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/rejeep/wrap-region.el
+
 (package-install-init 'wrap-region)
 (require 'wrap-region)
 (wrap-region-global-mode t)
@@ -142,38 +146,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ;               isearch               ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Highlight symbols with keymap-enabled overlays ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; https://github.com/wolray/symbol-overlay
-
-(package-install-init 'symbol-overlay)
-(require 'symbol-overlay)
-(dolist (hook '(prog-mode-hook html-mode-hook yaml-mode-hook conf-mode-hook))
-  (add-hook hook 'symbol-overlay-mode))
-(with-eval-after-load 'symbol-overlay
-  (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
-  (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
-  (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
-  (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
-(diminish 'symbol-overlay-mode)
-
-
-;; Displays current match and total matches info in the mode-line ;;;;;;;;;;;;;
-; https://github.com/emacsorphanage/anzu
-
-(package-install-init 'anzu)
-(global-anzu-mode +1)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(set-face-attribute 'anzu-mode-line nil
-		    :foreground "white"
-		    :weight 'bold)
-(diminish 'anzu-mode)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;         VC: version control         ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -198,49 +170,6 @@
 (global-set-key (kbd "C-x v p") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
 (diminish 'git-gutter-mode)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ibuffer: operate on buffers according to git or projectile ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; We have two choices when using ibuffer: filter by either .git or project
-
-; Let Emacs' ibuffer-mode group files by git project etc., and show file state
-; https://github.com/purcell/ibuffer-vc
-(package-install-init 'ibuffer-vc)
-
-; Group buffers in Emacs ibuffer-mode by their projectile root directory
-; https://github.com/purcell/ibuffer-projectile
-(package-install-init 'ibuffer-projectile)
-(require 'ibuffer-projectile)
-
-;; Set up the preferred filter.
-(defun ibuffer-set-up-preferred-filters ()
-  "Let ibuffer setup preferred filters.
-Use either
-  (ibuffer-vc-set-filter-groups-by-vc-root)
-or
-  (ibuffer-projectile-set-filter-groups)
-Feel free to use command to toggle between them."
-  (ibuffer-projectile-set-filter-groups)
-  ;(ibuffer-vc-set-filter-groups-by-vc-root)
-  (unless (eq ibuffer-sorting-mode 'filename/process)
-    (ibuffer-do-sort-by-filename/process)))
-(add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
-
-
-
-;;;;;;;;;;;;;;;;
-;; Navigation ;;
-;;;;;;;;;;;;;;;;
-
-; Show the current buffer's imenu entries in a separate buffer
-; https://github.com/bmag/imenu-list
-(package-install-init 'imenu-list)
-(require 'imenu-list)
-(setq imenu-list-size 50)
 
 
 (provide 'init-edit)
