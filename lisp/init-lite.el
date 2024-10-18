@@ -394,12 +394,17 @@ With numeric prefix ARG, move current line to window-line ARG."
 ; barely used. You can still use tab-next command via "C-x t o".
 
 (global-set-key (kbd "C-<tab>") 'other-window) ; tab-next
+(defun other-window-previous (count)
+  "Select another window in cyclic ordering of windows previously.
+COUNT specifies the number of windows to skip, starting with the
+selected window, before making the selection."
+  (interactive "p\ni\np")
+  (other-window (- count)))
+(global-set-key (kbd "C-<tab>") 'other-window) ; tab-next
 (global-set-key (kbd (if (window-system)
                          "C-S-<iso-lefttab>"
-                       "C-<tab>"))
-                (lambda (n)
-                  (interactive "p")
-                  (other-window (- n)))) ; tab-previous
+                       "C-S-<tab>"))
+                'other-window-previous)        ; tab-previous
 
 (defvar last-window (list (selected-window) nil)
   "Last selected window.")
