@@ -110,11 +110,9 @@ be disabled. Please upgrade if possible." emacs-version))
 
 
 ;; display-fill-column-indicator.el --- interface for display-fill-column-indicator
+; This feature is avail at least Emacs version >= 27.1
 
-;(require 'display-fill-column-indicator)
-(if (version< emacs-version "28.1")
-    (message "'display-fill-column-indicator-mode' is not available before \
-Emacs version 28.1.")
+(unless (version<= "27.1" emacs-version)
   (add-hook 'find-file-hook 'display-fill-column-indicator-mode))
 
 
