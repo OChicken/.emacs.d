@@ -21,7 +21,7 @@
 ; Save partial status of Emacs when killed
 ; file:///usr/share/emacs/29.1/lisp/desktop.el.gz
 (require 'desktop)
-(setq desktop-path (list user-emacs-directory)
+(setq desktop-path `(,user-emacs-directory)
       desktop-load-locked-desktop 'check-pid
       desktop-globals-to-save
       '((comint-input-ring        . 50)
