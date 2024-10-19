@@ -117,6 +117,8 @@ be disabled. Please upgrade if possible." emacs-version))
 
 
 ;; display-line-numbers.el --- interface for display-line-numbers ;;;;;;;;;;;;;
+; This feature is available at least Emacs version >= 26.1 according to doc
+; So this feature is available for the Emacs 26.3 on Ubuntu 20.04 LTS
 
 (defun display-line-numbers-mode-exceptions ()
   "Display line numbers, EXCEPT for the following modes."
