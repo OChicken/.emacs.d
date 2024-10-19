@@ -35,7 +35,7 @@
 ;;; Code:
 
 (when (version<= emacs-version "27.1")
-  ; "27.1" is the Emacs version of Ubuntu 22.04.5 LTS.
+  ; Some features was not avail at and before Emacs 27.1 (Ubuntu 22.04.5 LTS)
   (message "Your Emacs %s is old, and some functionalities this config will \
 be disabled. Please upgrade if possible." emacs-version))
 
@@ -117,6 +117,8 @@ be disabled. Please upgrade if possible." emacs-version))
 
 
 ;; display-line-numbers.el --- interface for display-line-numbers ;;;;;;;;;;;;;
+; This feature is available at least Emacs version >= 26.1 according to doc
+; So this feature is available for the Emacs 26.3 on Ubuntu 20.04 LTS
 
 (defun display-line-numbers-mode-exceptions ()
   "Display line numbers, EXCEPT for the following modes."
@@ -126,13 +128,9 @@ be disabled. Please upgrade if possible." emacs-version))
 			     eshell-mode))
     (display-line-numbers-mode t)))
 
-(if (version< emacs-version "26.1")
-    ; There was no line-numbers on Ubuntu 18.04 LTS (Emacs 25.2.2)
-    (message "'display-line-numbers-mode' is not available before \
-Emacs version 26.1.")
-  (progn
-    (setq-default display-line-numbers-width 4)
-    (add-hook 'find-file-hook 'display-line-numbers-mode-exceptions)))
+(unless (version< emacs-version "26.1")
+  (setq-default display-line-numbers-width 4)
+  (add-hook 'find-file-hook 'display-line-numbers-mode-exceptions))
 
 
 ; elec-pair.el --- Automatic parenthesis pairing ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
