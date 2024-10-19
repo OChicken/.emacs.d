@@ -112,7 +112,7 @@ be disabled. Please upgrade if possible." emacs-version))
 ;; display-fill-column-indicator.el --- interface for display-fill-column-indicator
 ; This feature is avail at least Emacs version >= 27.1
 
-(unless (version<= "27.1" emacs-version)
+(unless (version< emacs-version "27.1")
   (add-hook 'find-file-hook 'display-fill-column-indicator-mode))
 
 
