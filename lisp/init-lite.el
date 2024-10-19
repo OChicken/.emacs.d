@@ -110,7 +110,7 @@ be disabled. Please upgrade if possible." emacs-version))
 
 
 ;; display-fill-column-indicator.el --- interface for display-fill-column-indicator
-; This feature is avail at least Emacs version >= 27.1
+; This feature is available at least Emacs version >= 27.1 (Ubuntu 22.04.5 LTS)
 
 (unless (version< emacs-version "27.1")
   (add-hook 'find-file-hook 'display-fill-column-indicator-mode))
@@ -323,17 +323,14 @@ With argument ARG, do this that many times."
 
 
 ;; tab-bar.el --- frame-local tabs with named persistent window configurations
+; This feature is available at least Emacs version >= 27.1 (Ubuntu 22.04.5 LTS)
 
-(if (version< emacs-version "27.1")
-    ; There was no tab-bar on Ubuntu 20.04.6 LTS.
-    (message "'tab-bar-mode' is not available before \
-Emacs version < 27.1.")
-  (progn
-    (tab-bar-mode t)
-    ; (set-face-attribute 'tab-bar nil :height 100)
-    (global-set-key (kbd "C-<prior>") 'tab-bar-switch-to-prev-tab) ; scroll-right
-    (global-set-key (kbd "C-<next>")  'tab-bar-switch-to-next-tab) ; scroll-left
-))
+(unless (version< emacs-version "27.1")
+  (tab-bar-mode t)
+  ; (set-face-attribute 'tab-bar nil :height 100)
+  (global-set-key (kbd "C-<prior>") 'tab-bar-switch-to-prev-tab) ; scroll-right
+  (global-set-key (kbd "C-<next>")  'tab-bar-switch-to-next-tab) ; scroll-left
+)
 
 
 ;; thingatpt.el --- get the `thing' at point ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
