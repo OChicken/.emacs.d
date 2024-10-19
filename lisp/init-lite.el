@@ -36,8 +36,8 @@
 
 (when (version<= emacs-version "27.1")
   ; "27.1" is the Emacs version of Ubuntu 22.04.5 LTS.
-  (warn "Your Emacs %s is old, and some functionality in this config will be \
-disabled. Please upgrade if possible." emacs-version))
+  (message "Your Emacs %s is old, and some functionalities this config will \
+be disabled. Please upgrade if possible." emacs-version))
 
 
 
@@ -113,8 +113,8 @@ disabled. Please upgrade if possible." emacs-version))
 
 ;(require 'display-fill-column-indicator)
 (if (version< emacs-version "28.1")
-    (warn "'display-fill-column-indicator.el' does not exist for Emacs \
-version < 28.1." )
+    (message "'display-fill-column-indicator-mode' is not available before \
+Emacs version 28.1.")
   (add-hook 'find-file-hook 'display-fill-column-indicator-mode))
 
 
@@ -321,7 +321,8 @@ With argument ARG, do this that many times."
 
 (if (version< emacs-version "27.1")
     ; There was no tab-bar on Ubuntu 20.04.6 LTS.
-    (warn "'tab-bar.el' does not exist for Emacs version < 27.1.")
+    (message "'tab-bar-mode' is not available before \
+Emacs version < 27.1.")
   (progn
     (tab-bar-mode t)
     ; (set-face-attribute 'tab-bar nil :height 100)
@@ -451,7 +452,8 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'em-hist)
 (if (version<= emacs-version "27.1")
-    (warn "'eshell-hist-mode-map' is void for Emacs version <= 27.1.")
+    (message "'eshell-hist-mode-map' is not available before \
+Emacs version <= 27.1.")
   (progn
     (define-key eshell-hist-mode-map (kbd "M-q")
                 'eshell-previous-matching-input-from-input)
