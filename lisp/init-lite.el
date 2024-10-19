@@ -449,16 +449,14 @@ The `last-last' window will be pop out if this function is executed again."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; em-hist.el --- history list management ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This feature is NOT available at and before Emacs <= 27.1 (Ubuntu 22.04.5 LTS)
 
 (require 'em-hist)
-(if (version<= emacs-version "27.1")
-    (message "'eshell-hist-mode-map' is not available before \
-Emacs version <= 27.1.")
-  (progn
-    (define-key eshell-hist-mode-map (kbd "M-q")
-                'eshell-previous-matching-input-from-input)
-    (define-key eshell-hist-mode-map (kbd "M-z")
-                'eshell-next-matching-input-from-input)))
+(unless (version<= emacs-version "27.1")
+  (define-key eshell-hist-mode-map (kbd "M-q")
+              'eshell-previous-matching-input-from-input)
+  (define-key eshell-hist-mode-map (kbd "M-z")
+              'eshell-next-matching-input-from-input))
 
 
 ;; em-prompt.el --- command prompts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
