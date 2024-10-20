@@ -97,7 +97,7 @@ be disabled. Please upgrade if possible." emacs-version))
 ; Features in this theme is NOT available at Emacs 24.5.1 on Ubuntu 16.04 LTS
 ; So I mark it available for the Emacs 25.2.2 on Ubuntu 18.04.5 LTS
 
-(unless (version< emacs-version 25.2.2)
+(unless (version< emacs-version "25.2.2")
   (customize-set-variable 'vscode-dark-plus-box-org-todo nil)
   (load-theme 'vscode-dark t))
 
