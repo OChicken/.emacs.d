@@ -10,8 +10,9 @@
 ;;(setq debug-on-error t)
 
 (when (version<= emacs-version "24.5.1")
-  (warn "Your Emacs %s is TOO OLD: MANY features in this config are disabled. \
-Please upgrade if possible." emacs-version))
+  ; Many features are not avail at and before Emacs 24.5.1 (Ubuntu 16.04 LTS)
+  (warn "Your Emacs %s is TOO old: MANY features in this config are not \
+available. Please upgrade if possible." emacs-version))
 
 (add-to-list 'load-path
              (expand-file-name "lisp" user-emacs-directory))
