@@ -36,8 +36,8 @@
 
 (when (version<= emacs-version "27.1")
   ; Some features was not avail at and before Emacs 27.1 (Ubuntu 22.04.5 LTS)
-  (message "Your Emacs %s is old, and some functionalities this config will \
-be disabled. Please upgrade if possible." emacs-version))
+  (message "Your Emacs %s is old: some features in this config will be \
+disabled. Please upgrade if possible." emacs-version))
 
 
 
