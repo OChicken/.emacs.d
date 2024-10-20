@@ -174,7 +174,12 @@ be disabled. Please upgrade if possible." emacs-version))
 ;; frame.el --- multi-frame management independent of window systems ;;;;;;;;;;
 
 (blink-cursor-mode t)
-(window-divider-mode t) ; so that you can adjust the width of left/right window
+
+; This feature is available at least Emacs version >= 25.1 according to doc
+; So this feature is available for the Emacs 25.2.2 on Ubuntu 18.04.5 LTS
+(unless (version< emacs-version "25.1")
+  (window-divider-mode t)) ; you can adjust the width of left/right window
+
 
 ; https://emacs.stackexchange.com/questions/2999/how-to-maximize-my-emacs-frame-on-start-up
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
