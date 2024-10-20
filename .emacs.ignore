@@ -1,3 +1,2 @@
-.emacs.desktop
-.emacs.desktop.lock
-.emacs.eshell
+.emacs.desktop*
+.emacs.eshell*
