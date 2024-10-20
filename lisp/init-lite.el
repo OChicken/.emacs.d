@@ -403,12 +403,11 @@ With numeric prefix ARG, move current line to window-line ARG."
 ; behaviour, that toggling among tabs. In practice, toggling among tabs is
 ; barely used. You can still use tab-next command via "C-x t o".
 
-(global-set-key (kbd "C-<tab>") 'other-window) ; tab-next
 (defun other-window-previous (count)
   "Select another window in cyclic ordering of windows previously.
 COUNT specifies the number of windows to skip, starting with the
 selected window, before making the selection."
-  (interactive "p\ni\np")
+  (interactive "p")
   (other-window (- count)))
 (global-set-key (kbd "C-<tab>") 'other-window) ; tab-next
 (global-set-key (kbd (if (window-system)
