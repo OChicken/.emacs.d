@@ -239,6 +239,11 @@ Feel free to use command to toggle between them."
 ; AUCTeX - Sophisticated document creation
 ; https://www.gnu.org/software/auctex/
 (package-install-init 'auctex)
+
+(require 'tex)      ; ~/.emacs.d/elpa/auctex-13.2.1/tex.el
+(setq TeX-auto-save t
+      TeX-save-query nil)
+
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
 (with-eval-after-load 'latex
@@ -248,10 +253,8 @@ Feel free to use command to toggle between them."
   (add-to-list 'TeX-view-program-list '("qpdfview" "qpdfview --unique  %o"))
   (setq
     LaTeX-math-mode 1          ; real-time preview
-    TeX-auto-save t
     TeX-engine 'xetex          ; use XeLaTeX default
     TeX-show-compilation nil   ; NOT display compilation windows
-    TeX-save-query nil
     preview-colors '((nil  nil  nil)
                      (1.0  1.0  1.0)
                      (nil  nil  nil))
