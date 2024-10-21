@@ -50,6 +50,7 @@
 (require 'pdf-tools)
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 (add-to-list 'display-line-numbers-exceptions-alist 'pdf-view-mode)
+(add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
 
 
 ;; web-mode --- html template editing for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
