@@ -242,15 +242,14 @@ Feel free to use command to toggle between them."
 
 (require 'tex)      ; ~/.emacs.d/elpa/auctex-13.2.1/tex.el
 (setq TeX-auto-save t
-      TeX-save-query nil)
+      TeX-save-query nil
+      TeX-view-program-list '("xdg-open" "xdg-open %o"))
 
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
 (with-eval-after-load 'latex
   (prettify-symbols-mode t)
   (outline-minor-mode t)
-  (add-to-list 'TeX-view-program-selection '(output-pdf "qpdfview"))
-  (add-to-list 'TeX-view-program-list '("qpdfview" "qpdfview --unique  %o"))
   (setq
     LaTeX-math-mode 1          ; real-time preview
     TeX-engine 'xetex          ; use XeLaTeX default
