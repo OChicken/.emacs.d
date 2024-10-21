@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'init-lite)
 (require 'init-package)
 
 ;; crontab-mode - MELPA --- Major mode for crontab(5) files ;;;;;;;;;;;;;;;;;;;
@@ -38,6 +39,17 @@
 (autoload 'gfm-mode "markdown-mode"
   "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
+
+;; Emacs support library for PDF files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; https://github.com/vedang/pdf-tools
+
+; If you are the first time to install it, don't forget to execute
+; pdf-tools-install to activate it.
+(package-install-init 'pdf-tools)
+(require 'pdf-tools)
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+(add-to-list 'display-line-numbers-exceptions-alist 'pdf-view-mode)
 
 
 ;; web-mode --- html template editing for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

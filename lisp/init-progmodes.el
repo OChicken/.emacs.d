@@ -140,9 +140,9 @@ Feel free to use command to toggle between them."
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
 
-(require 'immortal-scratch)
 ; Respawn the scratch buffer when it's killed
 ; https://github.com/jpkotta/immortal-scratch
+(require 'immortal-scratch)
 (add-hook 'after-init-hook 'immortal-scratch-mode)
 
 
