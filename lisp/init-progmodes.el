@@ -246,18 +246,14 @@ Feel free to use command to toggle between them."
       TeX-save-query nil
       TeX-view-program-list '("xdg-open" "xdg-open %o"))
 
-(with-eval-after-load 'latex
-  (prettify-symbols-mode t)
-  (outline-minor-mode t)
-  (setq
-    LaTeX-math-mode 1          ; real-time preview
-    TeX-engine 'xetex          ; use XeLaTeX default
-    TeX-show-compilation nil   ; NOT display compilation windows
-    preview-colors '((nil  nil  nil)
-                     (1.0  1.0  1.0)
-                     (nil  nil  nil))
-    ; preview-pdf-color-adjust-method
-))
+(defun latex-settings ()
+  (LaTeX-math-mode t)     ; real-time preview
+  (setq TeX-engine 'xetex ; use XeLaTeX default
+        preview-colors '((nil nil nil)
+                         (1.0 1.0 1.0)
+                         (nil nil nil))))
+(add-hook 'LaTeX-mode-hook 'latex-settings)
+
 
 ;; RefTeX
 (require 'reftex)
