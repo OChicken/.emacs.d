@@ -236,17 +236,16 @@ Feel free to use command to toggle between them."
 					;             LaTeX config            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; AUCTeX - Sophisticated document creation
+;; AUCTeX - Sophisticated document creation ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://www.gnu.org/software/auctex/
-(package-install-init 'auctex)
 
-(require 'tex)      ; ~/.emacs.d/elpa/auctex-13.2.1/tex.el
+(package-install-init 'auctex)
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . TeX-latex-mode))
+
 (setq TeX-auto-save t
       TeX-save-query nil
       TeX-view-program-list '("xdg-open" "xdg-open %o"))
 
-(require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
-(require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
 (with-eval-after-load 'latex
   (prettify-symbols-mode t)
   (outline-minor-mode t)
