@@ -293,7 +293,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "M-e") (kbd "RET"))          ; forward-sentence
 (global-set-key (kbd "M-E") (kbd "C-o"))
 ; Other shortcuts
-(global-set-key (kbd "M-#") 'undo)                ; undefined
+(global-set-key (kbd "C-#") 'undo)                ; undefined
 (global-set-key (kbd "C-x C-q") 'quoted-insert)   ; read-only-mode
 (global-set-key (kbd "C-x C-r") 'read-only-mode)  ; find-file-read-only
 (global-set-key (kbd "C-z") 'next-line)           ; suspend-frame
