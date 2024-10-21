@@ -243,8 +243,8 @@ Feel free to use command to toggle between them."
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . TeX-latex-mode))
 
 (setq TeX-auto-save t
-      TeX-save-query nil
-      TeX-view-program-list '("xdg-open" "xdg-open %o"))
+      TeX-save-query nil)
+(add-to-list 'TeX-view-program-selection '(output-pdf "xdg-open"))
 
 (defun latex-settings ()
   (LaTeX-math-mode t)     ; real-time preview
