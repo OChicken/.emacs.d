@@ -231,6 +231,14 @@ Feel free to use command to toggle between them."
 (setq python-indent-offset 4)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;            Maxima config            ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/maxima/")
+(autoload 'imaxima "imaxima" "Maxima with LaTeX output." t)
+(autoload 'emaxima "emaxima" "Literate Programming with Maxima." t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;             LaTeX config            ;
