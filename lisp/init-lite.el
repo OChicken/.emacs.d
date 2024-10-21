@@ -521,8 +521,9 @@ The `last-last' window will be pop out if this function is executed again."
 
 ;; prog-mode.el --- Generic major mode for programming ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key prog-mode-map       (kbd "C-M-z") 'scroll-up-line)
-(define-key prog-mode-map       (kbd "C-M-q") 'scroll-down-line)
+(define-key prog-mode-map (kbd "C-M-z") 'scroll-up-line)
+(define-key prog-mode-map (kbd "C-M-q") 'scroll-down-line)
+(prettify-symbols-mode t) ; so that "lambda" becomes the pretty symbol
 
 
 
