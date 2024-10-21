@@ -249,6 +249,11 @@ available. Please upgrade if possible." emacs-version))
 (global-set-key (kbd "C-x C-c") 'comment-dwim) ; undefined
 
 
+;; outline.el --- outline mode commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(outline-minor-mode t)
+
+
 ;; scroll-bar.el --- window system-independent scroll bar support ;;;;;;;;;;;;;
 
 (set-scroll-bar-mode 'left)
