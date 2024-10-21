@@ -240,7 +240,6 @@ Feel free to use command to toggle between them."
 ; https://www.gnu.org/software/auctex/
 
 (package-install-init 'auctex)
-(add-to-list 'auto-mode-alist '("\\.tex\\'" . TeX-latex-mode))
 
 (setq TeX-auto-save t
       TeX-save-query nil)
