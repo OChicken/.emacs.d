@@ -89,19 +89,6 @@ available. Please upgrade if possible." emacs-version))
 (define-key comint-mode-map (kbd "M-z") 'comint-next-input)
 
 
-;; custom.el --- tools for declaring and initializing options ;;;;;;;;;;;;;;;;;
-
-; An accurate port of the default Visual Studio Code Dark+ theme for Emacs
-; https://github.com/ianyepan/vscode-dark-plus-emacs-theme
-; Modified by me
-; Features in this theme is NOT available at Emacs 24.5.1 on Ubuntu 16.04 LTS
-; So I mark it available for the Emacs 25.2.2 on Ubuntu 18.04.5 LTS
-
-(unless (version< emacs-version "25.2.2")
-  (customize-set-variable 'vscode-dark-plus-box-org-todo nil)
-  (load-theme 'vscode-dark t))
-
-
 ;; delsel.el --- delete selection if you insert ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (delete-selection-mode t)
