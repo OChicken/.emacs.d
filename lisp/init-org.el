@@ -166,6 +166,7 @@
       (go . t)
       (js .t)
       (latex . t)
+      (lisp . t)
       (octave . t)
       (php . t)
       (python . t)
