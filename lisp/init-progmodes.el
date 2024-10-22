@@ -249,11 +249,15 @@ Feel free to use command to toggle between them."
 
 (package-install-init 'auctex)
 
+(require 'latex)
+(require 'preview)
+
 (setq TeX-auto-save t
       TeX-save-query nil)
 (add-to-list 'TeX-view-program-selection '(output-pdf "xdg-open"))
 
 (defun latex-settings ()
+  "LaTeX settings."
   (LaTeX-math-mode t)     ; real-time preview
   (setq TeX-engine 'xetex ; use XeLaTeX default
         preview-colors '((nil nil nil)
