@@ -381,6 +381,10 @@ With argument ARG, do this that many times."
 
 ;; window.el --- GNU Emacs window commands aside from those written in C ;;;;;;
 
+; There are several times that I hit 'C-x 1' by accident and cause catastrophe
+; issue --- deleted my window layout, so I must mute this shortcut
+(global-unset-key (kbd "C-x 1")) ; delete-other-windows
+
 (defun recenter-top-bottom-hl (&optional arg)
   "Call `recenter-top-bottom' in the current window and highlight pulse it.
 With numeric prefix ARG, move current line to window-line ARG."
