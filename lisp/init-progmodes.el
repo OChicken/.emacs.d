@@ -229,6 +229,8 @@ Feel free to use command to toggle between them."
 ; Python's flying circus support for Emacs
 ; file:///usr/share/emacs/29.1/lisp/progmodes/python.el.gz
 (setq python-indent-offset 4)
+(define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)  ; forward-sexp
+(define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp) ; backward-sexp
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
