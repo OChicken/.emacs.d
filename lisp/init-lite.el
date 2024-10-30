@@ -227,6 +227,8 @@ available. Please upgrade if possible." emacs-version))
 (define-key isearch-mode-map (kbd "M-q") 'isearch-ring-retreat)
 ; Activate occur easily inside isearch
 (define-key isearch-mode-map (kbd "C-c C-o") 'isearch-occur)
+(unless (version< emacs-version "27.1")
+  (setq isearch-lazy-count t))
 
 
 ;; mouse.el --- window system-independent mouse support ;;;;;;;;;;;;;;;;;;;;;;;
