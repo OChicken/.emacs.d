@@ -5,6 +5,28 @@
 (require 'init-package)
 
 (require 'org)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;                 org/                ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'org-element)
+(defun org-toggle-inline-image-at-point ()
+  "Display inline image at point.
+https://emacs.stackexchange.com/a/64640"
+  (interactive)
+  (let* ((context (org-element-context (org-element-at-point)))
+         (type (org-element-type context))
+         (beg  (plist-get (cadr context) :begin))
+         (end  (plist-get (cadr context) :end)))
+     (when (eq type 'link)
+        (org-toggle-inline-images nil beg end))))
+(define-key org-mode-map (kbd "C-c C-x M-v") 'org-toggle-inline-image-at-point)
+
+
+
+
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)) ; origin: backward-up-list
 (add-hook 'org-mode-hook 'org-indent-mode)
