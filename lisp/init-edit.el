@@ -29,14 +29,15 @@
 ;; anzu -- Displays current match and total matches info in the mode-line ;;;;;
 ; https://github.com/emacsorphanage/anzu
 
-(package-install-init 'anzu)
-(global-anzu-mode +1)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(set-face-attribute 'anzu-mode-line nil
-		    :foreground "white"
-		    :weight 'bold)
-(diminish 'anzu-mode)
+(unless (version<= "27.1" emacs-version)
+  (package-install-init 'anzu)
+  (global-anzu-mode +1)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (set-face-attribute 'anzu-mode-line nil
+		      :foreground "white"
+		      :weight 'bold)
+  (diminish 'anzu-mode))
 
 
 ;; imenu-list --- Show the current buffer's imenu entries in a separate buffer
