@@ -67,7 +67,7 @@ available. Please upgrade if possible." emacs-version))
 
 (define-key minibuffer-local-map (kbd "M-q") 'previous-history-element) ; fill-paragraph
 (define-key minibuffer-local-map (kbd "M-z") 'next-history-element)     ; zap-to-char
-(global-set-key (kbd "C-x C-M-w") (kbd "C-x k"))                        ; undefined
+(global-set-key (kbd "C-x C-M-w") 'kill-buffer)                         ; undefined
 
 
 
