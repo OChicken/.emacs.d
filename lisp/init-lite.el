@@ -519,6 +519,8 @@ The `last-last' window will be pop out if this function is executed again."
 (add-hook 'prog-mode-hook 'hs-minor-mode)  ; Enable code folding
 (setq hs-hide-comments-when-hiding-all nil
       hs-isearch-open t)
+(global-set-key (kbd "C-x 1") 'hs-hide-block) ; delete-other-windows
+(global-set-key (kbd "C-x !") 'hs-show-block) ; undefined
 
 
 ;; inf-lisp.el --- an inferior-lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
