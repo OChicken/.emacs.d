@@ -32,6 +32,13 @@
 ;;; Emacs (deliberately add some inconvenience to exit Emacs is nice to your
 ;;; ongoing work 🙂)
 ;;;
+;;; For your convenience, I markdown the Emacs version of various Ubuntu LTS so
+;;; that you know which features are NOT support on your Ubuntu.
+;;; - Ubuntu 16.04 LTS: Emacs 24.5.1
+;;; - Ubuntu 18.04 LTS: Emacs 25.2.2
+;;; - Ubuntu 20.04 LTS: Emacs 26.3
+;;; - Ubuntu 22.04 LTS: Emacs 27.1
+;;;
 ;;; Code:
 
 (when (version<= emacs-version "27.1")
