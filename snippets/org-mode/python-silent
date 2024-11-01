@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: python-silent
+# key:  pys
+# --
+#+begin_src python :session :results silent
+$0
+#+end_src
