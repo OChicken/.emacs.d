@@ -15,6 +15,7 @@
             '(cmake-mode
               cuda-mode
               cython-mode
+              dockerfile-mode
               go-mode
               gnuplot
               gnuplot-mode
