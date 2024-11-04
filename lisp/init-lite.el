@@ -545,6 +545,7 @@ The `last-last' window will be pop out if this function is executed again."
 (define-key prog-mode-map (kbd "C-M-z") 'scroll-up-line)
 (define-key prog-mode-map (kbd "C-M-q") 'scroll-down-line)
 (prettify-symbols-mode t) ; so that "lambda" becomes the pretty symbol
+(add-hook 'find-file-hook 'prettify-symbols-mode)
 
 
 
