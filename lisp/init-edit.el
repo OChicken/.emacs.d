@@ -155,6 +155,7 @@
 (require 'magit)
 (global-unset-key (kbd "C-x g")) ; magit-status (use "magit" to open it instead)
 (setq magit-section-visibility-indicator '(magit-fringe-bitmap> . magit-fringe-bitmapv))
+(global-set-key (kbd "C-x g m") 'magit)
 
 
 ;; Emacs port of GitGutter which is Sublime Text Plugin ;;;;;;;;;;;;;;;;;;;;;;;
