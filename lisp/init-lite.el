@@ -310,8 +310,8 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "C-q") 'previous-line)       ; quoted-insert
 (global-set-key (kbd "C-M-z") 'scroll-up-line)    ; suspend-frame
 (global-set-key (kbd "C-M-q") 'scroll-down-line)  ; quoted-insert
-(global-set-key (kbd "C-x C-v") (kbd "M->"))      ; find-alternative-file
-(global-set-key (kbd "C-x M-v") (kbd "M-<"))      ; undefined
+(global-set-key (kbd "C-x C-v") 'end-of-buffer)       ; find-alternative-file
+(global-set-key (kbd "C-x M-v") 'beginning-of-buffer) ; undefined
 
 
 ;; startup.el --- process Emacs shell arguments ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
