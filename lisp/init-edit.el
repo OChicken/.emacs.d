@@ -169,6 +169,8 @@
 (global-set-key (kbd "C-x g n") 'git-gutter:next-hunk)
 (global-set-key (kbd "C-x g p") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-x g s") 'git-gutter:stage-hunk)
+(global-set-key (kbd "C-x g r") 'git-gutter:reverse-hunk)
+(global-set-key (kbd "C-x g SPC") 'git-gutter:mark-hunk)
 (diminish 'git-gutter-mode)
 
 
