@@ -54,7 +54,6 @@
 
 (package-install-init 'vertico)
 ; (add-hook 'after-init-hook 'vertico-mode)
-(global-set-key (kbd "C-x C-M-v") 'vertico-mode)
 
 
 (provide 'init-view)
