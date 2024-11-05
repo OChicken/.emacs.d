@@ -164,11 +164,11 @@
 (global-git-gutter-mode +1)
 ; A long lasting bug: git-gutter annotation disappeared during buffer switching.
 ; https://github.com/emacsorphanage/git-gutter/issues/155
-(global-set-key (kbd "C-x v g") 'git-gutter)  ; vc-annotate
-(global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
-(global-set-key (kbd "C-x v n") 'git-gutter:next-hunk)
-(global-set-key (kbd "C-x v p") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
+(global-set-key (kbd "C-x g g") 'git-gutter)
+(global-set-key (kbd "C-x g =") 'git-gutter:popup-hunk)
+(global-set-key (kbd "C-x g n") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-x g p") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x g s") 'git-gutter:stage-hunk)
 (diminish 'git-gutter-mode)
 
 
