@@ -153,6 +153,7 @@
 
 (package-install-init 'magit)
 (require 'magit)
+(global-unset-key (kbd "C-x g")) ; magit-status (use "magit" to open it instead)
 (setq magit-section-visibility-indicator '(magit-fringe-bitmap> . magit-fringe-bitmapv))
 
 
