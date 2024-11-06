@@ -39,7 +39,6 @@ available. Please upgrade if possible." emacs-version))
 (let ((lite-mode (member "--lite" command-line-args)))
   (setq command-line-args (delete "--lite" command-line-args))
   (when (not lite-mode)
-    (require 'init-sessions)   ; recentf, session, desktop
     (require 'init-lang)
     (require 'init-view)
     (require 'init-edit)
