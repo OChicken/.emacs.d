@@ -5,11 +5,17 @@
 (require 'init-package)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;           desktop-session           ;
+					;   lisp/ (desktop session related)   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Save partial status of Emacs when killed
-; lisp/eshell/desktop.el
+;; recentf.el --- keep track of recently opened files ;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'recentf)
+(add-hook 'after-init-hook 'recentf-mode)
+
+
+;; desktop.el --- Save partial status of Emacs when killed ;;;;;;;;;;;;;;;;;;;;
+
 (require 'desktop)
 (setq desktop-path `(,user-emacs-directory)
       desktop-load-locked-desktop 'check-pid
@@ -37,7 +43,6 @@
         (search-ring              . 20)
         (shell-command-history    . 50)
         ))
-
 ; Closing emacs results in "Current desktop was not loaded from a file" even
 ; though desktop-save-mode was set before start
 ; https://emacs.stackexchange.com/a/66822
