@@ -5,6 +5,10 @@
 ;; package.el --- Simple package system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Mandatory before installing packages
 
+(require 'transient)
+; "Invalid slot name" issue
+; https://emacs.stackexchange.com/a/50781
+
 (require 'package)
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
