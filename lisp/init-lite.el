@@ -264,12 +264,6 @@ available. Please upgrade if possible." emacs-version))
 (outline-minor-mode t)
 
 
-;; recentf.el --- keep track of recently opened files ;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'recentf)
-(add-hook 'after-init-hook 'recentf-mode)
-
-
 ;; savehist.el --- Save minibuffer history ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-hook 'after-init-hook 'savehist-mode)
