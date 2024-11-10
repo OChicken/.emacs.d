@@ -271,7 +271,8 @@ available. Please upgrade if possible." emacs-version))
 
 ;; scroll-bar.el --- window system-independent scroll bar support ;;;;;;;;;;;;;
 
-(set-scroll-bar-mode 'left)
+(when (display-graphic-p)
+  (set-scroll-bar-mode 'left))
 
 
 ;; simple.el --- basic editing commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -382,7 +383,8 @@ With argument ARG, do this that many times."
 
 ;; tool-bar.el --- setting up the tool bar ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(tool-bar-mode -1) ; disable (It's ugly and provides limited functionalities)
+(when (display-graphic-p)
+  (tool-bar-mode -1)) ; disable: It's ugly and provides limited functionalities
 
 
 ;; uniquify.el --- unique buffer names dependent on file name ;;;;;;;;;;;;;;;;;
