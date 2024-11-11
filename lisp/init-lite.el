@@ -546,8 +546,13 @@ The `last-last' window will be pop out if this function is executed again."
 ;; inf-lisp.el --- an inferior-lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'inf-lisp)
-(when (executable-find "ecl")
+(cond
+ ((executable-find "sbcl")
+  (setq inferior-lisp-program "sbcl"))
+ ((executable-find "ecl")
   (setq inferior-lisp-program "ecl"))
+ (t
+  (setq inferior-lisp-program "lisp")))
 
 
 ;; prog-mode.el --- Generic major mode for programming ;;;;;;;;;;;;;;;;;;;;;;;;
