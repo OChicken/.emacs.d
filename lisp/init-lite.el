@@ -547,10 +547,10 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'inf-lisp)
 (cond
- ((executable-find "sbcl")
-  (setq inferior-lisp-program "sbcl"))
  ((executable-find "ecl")
   (setq inferior-lisp-program "ecl"))
+ ((executable-find "sbcl")
+  (setq inferior-lisp-program "sbcl"))
  (t
   (setq inferior-lisp-program "lisp")))
 
