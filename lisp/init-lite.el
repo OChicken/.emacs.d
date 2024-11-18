@@ -171,6 +171,15 @@ available. Please upgrade if possible." emacs-version))
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-terminal) ; undefined
 
 
+;; fill.el --- fill commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun unfill-region (start end)
+  "Transform a multi-line region between START & END into a single line."
+  (interactive "r")
+  (let ((fill-column (point-max)))
+    (fill-region start end nil)))
+
+
 ;; frame.el --- multi-frame management independent of window systems ;;;;;;;;;;
 
 (blink-cursor-mode t)
@@ -609,7 +618,6 @@ https://emacs.stackexchange.com/a/64640"
      (when (eq type 'link)
         (org-toggle-inline-images nil beg end))))
 (define-key org-mode-map (kbd "C-c C-x M-v") 'org-toggle-inline-image-at-point)
-
 
 
 (provide 'init-lite)
