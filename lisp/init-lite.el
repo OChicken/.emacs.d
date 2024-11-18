@@ -576,5 +576,41 @@ The `last-last' window will be pop out if this function is executed again."
         ediff-window-setup-function 'ediff-setup-windows-plain))
 
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                  lisp/org/                                 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; org.el --- Outline-based notes management and organizer ;;;;;;;;;;;;;;;;;;;;
+
+(require 'org)
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)) ; origin: backward-up-list
+(add-hook 'org-mode-hook 'org-indent-mode)
+(diminish 'org-indent-mode)
+
+(setq org-imenu-depth 3            ; The maximum level for Imenu access to Org headlines.
+      org-support-shift-select t   ; make shift-cursor commands select text when possible
+      org-log-done 'time           ; Information to record when a task moves to the DONE state.
+      org-hide-emphasis-markers t  ; font-lock should hide the emphasis marker characters.
+      org-tags-column -80          ; The column to which tags should be indented in a headline.
+      org-fast-tag-selection-single-key 'expert)
+
+(require 'org-element)
+(defun org-toggle-inline-image-at-point ()
+  "Display inline image at point.
+https://emacs.stackexchange.com/a/64640"
+  (interactive)
+  (let* ((context (org-element-context (org-element-at-point)))
+         (type (org-element-type context))
+         (beg  (plist-get (cadr context) :begin))
+         (end  (plist-get (cadr context) :end)))
+     (when (eq type 'link)
+        (org-toggle-inline-images nil beg end))))
+(define-key org-mode-map (kbd "C-c C-x M-v") 'org-toggle-inline-image-at-point)
+
+
+
 (provide 'init-lite)
 ;;; init-lite.el ends here
