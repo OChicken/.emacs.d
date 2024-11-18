@@ -11,6 +11,7 @@
         backward-sexp
         beginning-of-buffer
         beginning-of-visual-line
+        c-electric-brace
         c-electric-delete-forward
         c-electric-paren
         c-electric-semi&comma
@@ -39,6 +40,7 @@
         previous-buffer
         scroll-down-line
         slime-autodoc-space
+        zap-up-to-nonspace-char
         ))
 
 (setq mc/cmds-to-run-once
