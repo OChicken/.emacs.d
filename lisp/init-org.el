@@ -69,33 +69,6 @@
 
 
 
-;;;;;;;;;;;;;;;
-;; Org Clock ;;
-;;;;;;;;;;;;;;;
-
-(require 'org-clock)
-; The time clocking code for Org mode
-; file:///usr/share/emacs/29.1/lisp/org/org-clock.el.gz
-
-;; Save the running clock and all clock history when exiting Emacs, load it on startup
-(with-eval-after-load 'org
-  (org-clock-persistence-insinuate))
-(setq org-clock-persist   t
-      org-clock-in-resume t)
-
-;; org-clock preferences
-(setq org-clock-into-drawer t  ; Save clock data and notes in the LOGBOOK drawer
-      org-log-into-drawer   t  ; Save state changes in the LOGBOOK drawer
-      org-clock-out-remove-zero-time-clocks t)  ; Removes clocked tasks with 0:00 duration
-
-(require 'org-duration)
-; Library handling duration
-; file:///usr/share/emacs/29.1/lisp/org/org-duration.el.gz
-(setq org-duration-format  ; Show clock sums as hours and minutes, not "n days" etc.
-      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
-
-
-
 ;;;;;;;;;;;;;;;;
 ;; Org Refile ;;
 ;;;;;;;;;;;;;;;;
