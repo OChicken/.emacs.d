@@ -196,6 +196,8 @@ Feel free to use command to toggle between them."
                                         ;             Lisp config             ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/slime/")
+
 (package-install-init 'slime)
 
 (add-hook 'lisp-mode-hook
@@ -236,6 +238,8 @@ Feel free to use command to toggle between them."
                                 "full+text+search"
                               "basic+search")))))))
 (define-key lisp-mode-map (kbd "C-c l") 'lispdoc)
+
+(slime-setup)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
