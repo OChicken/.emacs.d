@@ -43,7 +43,6 @@ available. Please upgrade if possible." emacs-version))
     (require 'init-view)
     (require 'init-edit)
     (require 'init-progmodes)
-    (require 'init-utils)
     (require 'init-opt)   ; comment this since this is personal
     (require 'init-gnus)  ; comment this since this is personal
     )
