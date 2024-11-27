@@ -200,6 +200,7 @@ Feel free to use command to toggle between them."
 
 (package-install-init 'slime)
 
+(define-key lisp-mode-map (kbd "C-M-q") 'scroll-down-line) ; indent-sexp
 (add-hook 'lisp-mode-hook
           (lambda ()
             (unless (featurep 'slime)
@@ -247,6 +248,7 @@ Feel free to use command to toggle between them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'cc-mode)
+(define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
 (add-hook 'c-mode-hook
           (lambda ()
             (setq flycheck-gcc-language-standard   "c11"
