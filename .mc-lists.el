@@ -52,9 +52,11 @@
         goto-line
         ignore
         mark-sexp
+        mouse-set-region
         org-ctrl-c-ctrl-c
         previous-window-any-frame
         recenter-top-bottom-hl
         shell-command
+        symbol-overlay-jump-prev
         symbol-overlay-put
         ))
