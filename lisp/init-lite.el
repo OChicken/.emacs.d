@@ -597,7 +597,6 @@ The `last-last' window will be pop out if this function is executed again."
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)) ; origin: backward-up-list
 (add-hook 'org-mode-hook 'org-indent-mode)
-(diminish 'org-indent-mode)
 
 (setq org-imenu-depth 3            ; The maximum level for Imenu access to Org headlines.
       org-support-shift-select t   ; make shift-cursor commands select text when possible
