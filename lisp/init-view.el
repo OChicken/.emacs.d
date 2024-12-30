@@ -52,7 +52,7 @@
 ; https://github.com/minad/vertico
 ; ATTENTION! Raise "'emacs-28.1' is unavailable" warning!
 
-(package-install-init 'vertico)
+; (package-install-init 'vertico)
 ; (add-hook 'after-init-hook 'vertico-mode)
 
 
