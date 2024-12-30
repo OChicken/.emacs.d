@@ -234,10 +234,10 @@
 ; file:///usr/share/emacs/29.1/lisp/org/ol.el.gz
 (define-key global-map (kbd "C-c l") 'org-store-link)
 
-(require 'org-cliplink)
 ; Insert org-mode links from clipboard
 ; https://github.com/rexim/org-cliplink
 (package-install-init 'org-cliplink)
+(require 'org-cliplink)
 (global-set-key (kbd "C-c y") 'org-cliplink)
 (setq org-cliplink-max-length 120)  ; cuts any title that exceeds the limit
 
