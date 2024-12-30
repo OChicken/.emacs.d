@@ -652,7 +652,7 @@ https://emacs.stackexchange.com/a/64640"
 (add-to-list 'load-path
              (expand-file-name "lisp" user-emacs-directory))
 
-(when (file-directory-p "lisp/")
+(when (file-directory-p (expand-file-name "lisp" user-emacs-directory))
   (let ((lite-mode (member "--lite" command-line-args)))
     (setq command-line-args (delete "--lite" command-line-args))
     (when (not lite-mode)
