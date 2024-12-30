@@ -5,6 +5,7 @@
       '(
         LaTeX-babel-insert-hyphen
         TeX-insert-backslash
+        TeX-insert-dollar
         TeX-insert-sub-or-superscript
         asm-comment
         backward-delete-word
@@ -28,6 +29,7 @@
         ido-switch-buffer
         indent-for-tab-command
         indent-tabs-mode
+        insert-char
         magit-copy-buffer-revision
         multiple-cursors-mode
         org-cycle
@@ -49,7 +51,9 @@
         describe-key-briefly
         eshell-previous-matching-input-from-input
         eval-last-sexp
+        git-gutter
         goto-line
+        help-for-help
         ignore
         mark-sexp
         mouse-set-region
