@@ -1,8 +1,44 @@
 ;;; init.el --- Load the full configuration -*- lexical-binding: t -*-
 ;;; Commentary:
-
-;; This file bootstraps the configuration, which is divided into
-;; a number of other files.
+;;;
+;;; The configurations in this file have two main features:
+;;; 1. "lite": NO PACKAGES WILL BE INSTALLED in this config.
+;;;    So that the very basic functionalities on the legacy OS and pure tty
+;;;    machines are kept.
+;;; 2. "left-handed": shortcuts are tailored to my LEFT-HANDED QUIRK.
+;;;    So use it at your own risk 🙂
+;;;
+;;; Noticed that the original
+;;; - "z" kbds like "C-z" (suspend-frame), "M-z" (zap-to-char) and
+;;; - "q" kbds like "C-q" (quoted-insert), "M-q" (fill-paragraph)
+;;; are barely used, so I exploit them to the <down> and <up> respectively.
+;;;
+;;; Perhaps "C-z" the suspend-frame, is also, to some extend, a frequently used
+;;; command.  Actually, suspend-frame bounds to both "C-z" and "C-x C-z", so
+;;; that you can still use the latter one.
+;;;
+;;; Notice that, "M-e" (forward-sentence) is also barely used.  Instead, an
+;;; <RET> for left-hand is desired, so "M-e" where "e" for "enter" is the
+;;; suitable name.
+;;;
+;;; So that you will see the ubiquitous "z", "q", "e" in this config.  By the
+;;; above settings, you can do almost everything solely with your left hand.
+;;; For example, during compiling, you will do
+;;; 1. "M-!": shell-command, revoke minibuffer-local-shell-command-map
+;;; 2. "M-q" (instead of "M-p"): previous-history-element in the minibuffer
+;;; 3. "M-e" (instead of "RET"): hit `<return>'
+;;;
+;;; The HIGH RISK for you to know is, I bind "C-x C-c" to "comment-dwim" so you
+;;; cannot use this shortcut to close Emacs; instead, use "C-x C-M-c" to close
+;;; Emacs (deliberately add some inconvenience to exit Emacs is nice to your
+;;; ongoing work 🙂)
+;;;
+;;; For your convenience, I markdown the Emacs version of various Ubuntu LTS so
+;;; that you know which features are NOT support on your Ubuntu.
+;;; - Ubuntu 16.04 LTS: Emacs 24.5.1
+;;; - Ubuntu 18.04 LTS: Emacs 25.2.2
+;;; - Ubuntu 20.04 LTS: Emacs 26.3
+;;; - Ubuntu 22.04 LTS: Emacs 27.1
 
 ;;; Code:
 
