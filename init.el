@@ -39,15 +39,13 @@
 ;;; - Ubuntu 18.04 LTS: Emacs 25.2.2
 ;;; - Ubuntu 20.04 LTS: Emacs 26.3
 ;;; - Ubuntu 22.04 LTS: Emacs 27.1
-
+;;;
 ;;; Code:
 
-(add-to-list 'load-path
-             (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'custom-theme-load-path
-             (expand-file-name "themes" user-emacs-directory))
 
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                Version Check                               ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (when (version<= emacs-version "24.5.1")
   ; Many features are not avail at and before Emacs 24.5.1 (Ubuntu 16.04 LTS)
@@ -632,20 +630,27 @@ https://emacs.stackexchange.com/a/64640"
 
 
 
-; An accurate port of the default Visual Studio Code Dark+ theme for Emacs
-; https://github.com/ianyepan/vscode-dark-plus-emacs-theme
-; Modified by me
-; Features in this theme is NOT available at Emacs 24.5.1 on Ubuntu 16.04 LTS
-; So I mark it available for the Emacs 25.2.2 on Ubuntu 18.04.5 LTS
+;; An accurate port of the default Visual Studio Code Dark+ theme for Emacs
+;; https://github.com/ianyepan/vscode-dark-plus-emacs-theme
+;; Modified by me
+;; Features in this theme is NOT available at Emacs 24.5.1 on Ubuntu 16.04 LTS
+;; So I mark it available for the Emacs 25.2.2 on Ubuntu 18.04.5 LTS
+
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "themes" user-emacs-directory))
 
 (unless (version< emacs-version "25.2.2")
   (customize-set-variable 'vscode-dark-plus-box-org-todo nil)
   (load-theme 'vscode-dark t))
 
 
+
+
 (add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
 
 ;; Load configs for specific features and modes
+(add-to-list 'load-path
+             (expand-file-name "lisp" user-emacs-directory))
 
 (when (file-directory-p "lisp/")
   (let ((lite-mode (member "--lite" command-line-args)))
