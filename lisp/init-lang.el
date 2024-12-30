@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-lite)
 (require 'init-package)
 
 ;; crontab-mode - MELPA --- Major mode for crontab(5) files ;;;;;;;;;;;;;;;;;;;
