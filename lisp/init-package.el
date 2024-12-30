@@ -5,9 +5,10 @@
 ;; package.el --- Simple package system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Mandatory before installing packages
 
-(require 'transient)
+; (require 'transient)
 ; "Invalid slot name" issue
 ; https://emacs.stackexchange.com/a/50781
+;; after magit update you don't need that
 
 (require 'package)
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
