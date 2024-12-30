@@ -25,7 +25,9 @@ available. Please upgrade if possible." emacs-version))
 
 
 
-;; C source code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                C source code                               ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq create-lockfiles nil
       frame-resize-pixelwise t
@@ -54,7 +56,6 @@ available. Please upgrade if possible." emacs-version))
 (global-set-key (kbd "C-x C-M-w") 'kill-buffer)                         ; undefined
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                    lisp/                                   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -454,7 +455,6 @@ The `last-last' window will be pop out if this function is executed again."
 (xterm-mouse-mode t)
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                lisp/eshell/                                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -488,7 +488,6 @@ The `last-last' window will be pop out if this function is executed again."
 (setq eshell-plain-grep-behavior t)
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               lisp/progmodes/                              ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -550,7 +549,6 @@ The `last-last' window will be pop out if this function is executed again."
 (add-hook 'find-file-hook 'prettify-symbols-mode)
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  lisp/vc/                                  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -563,7 +561,6 @@ The `last-last' window will be pop out if this function is executed again."
         ediff-window-setup-function 'ediff-setup-windows-plain))
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  lisp/org/                                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -609,6 +606,23 @@ https://emacs.stackexchange.com/a/64640"
   (customize-set-variable 'vscode-dark-plus-box-org-todo nil)
   (load-theme 'vscode-dark t))
 
+
+(add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
+
+;; Load configs for specific features and modes
+
+(when (file-directory-p "lisp/")
+  (let ((lite-mode (member "--lite" command-line-args)))
+    (setq command-line-args (delete "--lite" command-line-args))
+    (when (not lite-mode)
+      (require 'init-lang)
+      (require 'init-view)
+      (require 'init-edit)
+      (require 'init-progmodes)
+      (require 'init-opt)   ; comment this since this is personal
+      (require 'init-gnus)  ; comment this since this is personal
+      )
+    ))
 
 (provide 'init)
 
