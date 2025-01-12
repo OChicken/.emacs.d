@@ -610,6 +610,8 @@ The `last-last' window will be pop out if this function is executed again."
       org-tags-column -80          ; The column to which tags should be indented in a headline.
       org-fast-tag-selection-single-key 'expert)
 
+(setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE")))
+
 (require 'org-element)
 (defun org-toggle-inline-image-at-point ()
   "Display inline image at point.

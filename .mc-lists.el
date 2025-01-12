@@ -61,6 +61,7 @@
         previous-window-any-frame
         recenter-top-bottom-hl
         shell-command
+        slime-repl-next-prompt
         symbol-overlay-jump-prev
         symbol-overlay-put
         ))
