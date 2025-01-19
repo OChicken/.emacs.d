@@ -658,8 +658,10 @@ https://emacs.stackexchange.com/a/64640"
       (require 'init-view)
       (require 'init-edit)
       (require 'init-progmodes)
-      (require 'init-opt)   ; comment this since this is personal
-      (require 'init-gnus)  ; comment this since this is personal
+      (when (file-exists-p "lisp/init-opt.el")
+        (require 'init-opt))
+      (when (file-exists-p "lisp/init-gnus.el")
+        (require 'init-gnus))
       )
     ))
 
