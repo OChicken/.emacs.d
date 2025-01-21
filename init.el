@@ -78,6 +78,14 @@ available. Please upgrade if possible." emacs-version))
               fill-column 80
               indicate-buffer-boundaries t)
 
+(global-set-key (kbd "C-d")
+  (lambda (N &optional KILLFLAG)
+    "Delete region if active; otherwise, delete the character at point."
+    (interactive "p")
+    (if (use-region-p)
+        (delete-region (region-beginning) (region-end))
+      (delete-char N))))
+
 ;; Adjust garbage collection thresholds
 ;; (setq gc-cons-threshold (* 1024 1024))
 
