@@ -50,6 +50,7 @@
         c-electric-pound
         describe-key-briefly
         eshell-previous-matching-input-from-input
+        eshell-previous-prompt
         eval-last-sexp
         git-gutter
         goto-line
