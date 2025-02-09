@@ -255,6 +255,8 @@ Feel free to use command to toggle between them."
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode 'subword-mode)
 
+(package-install-init 'proof-general)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;             C/C++ config            ;
