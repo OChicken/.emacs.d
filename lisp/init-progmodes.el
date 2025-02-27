@@ -266,8 +266,7 @@ Feel free to use command to toggle between them."
 (define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
 (add-hook 'c-mode-hook
           (lambda ()
-            (setq flycheck-gcc-language-standard   "c11"
-                  flycheck-clang-language-standard "c11"
+            (setq flycheck-clang-language-standard "gnu11"
                   flycheck-clang-include-path '("~/.local/include/"
                                                 "/usr/share/verilator/include/"
                                                 ))))
