@@ -270,17 +270,14 @@ Feel free to use command to toggle between them."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;             C/C++ config            ;
+;;                                    C/C++                                   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'cc-mode)
 (define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
-(add-hook 'c-mode-hook
-          (lambda ()
-            (setq flycheck-clang-language-standard "gnu11"
-                  flycheck-clang-include-path '("~/.local/include/"
-                                                "/usr/share/verilator/include/"
-                                                ))))
+(setq flycheck-clang-language-standard "gnu11"
+      flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
+                                    "/usr/share/verilator/include/"))
 
 (defun c-format-linux ()
   "Format the current buffer with clang-format using the specified style file."

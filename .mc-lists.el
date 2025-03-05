@@ -18,6 +18,7 @@
         c-electric-semi&comma
         c-electric-star
         c-indent-line-or-region
+        coq-terminator-insert
         delete-pair
         delete-word
         electric-pair-delete-pair
