@@ -552,9 +552,7 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'grep)
 (setq grep-use-null-device nil
-      grep-command "grep --color=auto -nr -F --exclude-dir=.git
---exclude-dir=fs --exclude-dir=drivers --exclude-dir=Documentation
---exclude-dir=net --exclude=TAGS --exclude=.emacs.desktop ")
+      grep-command "grep --color=auto -nr -F ")
 
 
 ;; hideshow.el --- minor mode cmds to selectively display code/comment blocks ;
