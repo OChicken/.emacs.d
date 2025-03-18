@@ -149,11 +149,32 @@ available. Please upgrade if possible." emacs-version))
   (add-hook 'find-file-hook 'display-line-numbers-mode-exceptions))
 
 
-; elec-pair.el --- Automatic parenthesis pairing ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; elec-pair.el --- Automatic parenthesis pairing ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'elec-pair)
 (electric-pair-mode   t)  ; paired parentheses, brackets, and quotes
 (electric-indent-mode t)  ; adjust indentation according to the context
+
+
+;; env.el --- functions to manipulate environment variables ;;;;;;;;;;;;;;;;;;;
+
+(defun load-env-file ()
+  "Read env var from ~/.emacs.d/lisp/.env (in KEY=VALUE format) and set them."
+  (setq filename (concat user-emacs-directory "lisp/.env"))
+  (when (file-exists-p filename)
+    (with-temp-buffer
+      (insert-file-contents filename)
+      (goto-char (point-min))
+      (while (not (eobp))
+        ; ignore empty lines and/or comments (start with '#')
+        (unless (or (looking-at-p "^[ \t]*#")
+                    (looking-at-p "^[ \t]*$"))
+          (when (re-search-forward "^\\([^#=]+\\)=\\(.*\\)$" (line-end-position) t)
+            (let ((key (string-trim (match-string 1)))
+                  (value (string-trim (match-string 2))))
+              (setenv key value))))
+        (forward-line 1)))))
+(load-env-file)
 
 
 ;; faces.el --- Lisp faces ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
