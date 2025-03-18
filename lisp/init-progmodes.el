@@ -185,6 +185,17 @@ Feel free to use command to toggle between them."
 (define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                   GPT.el                                   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; A simple LLM client for Emacs
+; https://github.com/karthink/gptel
+(package-install-init 'gptel)
+(require 'gptel)
+(setq gptel-api-key (getenv "GPTEL-API-KEY"))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;          Emacs Lisp config          ;

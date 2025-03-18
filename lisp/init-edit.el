@@ -143,6 +143,26 @@
 (package-install-init 'yasnippet-snippets)
 
 
+;; Wakatime: Automatic time tracking
+;; https://github.com/wakatime/wakatime-mode
+(package-install-init 'wakatime-mode)
+(require 'wakatime-mode)
+(add-hook 'after-init-hook 'global-wakatime-mode)
+(setq wakatime-cli-path (expand-file-name "~/.wakatime/wakatime-cli-linux-amd64")
+      wakatime-api-key (getenv "WAKATIME-API-KEY"))
+(diminish 'wakatime-mode)
+
+
+;; Weather forecast plugin, display the forecast from OpenWeatherMap.
+; https://github.com/aaronbieber/sunshine.el
+(package-install-init 'sunshine)
+(require 'sunshine)
+(setq sunshine-location "Lund"
+      sunshine-appid (getenv "SUNSHINE-APPID")
+      sunshine-show-icons t
+      sunshine-units 'metric)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             VC: Version Control                            ;
@@ -182,9 +202,8 @@
 
 (diminish 'org-indent-mode)
 
-;;;;;;;;;;;;
-;; Agenda ;;
-;;;;;;;;;;;;
+
+; Agenda ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org-agenda)
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -225,9 +244,7 @@
         (search category-up)))
 
 
-;;;;;;;;;;
-;; Link ;;
-;;;;;;;;;;
+; Link ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'ol)
 ; Org links library
@@ -242,9 +259,7 @@
 (setq org-cliplink-max-length 120)  ; cuts any title that exceeds the limit
 
 
-;;;;;;;;;;;;;;;;
-;; Org Refile ;;
-;;;;;;;;;;;;;;;;
+; Org Refile ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org-refile)
 ; Refile Org Subtrees
@@ -264,9 +279,7 @@
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
 
-;;;;;;;;;;;
-;; Babel ;;
-;;;;;;;;;;;
+; Babel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org-src)
 ; Source code examples in Org
@@ -330,9 +343,7 @@
 (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)
 
 
-;;;;;;;;;;;;;;;;;;;
-;; LaTeX preview ;;
-;;;;;;;;;;;;;;;;;;;
+; LaTeX preview ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org)
 ; Outline-based notes management and organizer
@@ -351,9 +362,7 @@
 (add-hook 'org-mode-hook 'org-fragtog-mode) ; for latex live previous
 
 
-;;;;;;;;;;;;
-;; Export ;;
-;;;;;;;;;;;;
+; Export ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'ox)
 ; Export Framework for Org Mode
