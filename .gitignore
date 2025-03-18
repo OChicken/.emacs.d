@@ -1,6 +1,7 @@
 .cache/
 auto-save-list/
 ctags/TAGS-linux
+.env
 elpa/
 eln-cache/
 eshell/history
