@@ -685,8 +685,6 @@ https://emacs.stackexchange.com/a/64640"
       (require 'init-view)
       (require 'init-edit)
       (require 'init-progmodes)
-      (when (file-exists-p "lisp/init-opt.el")
-        (require 'init-opt))
       (when (file-exists-p "lisp/init-gnus.el")
         (require 'init-gnus))
       )
