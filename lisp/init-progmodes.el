@@ -197,8 +197,9 @@ Feel free to use command to toggle between them."
 
 
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;          Emacs Lisp config          ;
+;;                                 Emacs Lisp                                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (dolist (hook '(lisp-mode-hook lisp-interaction-mode-hook))
@@ -215,7 +216,7 @@ Feel free to use command to toggle between them."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ;             Lisp config             ;
+;;                                    Lisp                                    ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime/")
@@ -278,6 +279,24 @@ Feel free to use command to toggle between them."
 (add-hook 'haskell-cabal-mode 'subword-mode)
 
 (package-install-init 'proof-general)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                     Coq                                    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun opam-env ()
+  "Parse and set environment variables from `opam env` into Eshell."
+  (dolist (line (split-string (shell-command-to-string "opam env") "\n" t))
+    (let* ((assign (car (split-string line ";")))
+	   (key-val (split-string (car (split-string line ";")) "="))
+           ;(key (car key-val))
+           (val (replace-regexp-in-string "^'\\(.*\\)'$" "\\1" (cadr key-val))))
+      (message (concat "export " assign))
+      (eshell/export assign)
+      ;; (eshell-command (concat "export " assign))
+      )))
+(opam-env)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
