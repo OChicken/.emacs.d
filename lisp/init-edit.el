@@ -128,6 +128,12 @@
   (xclip-mode t))
 
 
+;; vterm --- Emacs libvterm integration ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; https://github.com/akermu/emacs-libvterm
+
+(package-install-init 'vterm)
+
+
 ;; yasnippet --- A template system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/joaotavora/yasnippet
 
