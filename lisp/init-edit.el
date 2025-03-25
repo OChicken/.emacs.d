@@ -311,6 +311,7 @@
       (locate-library (concat "ob-" (symbol-name (car pair)))))
     '((C . t)
       (C++ . t)
+      (coq . t)
       (calc . t)
       (ditaa . t)
       (emacs-lisp . t)
