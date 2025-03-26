@@ -205,9 +205,6 @@ Feel free to use command to toggle between them."
 (dolist (hook '(lisp-mode-hook lisp-interaction-mode-hook))
   (add-hook hook 'display-line-numbers-mode))
 
-(add-hook 'emacs-lisp-mode-hook
-	  (lambda ()
-	    (setq indent-tabs-mode nil)))
 
 ; Respawn the scratch buffer when it's killed
 ; https://github.com/jpkotta/immortal-scratch
@@ -228,8 +225,7 @@ Feel free to use command to toggle between them."
           (lambda ()
             (unless (featurep 'slime)
               (require 'slime)
-              (normal-mode))
-            (setq indent-tabs-mode nil)))
+              (normal-mode))))
 
 (require 'slime-repl)
 
