@@ -278,14 +278,16 @@ Feel free to use command to toggle between them."
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode 'subword-mode)
 
-(package-install-init 'proof-general)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                     Coq                                    ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key coq-mode-map (kbd "M-e") (kbd "RET")) ; proof-forward-command
+(package-install-init 'proof-general)
+
+(add-hook 'coq-mode-hook
+          (lambda ()
+            (define-key coq-mode-map (kbd "M-e") (kbd "RET"))))  ; proof-forward-command
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
