@@ -296,7 +296,8 @@ Feel free to use command to toggle between them."
       flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
                                     "/usr/share/verilator/include/"))
 
-(defun c-format-linux ()
+
+(defun c-format ()
   "Format the current buffer with clang-format using the specified style file."
   (interactive)
   (when (and buffer-file-name (string-match "\\.c\\'" buffer-file-name))
@@ -307,9 +308,11 @@ Feel free to use command to toggle between them."
     (let* ((style-file (expand-file-name "~/.emacs.d/.clang-format"))
            (current-file (buffer-name))
            (style-arg (concat "-style=file:" style-file)))
-      (call-process "clang-format" nil nil nil style-arg "-i" current-file))
+      (if c-linux-style
+	  (call-process "clang-format" nil nil nil style-arg "-i" current-file)
+	(call-process "clang-format" nil nil nil "-style=LLVM" "-i" current-file)))
     (revert-buffer t t t)))
-(define-key c-mode-map (kbd "C-c C-f") 'c-format-linux)
+(define-key c-mode-map (kbd "C-c C-f") 'c-format)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
