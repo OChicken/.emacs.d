@@ -298,6 +298,20 @@ Feel free to use command to toggle between them."
 (setq c-basic-offset 2)
 (defvar c-linux-style nil)
 
+
+(defface font-lock-hex-num-face
+  '((t :foreground "#756cbd"))
+  "Face for 0x-based hex constants.")
+
+(defun c-face-hex-num ()
+  "Enable hex-face highlighting after theme is loaded."
+  (font-lock-add-keywords
+                 nil
+                 '(("\\b0x[0-9A-Fa-f]+\\b" 0 'font-lock-hex-num-face t))))
+
+(add-hook 'c-mode-hook #'c-face-hex-num)
+
+
 (defun c-format ()
   "Format the current buffer with clang-format using the specified style file."
   (interactive)
