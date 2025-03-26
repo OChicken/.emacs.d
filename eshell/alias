@@ -1,5 +1,4 @@
 alias nil  $*
-alias grep grep --color=always $*
 alias l ls -C $1
 alias la ls -A $1
 alias ll ls -al $1
