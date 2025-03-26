@@ -296,7 +296,7 @@ Feel free to use command to toggle between them."
       flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
                                     "/usr/share/verilator/include/"))
 (setq c-basic-offset 2)
-
+(defvar c-linux-style nil)
 
 (defun c-format ()
   "Format the current buffer with clang-format using the specified style file."
