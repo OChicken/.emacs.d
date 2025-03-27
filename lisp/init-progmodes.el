@@ -296,8 +296,8 @@ Feel free to use command to toggle between them."
       flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
                                     "/usr/share/verilator/include/"))
 (setq c-basic-offset 2)
-(defvar c-linux-style nil)
-
+(defvar c-format-style-linux nil)
+(defvar c-format-style-nist nil)
 
 (defface font-lock-hex-num-face
   '((t :foreground "#756cbd"))
@@ -320,12 +320,21 @@ Feel free to use command to toggle between them."
     (when (buffer-modified-p)
       (save-buffer))
     ;; Call clang-format with the specified style
-    (let* ((style-file (expand-file-name "~/.emacs.d/.clang-format"))
-           (current-file (buffer-name))
-           (style-arg (concat "-style=file:" style-file)))
-      (if c-linux-style
-	  (call-process "clang-format" nil nil nil style-arg "-i" current-file)
-	(call-process "clang-format" nil nil nil "-style=LLVM" "-i" current-file)))
+    (cond
+     (c-format-style-linux
+      (call-process "clang-format" nil nil nil
+		    (concat "-style=file:"
+			    (expand-file-name user-emacs-directory)
+			    "clang-format/Linux")
+		    "-i" (buffer-name)))
+     (c-format-style-nist
+      (call-process "clang-format" nil nil nil
+		    (concat "-style=file:"
+			    (expand-file-name user-emacs-directory)
+			    "clang-format/NIST")
+		    "-i" (buffer-name)))
+     (t
+      (call-process "clang-format" nil nil nil "-style=LLVM" "-i" (buffer-name))))
     (revert-buffer t t t)))
 (define-key c-mode-map (kbd "C-c C-f") 'c-format)
 
