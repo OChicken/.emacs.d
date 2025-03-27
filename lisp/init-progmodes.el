@@ -296,8 +296,6 @@ Feel free to use command to toggle between them."
       flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
                                     "/usr/share/verilator/include/"))
 (setq c-basic-offset 2)
-(defvar c-format-style-linux nil)
-(defvar c-format-style-nist nil)
 
 (defface font-lock-hex-num-face
   '((t :foreground "#756cbd"))
@@ -311,6 +309,11 @@ Feel free to use command to toggle between them."
 
 (add-hook 'c-mode-hook #'c-face-hex-num)
 
+(defvar c-format-style-linux nil
+  "C format style Linux kernel.")
+
+(defvar c-format-style-nist nil
+  "C format style NIST PQC.")
 
 (defun c-format ()
   "Format the current buffer with clang-format using the specified style file."
