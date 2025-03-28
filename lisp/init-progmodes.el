@@ -196,6 +196,20 @@ Feel free to use command to toggle between them."
 (setq gptel-api-key (getenv "GPTEL-API-KEY"))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                    Font                                    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defface font-lock-hex-num-face
+  '((t :foreground "#756cbd"))
+  "Face for 0x-based hex constants.")
+(add-hook 'prog-mode-hook
+	  (lambda ()
+            (font-lock-add-keywords
+             nil
+             '(("\\b0x[0-9A-Fa-f]+\\b" 0 'font-lock-hex-num-face t)))))
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -296,18 +310,6 @@ Feel free to use command to toggle between them."
       flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
                                     "/usr/share/verilator/include/"))
 (setq c-basic-offset 2)
-
-(defface font-lock-hex-num-face
-  '((t :foreground "#756cbd"))
-  "Face for 0x-based hex constants.")
-
-(defun c-face-hex-num ()
-  "Enable hex-face highlighting after theme is loaded."
-  (font-lock-add-keywords
-                 nil
-                 '(("\\b0x[0-9A-Fa-f]+\\b" 0 'font-lock-hex-num-face t))))
-
-(add-hook 'c-mode-hook #'c-face-hex-num)
 
 (defvar c-format-style-linux nil
   "C format style Linux kernel.")
