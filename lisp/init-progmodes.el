@@ -118,7 +118,7 @@ Feel free to use command to toggle between them."
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 (setq flycheck-emacs-lisp-load-path 'inherit)
 
-(setq-default flycheck-disabled-checkers '(python-pylint))
+(setq-default flycheck-disabled-checkers '(python-flake8 python-pylint))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
