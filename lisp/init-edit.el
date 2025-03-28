@@ -309,7 +309,8 @@
    (seq-filter
     (lambda (pair)
       (locate-library (concat "ob-" (symbol-name (car pair)))))
-    '((C . t)
+    '((asm . t)
+      (C . t)
       (C++ . t)
       (coq . t)
       (calc . t)
@@ -320,6 +321,7 @@
       (js .t)
       (latex . t)
       (lisp . t)
+      (makefile . t)
       (octave . t)
       (php . t)
       (python . t)
