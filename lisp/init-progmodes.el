@@ -178,11 +178,13 @@ Feel free to use command to toggle between them."
 ;;                                   Copilot                                  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 (package-install-init 'copilot)
 (require 'copilot)
 (add-hook 'prog-mode-hook 'copilot-mode)
 (define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
+(add-to-list 'copilot-indentation-alist '(prog-mode 2))
+(add-to-list 'copilot-indentation-alist '(org-mode 2))
+(add-to-list 'copilot-indentation-alist '(text-mode 2))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
