@@ -323,8 +323,7 @@ available. Please upgrade if possible." emacs-version))
 
 ;; simple.el --- basic editing commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq save-interprogram-paste-before-kill t
-      indent-tabs-mode nil)
+(setq save-interprogram-paste-before-kill t)
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
