@@ -311,7 +311,6 @@ Feel free to use command to toggle between them."
 (setq flycheck-clang-language-standard "gnu11"
       flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
                                     "/usr/share/verilator/include/"))
-(setq c-basic-offset 2)
 
 (defvar c-format-style-linux nil
   "C format style Linux kernel.")
