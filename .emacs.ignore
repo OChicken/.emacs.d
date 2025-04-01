@@ -1,5 +1,4 @@
 .emacs.desktop*
 .emacs.eshell*
 *.code-workspace
-.dir-locals.el
 TAGS
