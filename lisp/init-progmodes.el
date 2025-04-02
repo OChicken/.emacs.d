@@ -180,9 +180,18 @@ Feel free to use command to toggle between them."
 
 (package-install-init 'copilot)
 (require 'copilot)
+(dolist (hook '(prog-mode-hook
+                coq-mode-hook
+                gnuplot-mode-hook
+                latex-mode-hook)) ; the list is basically copied from init-edit.el
+  (add-hook hook 'copilot-mode))
 (add-hook 'prog-mode-hook 'copilot-mode)
+(add-hook 'emacs-lisp-mode-hook 'copilot-mode)
+(add-hook 'org-mode-hook 'copilot-mode)
+(add-hook 'yaml-mode-hook (lambda () (copilot-mode -1)))
 (define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
 (add-to-list 'copilot-indentation-alist '(prog-mode 2))
+(add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
 (add-to-list 'copilot-indentation-alist '(org-mode 2))
 (add-to-list 'copilot-indentation-alist '(text-mode 2))
 
@@ -296,7 +305,7 @@ Feel free to use command to toggle between them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (package-install-init 'proof-general)
-
+(require 'coq-mode)
 (add-hook 'coq-mode-hook
           (lambda ()
             (define-key coq-mode-map (kbd "M-e") (kbd "RET"))))  ; proof-forward-command
