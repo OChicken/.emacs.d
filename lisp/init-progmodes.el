@@ -308,9 +308,7 @@ Feel free to use command to toggle between them."
 
 (require 'cc-mode)
 (define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
-(setq flycheck-clang-language-standard "gnu11"
-      flycheck-clang-include-path `(,(expand-file-name "~/.local/include/")
-                                    "/usr/share/verilator/include/"))
+(setq flycheck-clang-language-standard "gnu11")
 
 (defvar c-format-style-linux nil
   "C format style Linux kernel.")
