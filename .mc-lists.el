@@ -60,6 +60,7 @@
 	mark-sexp
 	mouse-set-region
 	org-ctrl-c-ctrl-c
+	org-shiftmetaup
 	previous-window-any-frame
 	python-nav-forward-sexp
 	recenter-top-bottom-hl
