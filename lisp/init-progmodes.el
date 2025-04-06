@@ -321,13 +321,7 @@ Feel free to use command to toggle between them."
 (define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
 (setq flycheck-clang-language-standard "gnu11")
 
-(defvar c-format-style-linux nil
-  "C format style Linux kernel.")
-
-(defvar c-format-style-nist nil
-  "C format style NIST PQC.")
-
-(defun c-format ()
+(defun c-format-style ()
   "Format the current buffer with clang-format using the specified style file."
   (interactive)
   (when (and buffer-file-name (string-match "\\.c\\'" buffer-file-name))
@@ -335,23 +329,28 @@ Feel free to use command to toggle between them."
     (when (buffer-modified-p)
       (save-buffer))
     ;; Call clang-format with the specified style
-    (cond
-     (c-format-style-linux
-      (call-process "clang-format" nil nil nil
-		    (concat "-style=file:"
-			    (expand-file-name user-emacs-directory)
-			    "clang-format/Linux")
-		    "-i" (buffer-name)))
-     (c-format-style-nist
-      (call-process "clang-format" nil nil nil
-		    (concat "-style=file:"
-			    (expand-file-name user-emacs-directory)
-			    "clang-format/NIST")
-		    "-i" (buffer-name)))
-     (t
-      (call-process "clang-format" nil nil nil "-style=LLVM" "-i" (buffer-name))))
+    (let ((temp (read-char-choice
+                 "Select style: (1) Linux, (2) NIST, (3) Default (LLVM) "
+                 '(?1 ?2 ?3))))
+      (cond
+       ((eq temp ?1)
+        (call-process "clang-format" nil nil nil
+		      (concat "-style=file:"
+			      (expand-file-name user-emacs-directory)
+			      "clang-format/Linux")
+		      "-i" (buffer-name)))
+       ((eq temp ?2)
+        (call-process "clang-format" nil nil nil
+                      (concat "-style=file:"
+                              (expand-file-name user-emacs-directory)
+                              "clang-format/NIST")
+                      "-i" (buffer-name)))
+       (t
+        (call-process "clang-format" nil nil nil
+                      "-style=LLVM"
+                      "-i" (buffer-name)))))
     (revert-buffer t t t)))
-(define-key c-mode-map (kbd "C-c C-f") 'c-format)
+(define-key c-mode-map (kbd "C-c C-f") 'c-format-style)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
