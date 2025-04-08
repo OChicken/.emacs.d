@@ -310,6 +310,7 @@ Feel free to use command to toggle between them."
 (add-hook 'coq-mode-hook
           (lambda ()
             (define-key coq-mode-map (kbd "M-e") (kbd "RET"))))  ; proof-forward-command
+(require 'proof-useropts)
 (setq proof-three-window-enable nil)
 
 

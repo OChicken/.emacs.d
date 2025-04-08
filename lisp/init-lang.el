@@ -61,5 +61,10 @@
 (add-to-list 'html-mode-hook 'web-mode)
 
 
+;; jasmin-mode --- A minimal major mode for the Jasmin DSL ;;;;;;;;;;;;;;;;;;;;
+
+(require 'jasmin-mode)
+
+
 (provide 'init-lang)
 ;;; init-lang.el ends here
