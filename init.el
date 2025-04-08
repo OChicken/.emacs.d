@@ -671,8 +671,6 @@ https://emacs.stackexchange.com/a/64640"
 
 
 
-(add-to-list 'load-path (expand-file-name "lisp/math" user-emacs-directory))
-
 ;; Load configs for specific features and modes
 (add-to-list 'load-path
              (expand-file-name "lisp" user-emacs-directory))
