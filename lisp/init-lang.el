@@ -23,6 +23,7 @@
               php-mode
               rust-mode
               sage-shell-mode
+              tuareg ; OCaml
               yaml
               yaml-mode))
 (dolist (package package-list)
