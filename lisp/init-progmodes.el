@@ -314,6 +314,8 @@ Feel free to use command to toggle between them."
 (require 'proof-useropts)
 (setq proof-three-window-enable nil)
 
+(add-to-list 'auto-mode-alist '("\\.ec\\'" . coq-mode))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                    C/C++                                   ;
