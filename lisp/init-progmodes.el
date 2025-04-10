@@ -181,14 +181,15 @@ Feel free to use command to toggle between them."
 (package-install-init 'copilot)
 (require 'copilot)
 (dolist (hook '(prog-mode-hook
+                emacs-lisp-mode-hook
+                org-mode-hook
                 coq-mode-hook
                 gnuplot-mode-hook
                 latex-mode-hook)) ; the list is basically copied from init-edit.el
   (add-hook hook 'copilot-mode))
-(add-hook 'prog-mode-hook 'copilot-mode)
-(add-hook 'emacs-lisp-mode-hook 'copilot-mode)
-(add-hook 'org-mode-hook 'copilot-mode)
-(add-hook 'yaml-mode-hook (lambda () (copilot-mode -1)))
+(dolist (hook '(yaml-mode-hook
+                web-mode-hook)) ; the list is basically copied from init-edit.el
+  (add-hook hook (lambda () (copilot-mode -1))))
 (define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
 (add-to-list 'copilot-indentation-alist '(prog-mode 2))
 (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
