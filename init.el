@@ -205,7 +205,12 @@ available. Please upgrade if possible." emacs-version))
 ; "C-x C-M-c" to do so, but very easily to hit "C-x C-c" that close the Emacs.
 ; So I bind "C-x C-M-c" to close Emacs, and bind "C-x C-c" to comment-dwim.
 ; Check the position "newcomment.el" for detail.
-(global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-terminal) ; undefined
+(defun confirm-before-exit ()
+  "Confirm before exiting Emacs."
+  (interactive)
+  (if (yes-or-no-p "Really exit Emacs?")
+      (save-buffers-kill-terminal)))
+(global-set-key (kbd "C-x C-M-c") 'confirm-before-exit) ; undefined
 
 
 ;; fill.el --- fill commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
