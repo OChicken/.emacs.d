@@ -57,6 +57,7 @@
 	goto-line
 	help-for-help
 	ignore
+	indent-rigidly
 	mark-sexp
 	mouse-set-region
 	org-ctrl-c-ctrl-c
