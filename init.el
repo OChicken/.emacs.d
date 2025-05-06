@@ -668,6 +668,21 @@ https://emacs.stackexchange.com/a/64640"
         (org-toggle-inline-images nil beg end))))
 (define-key org-mode-map (kbd "C-c C-x M-v") 'org-toggle-inline-image-at-point)
 
+;; ox-html.el --- HTML Backend for Org Export Engine ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ox-html)
+(setq org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://OChicken.net/static/main.css\"/><style type=\"text/css\">  #content { text-align: left; } </style>"
+      org-html-preamble  "<header><nav></nav></header>"
+      org-html-postamble "<script>var toc = document.getElementById('table-of-contents'); document.querySelector('nav').appendChild(toc);</script>")
+
+;; ox.el --- Export Framework for Org Mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ox)
+(setq org-export-with-author nil
+      org-export-time-stamp-file nil ; timestamp
+      org-export-with-section-numbers nil ; num
+      org-export-preserve-breaks t) ; \n
+
 
 
 
