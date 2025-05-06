@@ -559,7 +559,6 @@ The `last-last' window will be pop out if this function is executed again."
         ("la" "ls -A $1 $2")
         ("l" "ls -C $1")
         ("grep" "grep --color=always $1 $2 $3 $4 $5 $6 $7 $8 $9")
-        ("blog-g" "emacs -x ~/.emacs.d/blog.el")
         ("blog-s" "python -m http.server")))
 
 
