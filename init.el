@@ -560,8 +560,7 @@ The `last-last' window will be pop out if this function is executed again."
         ("l" "ls -C $1")
         ("grep" "grep --color=always $1 $2 $3 $4 $5 $6 $7 $8 $9")
         ("blog-g" "emacs -x ~/.emacs.d/blog.el")
-        ("blog-s" "python -m http.server")
-        ("blog-clean" "find . -name \"*.html\" -type f -exec rm {} \;")))
+        ("blog-s" "python -m http.server")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
