@@ -551,6 +551,17 @@ The `last-last' window will be pop out if this function is executed again."
 ; https://emacs.stackexchange.com/questions/57714/how-to-keep-grep-results-in-eshell-buffer
 (setq eshell-plain-grep-behavior t)
 
+;; em-alias.el --- creation and management of command aliases ;;;;;;;;;;;;;;;;;
+
+(require 'em-alias)
+(setq eshell-command-aliases-list
+      '(("ll" "ls -al $1 $2")
+        ("la" "ls -A $1 $2")
+        ("l" "ls -C $1")
+        ("grep" "grep --color=always $1 $2 $3 $4 $5 $6 $7 $8 $9")
+        ("blog-g" "emacs -x ~/.emacs.d/blog.el")
+        ("blog-s" "python -m http.server")))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               lisp/progmodes/                              ;
