@@ -38,11 +38,11 @@
   (list (list "preview"
               :base-directory "."
               :publishing-directory "."
-              :recursive t
+              :recursive nil
 	      ; :exclude "demos/*"
               :publishing-function 'org-html-publish-to-html)))
 
-(org-publish-project "preview" nil)
+(org-publish-project "preview" t)
 
 (provide 'blog)
 ;;; blog.el ends here
