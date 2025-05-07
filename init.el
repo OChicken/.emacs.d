@@ -678,6 +678,7 @@ https://emacs.stackexchange.com/a/64640"
 
 (require 'ox)
 (setq org-export-with-author nil
+      org-export-babel-evaluate nil
       org-export-time-stamp-file nil ; timestamp
       org-export-with-section-numbers nil ; num
       org-export-preserve-breaks t) ; \n
