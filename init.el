@@ -465,7 +465,9 @@ With numeric prefix ARG, move current line to window-line ARG."
 ; me to undo. So I bound 'C-t' to this innocent (but even more fancy) feature.
 
 (global-set-key (kbd "C-x C-M-q") 'previous-buffer) ; undefined
+(global-set-key (kbd "<mouse-8>") 'previous-buffer) ; undefined
 (global-set-key (kbd "C-x C-M-z") 'next-buffer)     ; undefined
+(global-set-key (kbd "<mouse-9>") 'next-buffer)     ; undefined
 
 ; Toggling among windows. This modifies the default "C-<tab>" and "C-S-<tab>"
 ; behaviour, that toggling among tabs. In practice, toggling among tabs is
