@@ -564,6 +564,12 @@ The `last-last' window will be pop out if this function is executed again."
         ("blog-s" "python -m http.server")))
 
 
+;; esh-cmd.el --- command invocation ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'esh-cmd)
+(add-hook 'eshell-post-command-hook 'recenter)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               lisp/progmodes/                              ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
