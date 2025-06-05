@@ -52,6 +52,8 @@
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 (add-to-list 'display-line-numbers-exceptions-alist 'pdf-view-mode)
 (add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
+(define-key pdf-view-mode-map (kbd "q") 'pdf-view-previous-page-command) ; quit-window (global)
+(define-key pdf-view-mode-map (kbd "z") 'pdf-view-next-page-command) ; undefined
 
 
 ;; web-mode --- html template editing for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
