@@ -530,7 +530,7 @@ The `last-last' window will be pop out if this function is executed again."
 ; This feature is NOT available at and before Emacs <= 27.1 (Ubuntu 22.04.5 LTS)
 
 (require 'em-hist)
-(unless (version<= emacs-version "27.1")
+(unless (version<= emacs-version "27.2")
   (define-key eshell-hist-mode-map (kbd "M-q")
               'eshell-previous-matching-input-from-input)
   (define-key eshell-hist-mode-map (kbd "M-z")
