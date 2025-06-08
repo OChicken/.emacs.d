@@ -599,6 +599,12 @@ The `last-last' window will be pop out if this function is executed again."
       grep-command "grep --color=auto -nr -F ")
 
 
+;; hideif.el --- hides selected code within ifdef ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'hideif)
+(hide-ifdef-mode)
+
+
 ;; hideshow.el --- minor mode cmds to selectively display code/comment blocks ;
 
 (require 'hideshow)
