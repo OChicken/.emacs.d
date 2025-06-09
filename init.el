@@ -465,10 +465,9 @@ With numeric prefix ARG, move current line to window-line ARG."
   (interactive "P")
   (recenter-top-bottom arg)
   (pulse-momentary-highlight-one-line (point)))
-(global-set-key (kbd "C-t") 'recenter-top-bottom-hl) ; transpose-chars
-; When I hit 'C-y' to paste, its easily hit 'C-t' by accident. However, the
-; 'C-t' that 'transpose-chars' is barely used and this accident actions requires
-; me to undo. So I bound 'C-t' to this innocent (but even more fancy) feature.
+(global-set-key (kbd "C-x C-t") 'recenter-top-bottom-hl) ; transpose-lines
+; 'C-x C-t' that 'transpose-lines' is barely used, so I bound this kbd to this
+; innocent (but even more fancy) feature.
 
 (global-set-key (kbd "C-x C-M-q") 'previous-buffer) ; undefined
 (global-set-key (kbd "<mouse-8>") 'previous-buffer) ; undefined
