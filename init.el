@@ -65,16 +65,13 @@ available. Please upgrade if possible." emacs-version))
 
 (setq create-lockfiles nil
       frame-resize-pixelwise t
-      frame-title-format ; from ChatGPT
-      '((:eval (let ((project-name
-                      (file-name-nondirectory
-                       (directory-file-name
-                        (project-root (project-current))))))
-                 (format "[%s] %s"
-                         (or project-name "NoProject")
-                         (if (buffer-file-name)
-                             (abbreviate-file-name (buffer-file-name))
-                           "%b")))))
+      frame-title-format
+      '((:eval (format "[%s] %s"
+                       (file-name-nondirectory
+                        (directory-file-name command-line-default-directory))
+                       (if (buffer-file-name)
+                           (abbreviate-file-name (buffer-file-name))
+                         "%b"))))
       scroll-preserve-screen-position t
       use-file-dialog nil
       use-dialog-box nil
