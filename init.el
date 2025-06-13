@@ -457,21 +457,16 @@ With argument ARG, do this that many times."
 ; issue --- deleted my window layout, so I must mute this shortcut
 (global-unset-key (kbd "C-x 1")) ; delete-other-windows
 
-(global-set-key (kbd "C-t") 'move-to-window-line-top-bottom) ; transpose-chars
-; When I hit 'C-y' to paste, its easily hit 'C-t' by accident. However, the
-; 'C-t' that 'transpose-chars' is barely used and this accident actions requires
-; me to undo. So I bound 'C-t' to this function.
-
-
 (defun recenter-top-bottom-hl (&optional arg)
   "Call `recenter-top-bottom' in the current window and highlight pulse it.
 With numeric prefix ARG, move current line to window-line ARG."
   (interactive "P")
   (recenter-top-bottom arg)
   (pulse-momentary-highlight-one-line (point)))
-(global-set-key (kbd "C-x C-t") 'recenter-top-bottom-hl) ; transpose-lines
-; 'C-x C-t' that 'transpose-lines' is barely used, so I bound this kbd to this
-; innocent (but even more fancy) feature.
+(global-set-key (kbd "C-t") 'recenter-top-bottom-hl) ; transpose-chars
+; When I hit 'C-y' to paste, its easily hit 'C-t' by accident. However, the
+; 'C-t' that 'transpose-chars' is barely used and this accident actions requires
+; me to undo. So I bound 'C-t' to this innocent (but even more fancy) feature.
 
 (global-set-key (kbd "C-x C-M-q") 'previous-buffer) ; undefined
 (global-set-key (kbd "<mouse-8>") 'previous-buffer) ; undefined
