@@ -672,6 +672,10 @@ The `last-last' window will be pop out if this function is executed again."
 
 ;; (setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE")))
 
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-x C-c") #'org-babel-next-src-block)) ; origin: org-columns
+; 'org-columns' is never used and not a good feature
+
 (require 'org-element)
 (defun org-toggle-inline-image-at-point ()
   "Display inline image at point.
