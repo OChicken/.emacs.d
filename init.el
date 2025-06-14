@@ -659,8 +659,6 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'org)
 
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)) ; origin: backward-up-list
 (add-hook 'org-mode-hook 'org-indent-mode)
 
 (setq org-imenu-depth 3            ; The maximum level for Imenu access to Org headlines.
@@ -673,8 +671,10 @@ The `last-last' window will be pop out if this function is executed again."
 ;; (setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE")))
 
 (with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c C-x C-c") #'org-babel-next-src-block)) ; origin: org-columns
-; 'org-columns' is never used and not a good feature
+  (define-key org-mode-map (kbd "C-c C-x C-c") #'org-babel-next-src-block) ; origin: org-columns
+  (define-key org-mode-map (kbd "C-c C-x C-p") #'org-babel-previous-src-block) ; org-previous-link
+  (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)) ; origin: backward-up-list
+; 'org-columns' and 'org-previous-link' are never used and not a good feature
 
 (require 'org-element)
 (defun org-toggle-inline-image-at-point ()
