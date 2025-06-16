@@ -173,6 +173,20 @@ Feel free to use command to toggle between them."
             (add-to-list (make-local-variable 'company-backends)
                          'company-org-block)))
 
+(defun company-files-no-space-post-completion ()
+  "Disable space insertion after file name completion in Eshell."
+  )
+
+(with-eval-after-load 'company
+  (defun company-files-eshell ()
+    (when (derived-mode-p 'eshell-mode)
+      (setq-local company-backends
+                  '((company-files :with company-dabbrev-code)))
+      ; Disable auto-add-space after completion
+      (setq-local company-files--post-completion
+                  #'company-files-no-space-post-completion)))
+  (add-hook 'eshell-mode-hook #'company-files-eshell))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   Copilot                                  ;
