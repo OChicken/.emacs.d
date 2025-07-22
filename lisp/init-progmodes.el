@@ -375,6 +375,10 @@ Feel free to use command to toggle between them."
 ;;                                   Python                                   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(package-install-init 'ein)
+;; Jupyter notebook client in Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; https://github.com/millejoh/emacs-ipython-notebook
+
 (require 'python)
 ; Python's flying circus support for Emacs
 ; file:///usr/share/emacs/29.1/lisp/progmodes/python.el.gz
