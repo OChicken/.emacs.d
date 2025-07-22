@@ -689,6 +689,8 @@ https://emacs.stackexchange.com/a/64640"
         (org-toggle-inline-images nil beg end))))
 (define-key org-mode-map (kbd "C-c C-x M-v") 'org-toggle-inline-image-at-point)
 
+(add-hook 'org-babel-after-execute-hook (lambda () (org-display-inline-images nil t)))
+
 ;; ox-html.el --- HTML Backend for Org Export Engine ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'ox-html)
