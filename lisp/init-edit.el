@@ -378,15 +378,6 @@
 
 ; Export ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'ox)
-; Export Framework for Org Mode
-; file:///usr/share/emacs/29.1/lisp/org/ox.el.gz
-(setq org-export-with-tags nil  ; dont export headlines with tags
-      org-export-coding-system 'utf-8
-      org-html-validation-link nil
-      org-export-with-broken-links t  ; who cares about annoying broken link errors..
-      )
-
 (require 'ox-latex)
 ; LaTeX Back-End for Org Export Engine
 ; file:///usr/share/emacs/29.1/lisp/org/ox-latex.el.gz
@@ -401,8 +392,6 @@
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-(setq org-html-htmlize-output-type 'css)
 
 
 
