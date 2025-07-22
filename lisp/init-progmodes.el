@@ -381,6 +381,7 @@ Feel free to use command to toggle between them."
 (setq python-indent-offset 4)
 (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)  ; forward-sexp
 (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp) ; backward-sexp
+(setq eldoc-mode nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
