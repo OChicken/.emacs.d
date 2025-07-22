@@ -694,7 +694,9 @@ https://emacs.stackexchange.com/a/64640"
 ;; ox-html.el --- HTML Backend for Org Export Engine ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'ox-html)
-(setq org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://OChicken.net/static/main.css\"/><style type=\"text/css\">  #content { text-align: left; } </style>"
+(setq org-html-validation-link nil
+      org-html-htmlize-output-type 'css
+      org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://OChicken.net/static/main.css\"/><style type=\"text/css\">  #content { text-align: left; } </style>"
       org-html-preamble  "<header><nav></nav></header>"
       org-html-postamble "<script>var toc = document.getElementById('table-of-contents'); document.querySelector('nav').appendChild(toc);</script>")
 
