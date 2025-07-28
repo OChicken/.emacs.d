@@ -133,6 +133,15 @@
   (xclip-mode t))
 
 
+;; Clipetty --- Manipulate the system (clip)board with (e)macs from a (tty) ;;;
+; https://github.com/spudlyo/clipetty
+; https://emacs.stackexchange.com/questions/41339/copy-paste-between-ssh-terminal-emacs-and-macos
+
+(package-install-init 'clipetty)
+(require 'clipetty)
+(global-clipetty-mode)
+
+
 ;; vterm --- Emacs libvterm integration ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/akermu/emacs-libvterm
 
