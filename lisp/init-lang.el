@@ -13,6 +13,7 @@
 (setq-local package-list
             '(cmake-mode
               cuda-mode
+              csv-mode
               cython-mode
               dockerfile-mode
               go-mode
@@ -28,6 +29,13 @@
               yaml-mode))
 (dolist (package package-list)
   (package-install-init package))
+
+
+;; csv-mode --- Major mode for editing comma/char separated values ;;;;;;;;;;;;
+
+(require 'csv-mode)
+(add-hook 'csv-mode-hook 'csv-align-fields)
+
 
 ;; markdown-mode --- Markdown Mode for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://jblevins.org/projects/markdown-mode/
