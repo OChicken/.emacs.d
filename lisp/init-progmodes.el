@@ -370,6 +370,9 @@ Feel free to use command to toggle between them."
     (revert-buffer t t t)))
 (define-key c-mode-map (kbd "C-c C-f") 'c-format-style)
 
+;; lss (the disassemble of elf) should be text mode in order to enable symbol-overlay-mode
+(add-to-list 'auto-mode-alist '("\\.lss\\'" . text-mode))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   Python                                   ;
