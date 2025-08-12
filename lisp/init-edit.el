@@ -81,6 +81,7 @@
 (package-install-init 'symbol-overlay)
 (require 'symbol-overlay)
 (dolist (hook '(prog-mode-hook
+                text-mode-hook
                 html-mode-hook
                 yaml-mode-hook
                 conf-mode-hook
