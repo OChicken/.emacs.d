@@ -403,6 +403,12 @@
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
+(require 'ox-ipynb)
+; org-mode exporter to Jupyter notebooks
+; https://github.com/jkitchin/ox-ipynb
+(package-install-init 'ox-ipynb)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                 Utils: Elisp helper functions and commands                 ;
