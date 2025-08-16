@@ -13,19 +13,6 @@
 
 ;; (transient-mark-mode t)
 
-;; flyspell.el --- On-the-fly spell checker ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(when (executable-find "aspell")
-  (add-hook 'text-mode-hook 'flyspell-mode)
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
-
-
-;; ispell.el --- interface to spell checkers ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'ispell)
-(setq ispell-dictionary "en")
-
-
 ;; anzu -- Displays current match and total matches info in the mode-line ;;;;;
 ; https://github.com/emacsorphanage/anzu
 
