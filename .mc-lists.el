@@ -31,6 +31,7 @@
 	indent-for-tab-command
 	indent-tabs-mode
 	insert-char
+	kill-region
 	magit-copy-buffer-revision
 	multiple-cursors-mode
 	org-cycle
