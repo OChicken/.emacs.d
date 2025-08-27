@@ -142,6 +142,8 @@
 (package-install-init 'yasnippet)
 (yas-global-mode 1)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
+(with-eval-after-load 'yasnippet
+  (define-key yas-minor-mode-map (kbd "C-c &") nil))  ; barely used, but C-c & is used by org-mark-ring-goto
 (diminish 'yas-minor-mode)
 
 
