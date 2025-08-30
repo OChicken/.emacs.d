@@ -313,31 +313,16 @@
    (seq-filter
     (lambda (pair)
       (locate-library (concat "ob-" (symbol-name (car pair)))))
-    '((asm . t)
-      (C . t)
-      (C++ . t)
-      (coq . t)
+    '((coq . t)
       (calc . t)
       (ditaa . t)
-      (emacs-lisp . t)
       (gnuplot . t)
       (go . t)
       (js .t)
-      (latex . t)
       (lisp . t)
-      (makefile . t)
-      (octave . t)
       (php . t)
-      (python . t)
-      (rust . t)
       (sagemath . t)
-      (shell . t)
       (sql . t)))))
-
-(require 'ob-core)
-; Working with Code Blocks
-; file:///usr/share/emacs/29.1/lisp/org/ob-core.el.gz
-(setq org-confirm-babel-evaluate nil) ;; Do not confirm before evaluation
 
 (require 'ob-latex)
 ; Babel Functions for LaTeX
@@ -376,22 +361,6 @@
 
 
 ; Export ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'ox-latex)
-; LaTeX Back-End for Org Export Engine
-; file:///usr/share/emacs/29.1/lisp/org/ox-latex.el.gz
-(setq org-latex-compiler "xelatex"                    ; origin: "pdflatex"
-      org-latex-image-default-width ".5\\linewidth")  ; origin: ".9\\linewidth"
-
-(add-to-list 'org-latex-classes
-             '("ox-latex-scrarticle"
-               "\\documentclass[a4paper, headsepline, footsepline]{scrarticle}"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
 
 (require 'ox-ipynb)
 ; org-mode exporter to Jupyter notebooks
