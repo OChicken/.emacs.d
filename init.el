@@ -730,6 +730,8 @@ https://emacs.stackexchange.com/a/64640"
 
 ;; ox-latex --- LaTeX Backend for Org Export Engine ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'ox-latex)
+
 (setq org-latex-compiler "xelatex"                    ; origin: "pdflatex"
       org-latex-image-default-width ".5\\linewidth")  ; origin: ".9\\linewidth"
 
