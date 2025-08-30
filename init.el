@@ -684,6 +684,23 @@ The `last-last' window will be pop out if this function is executed again."
       org-tags-column -80          ; The column to which tags should be indented in a headline.
       org-fast-tag-selection-single-key 'expert)
 
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   (seq-filter
+    (lambda (pair)
+      (locate-library (concat "ob-" (symbol-name (car pair)))))
+    '((asm . t)
+      (C . t)
+      (C++ . t)
+      (emacs-lisp . t)
+      (latex . t)
+      (makefile . t)
+      (octave . t)
+      (python . t)
+      (rust . t)
+      (shell . t)))))
+
 ;; (setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE")))
 
 (with-eval-after-load 'org
@@ -706,6 +723,25 @@ https://emacs.stackexchange.com/a/64640"
 (define-key org-mode-map (kbd "C-c C-x M-v") 'org-toggle-inline-image-at-point)
 
 (add-hook 'org-babel-after-execute-hook (lambda () (org-display-inline-images nil t)))
+
+;; ob-core.el --- Working with Code Blocks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-confirm-babel-evaluate nil) ;; Do not confirm before evaluation
+
+;; ox-latex --- LaTeX Backend for Org Export Engine ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-latex-compiler "xelatex"                    ; origin: "pdflatex"
+      org-latex-image-default-width ".5\\linewidth")  ; origin: ".9\\linewidth"
+
+(add-to-list 'org-latex-classes
+             '("ox-latex-scrarticle"
+               "\\documentclass[a4paper, headsepline, footsepline]{scrarticle}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
 
 ;; ox-html.el --- HTML Backend for Org Export Engine ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
