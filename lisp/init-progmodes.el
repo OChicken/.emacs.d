@@ -57,7 +57,6 @@
 
 ; Project Interaction Library for Emacs
 ; https://github.com/bbatsov/projectile
-(package-install-init 'projectile)
 (projectile-mode +1)
 ; Recommended keymap prefix on Windows/Linux
 (require 'projectile)
@@ -76,11 +75,9 @@
 
 ;; Let Emacs' ibuffer-mode group files by git project etc., and show file state
 ; https://github.com/purcell/ibuffer-vc
-(package-install-init 'ibuffer-vc)
 
 ;; Group buffers in Emacs ibuffer-mode by their projectile root directory ;;;;;
 ; https://github.com/purcell/ibuffer-projectile
-(package-install-init 'ibuffer-projectile)
 (require 'ibuffer-projectile)
 
 ;; Set up the preferred filter.
@@ -101,13 +98,6 @@ Feel free to use command to toggle between them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;   Flycheck syntax checker settings  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq-local package-list
-            '(flycheck
-              flycheck-clang-tidy
-              flycheck-rust))
-(dolist (package package-list)
-  (package-install-init package))
 
 (require 'flycheck)
 ; Flycheck --- Syntax checking for GNU Emacs --- Flycheck 33-cvs documentation
@@ -134,14 +124,6 @@ Feel free to use command to toggle between them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;              Completion             ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq-local package-list
-            '(company
-              company-math
-              company-c-headers
-              company-auctex))
-(dolist (package package-list)
-  (package-install-init package))
 
 ; company-mode for Emacs
 ; https://company-mode.github.io/
@@ -192,7 +174,6 @@ Feel free to use command to toggle between them."
 ;;                                   Copilot                                  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(package-install-init 'copilot)
 (require 'copilot)
 (dolist (hook '(prog-mode-hook
                 emacs-lisp-mode-hook
@@ -218,7 +199,6 @@ Feel free to use command to toggle between them."
 
 ;; A simple LLM client for Emacs
 ; https://github.com/karthink/gptel
-(package-install-init 'gptel)
 (require 'gptel)
 (setq gptel-api-key (getenv "GPTEL-API-KEY"))
 
@@ -258,8 +238,6 @@ Feel free to use command to toggle between them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime/")
-
-(package-install-init 'slime)
 
 (define-key lisp-mode-map (kbd "C-M-q") 'scroll-down-line) ; indent-sexp
 (add-hook 'lisp-mode-hook
@@ -307,7 +285,6 @@ Feel free to use command to toggle between them."
 ;;                                   Haskell                                  ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(package-install-init 'haskell-mode)
 (require 'haskell)
 (require 'haskell-mode-autoloads)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
@@ -320,7 +297,6 @@ Feel free to use command to toggle between them."
 ;;                                     Coq                                    ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(package-install-init 'proof-general)
 (require 'proof-general)
 (add-hook 'coq-mode-hook
           (lambda ()
@@ -378,10 +354,6 @@ Feel free to use command to toggle between them."
 ;;                                   Python                                   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(package-install-init 'ein)
-;; Jupyter notebook client in Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; https://github.com/millejoh/emacs-ipython-notebook
-
 (require 'python)
 ; Python's flying circus support for Emacs
 ; file:///usr/share/emacs/29.1/lisp/progmodes/python.el.gz
@@ -406,8 +378,6 @@ Feel free to use command to toggle between them."
 
 ;; AUCTeX - Sophisticated document creation ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://www.gnu.org/software/auctex/
-
-(package-install-init 'auctex)
 
 (require 'latex)
 (require 'preview)

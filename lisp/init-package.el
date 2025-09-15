@@ -44,14 +44,93 @@
   (setq package-check-signature 'allow-unsigned) ; set back to default
 )
 
-(dolist (package '(ob-go
-		   ob-php
-		   ob-sagemath))
-  (package-install-init package))
+;; init-lang ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(dolist (url '("https://github.com/jkitchin/ox-ipynb"
+(dolist (pkg '(cmake-mode
+	       cuda-mode
+	       crontab-mode ; Major mode for crontab(5) files
+	       csv-mode
+	       cython-mode
+	       dockerfile-mode
+	       go-mode
+	       gnuplot
+	       gnuplot-mode
+	       htmlize
+	       magma-mode
+	       markdown-mode ; Markdown Mode for Emacs
+	       pdf-tools ; Emacs support library for PDF files
+	       php-mode
+	       rust-mode
+	       sage-shell-mode
+	       tuareg ; OCaml
+	       web-mode ; html template editing for emacs
+	       yaml
+	       yaml-mode))
+  (package-install-init pkg))
+
+
+;; init-view ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(dolist (pkg '(diminish ; Diminished modes are minor modes with no modeline display
+	       rainbow-mode
+	       rainbow-delimiters ; Emacs rainbow delimiters mode
+	       mode-line-bell ; Flash the Emacs mode line instead of ringing the bell
+	       page-break-lines ; Display ugly ^L page breaks as tidy horizontal lines
+	       highlight-escape-sequences ; Highlight escape sequences in Emacs
+	       ; vertico ; Vertical Interactive Completion
+	       )))
+
+;; init-edit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(dolist (pkg '(anzu ; Displays current match and total matches info in the mode-line
+	       imenu-list ; Show the current buffer's imenu entries in a separate buffer
+	       list-unicode-display ; Search for and list unicode characters in Emacs
+	       move-dup ; Moving and duplications of lines or selections
+	       multiple-cursors ; Multiple cursors for emacs
+	       symbol-overlay ; Highlight symbols with keymap-enabled overlays
+	       which-key ; Displays available keybindings in popup
+	       wrap-region ; Wrap text with punctation or tag
+	       xclip ; Copy&paste GUI clipboard from text terminal
+	       clipetty ; Manipulate the system (clip)board with (e)macs from a (tty)
+	       vterm ; Emacs libvterm integration
+	       yasnippet ; A template system for Emacs
+	       yasnippet-snippets ; a collection of yasnippet snippets for many languages
+	       wakatime-mode ; Automatic time tracking
+	       sunshine ; Weather forecast plugin, display the forecast from OpenWeatherMap
+	       magit ; It's Magit! A Git Porcelain inside Emacs
+	       git-gutter ; Emacs port of GitGutter which is Sublime Text Plugin
+	       org-cliplink ; Insert org-mode links from clipboard
+	       ob-go
+	       ob-php
+	       ob-sagemath
+	       org-fragtog ; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
+	       ))
+  (package-install-init pkg))
+
+(dolist (url '("https://github.com/jkitchin/ox-ipynb" ; org-mode exporter to Jupyter notebooks
 	       "https://github.com/manateelazycat/color-rg"))
   (package-vc-install-init url))
+
+;; init-progmodes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(dolist (pkg '(projectile ; Project Interaction Library for Emacs
+	       ibuffer-vc ; Let Emacs' ibuffer-mode group files by git project etc., and show file state
+	       ibuffer-projectile ; Group buffers in Emacs ibuffer-mode by their projectile root directory
+	       flycheck
+               flycheck-clang-tidy
+               flycheck-rust
+	       company
+               company-math
+               company-c-headers
+               company-auctex
+	       copilot
+	       gptel
+	       slime
+	       haskell-mode
+	       proof-general
+	       ein ; Jupyter notebook client in Emacs
+	       auctex ; Sophisticated document creation
+	       )))
 
 (provide 'init-package)
 ;;; init-package.el ends here

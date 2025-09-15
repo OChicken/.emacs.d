@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-package)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some basic preferences ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -16,7 +14,6 @@
 ;; anzu -- Displays current match and total matches info in the mode-line ;;;;;
 ; https://github.com/emacsorphanage/anzu
 
-(package-install-init 'anzu)
 (global-anzu-mode +1)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
 (global-set-key [remap query-replace] 'anzu-query-replace)
@@ -29,20 +26,13 @@
 ;; imenu-list --- Show the current buffer's imenu entries in a separate buffer
 ; https://github.com/bmag/imenu-list
 
-(package-install-init 'imenu-list)
 (require 'imenu-list)
 (setq imenu-list-size 50)
-
-
-;; Search for and list unicode characters in Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; https://github.com/purcell/list-unicode-display
-(package-install-init 'list-unicode-display)
 
 
 ;; move-dup --- Moving and duplications of lines or selections ;;;;;;;;;;;;;;;;
 ; https://github.com/wyuenho/move-dup
 
-(package-install-init 'move-dup)
 ; When paredit is enabled (e.g. in org mode), it will use those keybindings
 ; M-up and M-down. Therefore, you might prefer to use M-S-up and M-S-down,
 ; which will work even in lisp modes.
@@ -53,7 +43,6 @@
 ;; multiple-cursors --- Multiple cursors for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/magnars/multiple-cursors.el
 
-(package-install-init 'multiple-cursors)
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (global-set-key (kbd "C-M-l")   'mc/mark-next-like-this)     ; origin: reposition-window
 (global-set-key (kbd "C-M-S-l") 'mc/mark-previous-like-this) ; origin: recenter-other-window
@@ -65,7 +54,6 @@
 ;; symbol-overlay --- Highlight symbols with keymap-enabled overlays ;;;;;;;;;;
 ; https://github.com/wolray/symbol-overlay
 
-(package-install-init 'symbol-overlay)
 (require 'symbol-overlay)
 (dolist (hook '(prog-mode-hook
                 text-mode-hook
@@ -86,7 +74,6 @@
 ;; which-key --- Displays available keybindings in popup ;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/justbur/emacs-which-key
 
-(package-install-init 'which-key)
 (require 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
 (which-key-setup-side-window-right)
@@ -98,7 +85,6 @@
 ;; wrap-region --- Wrap text with punctation or tag ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/rejeep/wrap-region.el
 
-(package-install-init 'wrap-region)
 (require 'wrap-region)
 (wrap-region-global-mode t)
 (wrap-region-add-wrappers
@@ -117,7 +103,6 @@
 
 (when (or (getenv "DISPLAY")
           (getenv "WAYLAND_DISPLAY"))
-  (package-install-init 'xclip)
   (xclip-mode t))
 
 
@@ -125,37 +110,21 @@
 ; https://github.com/spudlyo/clipetty
 ; https://emacs.stackexchange.com/questions/41339/copy-paste-between-ssh-terminal-emacs-and-macos
 
-(package-install-init 'clipetty)
 (require 'clipetty)
 (global-clipetty-mode)
-
-
-;; vterm --- Emacs libvterm integration ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; https://github.com/akermu/emacs-libvterm
-
-(package-install-init 'vterm)
 
 
 ;; yasnippet --- A template system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/joaotavora/yasnippet
 
-(package-install-init 'yasnippet)
 (yas-global-mode 1)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (with-eval-after-load 'yasnippet
   (define-key yas-minor-mode-map (kbd "C-c &") nil))  ; barely used, but C-c & is used by org-mark-ring-goto
 (diminish 'yas-minor-mode)
 
-
-;; yasnippet-snippets --- a collection of yasnippet snippets for many languages
-; https://github.com/AndreaCrotti/yasnippet-snippets
-
-(package-install-init 'yasnippet-snippets)
-
-
 ;; Wakatime: Automatic time tracking
 ;; https://github.com/wakatime/wakatime-mode
-(package-install-init 'wakatime-mode)
 (require 'wakatime-mode)
 (add-hook 'after-init-hook 'global-wakatime-mode)
 (setq wakatime-cli-path (expand-file-name "~/.wakatime/wakatime-cli-linux-amd64")
@@ -165,7 +134,6 @@
 
 ;; Weather forecast plugin, display the forecast from OpenWeatherMap.
 ; https://github.com/aaronbieber/sunshine.el
-(package-install-init 'sunshine)
 (require 'sunshine)
 (setq sunshine-location "Lund"
       sunshine-appid (getenv "SUNSHINE-APPID")
@@ -181,7 +149,6 @@
 ;; It's Magit! A Git Porcelain inside Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://magit.vc/
 
-(package-install-init 'magit)
 (require 'magit)
 (global-unset-key (kbd "C-x g")) ; magit-status (use "magit" to open it instead)
 (setq magit-section-visibility-indicator '(magit-fringe-bitmap> . magit-fringe-bitmapv))
@@ -191,7 +158,6 @@
 ;; Emacs port of GitGutter which is Sublime Text Plugin ;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/emacsorphanage/git-gutter/
 
-(package-install-init 'git-gutter)
 (global-git-gutter-mode +1)
 ; A long lasting bug: git-gutter annotation disappeared during buffer switching.
 ; https://github.com/emacsorphanage/git-gutter/issues/155
@@ -263,7 +229,6 @@
 
 ; Insert org-mode links from clipboard
 ; https://github.com/rexim/org-cliplink
-(package-install-init 'org-cliplink)
 (require 'org-cliplink)
 (global-set-key (kbd "C-c y") 'org-cliplink)
 (setq org-cliplink-max-length 120)  ; cuts any title that exceeds the limit
@@ -300,13 +265,6 @@
 ; Working with Code Blocks in Org
 ; file:///usr/share/emacs/29.1/lisp/org/ob.el.gz
 
-(setq-local package-list
-            '(ob-go
-              ob-php
-              ob-sagemath))
-(dolist (package package-list)
-  (package-install-init package))
-
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -335,7 +293,6 @@
 (require 'ob-sagemath)
 ; org-babel integration with SageMath
 ; https://github.com/sagemath/ob-sagemath
-(package-install-init 'ob-sagemath)
 (set-variable 'sage-shell:use-prompt-toolkit nil)  ; for Ipython >=7 (sage-shell-mode.el) (same below)
 (set-variable 'sage-shell:use-simple-prompt  t)
 (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)
@@ -356,16 +313,7 @@
 (require 'org-fragtog)
 ; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 ; https://github.com/io12/org-fragtog
-(package-install-init 'org-fragtog)
 (add-hook 'org-mode-hook 'org-fragtog-mode) ; for latex live previous
-
-
-; Export ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'ox-ipynb)
-; org-mode exporter to Jupyter notebooks
-; https://github.com/jkitchin/ox-ipynb
-(package-install-init 'ox-ipynb)
 
 
 
