@@ -23,6 +23,17 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(defun extract-package-name (url)
+  "Extract the package name from the given URL."
+  (let ((path (url-filename (url-generic-parse-url url))))
+    (intern (file-name-nondirectory (file-name-sans-extension path)))))
+
+(defun package-vc-install-init (url)
+  "Install PACKAGE if not exists."
+  (setq package (extract-package-name url))
+  (unless (package-installed-p package)
+    (package-vc-install url)))
+
 (unless (package-installed-p 'gnu-elpa-keyring-update)
   ; gnu-elpa-keyring-update need special treatment since without the keyring
   ; you cannot install any packages.
@@ -32,6 +43,15 @@
   (package-install 'gnu-elpa-keyring-update)
   (setq package-check-signature 'allow-unsigned) ; set back to default
 )
+
+(dolist (package '(ob-go
+		   ob-php
+		   ob-sagemath))
+  (package-install-init package))
+
+(dolist (url '("https://github.com/jkitchin/ox-ipynb"
+	       "https://github.com/manateelazycat/color-rg"))
+  (package-vc-install-init url))
 
 (provide 'init-package)
 ;;; init-package.el ends here
