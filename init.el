@@ -565,6 +565,7 @@ The `last-last' window will be pop out if this function is executed again."
         ("la" "ls -A $1 $2")
         ("l" "ls -C $1")
         ("grep" "grep --color=always --exclude=.emacs.desktop --exclude-dir=.ipynb_checkpoints $1 $2 $3 $4 $5 $6 $7 $8 $9")
+        ("rg" "rg --color=always --glob '!.emacs.desktop' $1 $2 $3 $4 $5 $6 $7 $8 $9")
         ("blog-s" "python -m http.server")))
 
 
