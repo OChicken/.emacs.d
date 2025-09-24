@@ -204,6 +204,7 @@ available. Please upgrade if possible." emacs-version))
 (add-to-list 'auto-mode-alist '("\\.bash\\(rc\\|_\\w+\\)\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.styl\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.macros\\'" . c-mode))
 
 ; I want a quick comment cmd for my left-hand quirk. Some days ago I use
 ; "C-x C-M-c" to do so, but very easily to hit "C-x C-c" that close the Emacs.
