@@ -253,7 +253,7 @@ Feel free to use command to toggle between them."
 
 ; (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime/")
 (add-to-list 'load-path (concat (expand-file-name user-emacs-directory)
-                                "elpa/slime-20250203.1829/"))
+                                "elpa/slime-20250918.2258/"))
 
 (define-key lisp-mode-map (kbd "C-M-q") 'scroll-down-line) ; indent-sexp
 (add-hook 'lisp-mode-hook
