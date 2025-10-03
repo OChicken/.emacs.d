@@ -764,6 +764,7 @@ https://emacs.stackexchange.com/a/64640"
       org-export-time-stamp-file nil ; timestamp
       org-export-with-section-numbers nil ; num
       org-export-preserve-breaks t ; \n
+      org-export-with-sub-superscripts nil ; ^
       org-export-with-tags nil  ; dont export headlines with tags
       org-export-with-broken-links t  ; who cares the broken link errors ...
       org-export-coding-system 'utf-8)
