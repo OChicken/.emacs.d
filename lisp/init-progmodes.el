@@ -176,35 +176,22 @@ Feel free to use command to toggle between them."
 
 (require 'copilot)
 
-(setq copilot-mode -1)
+(dolist (hook '(prog-mode-hook
+                emacs-lisp-mode-hook
+                org-mode-hook
+                coq-mode-hook
+                gnuplot-mode-hook
+                latex-mode-hook)) ; the list is basically copied from init-edit.el
+  (add-hook hook 'copilot-mode))
+(dolist (hook '(yaml-mode-hook
+                web-mode-hook)) ; the list is basically copied from init-edit.el
+  (add-hook hook (lambda () (copilot-mode -1))))
 (define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
 (add-to-list 'copilot-indentation-alist '(prog-mode 2))
 (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
 (add-to-list 'copilot-indentation-alist '(coq-mode 2))
 (add-to-list 'copilot-indentation-alist '(org-mode 2))
 (add-to-list 'copilot-indentation-alist '(text-mode 2))
-
-(define-minor-mode copilot-mode
-  "Toggle copilot mode."
-  :lighter " Copilot"
-  :global nil
-  (if copilot-mode
-      (progn
-        ;; Code executed when copilot-mode is enabled
-        (with-eval-after-load 'copilot
-          (dolist (hook '(prog-mode-hook
-                          emacs-lisp-mode-hook
-                          org-mode-hook
-                          coq-mode-hook
-                          gnuplot-mode-hook
-                          latex-mode-hook)) ; the list is basically copied from init-edit.el
-            (add-hook hook 'copilot-mode))
-          (dolist (hook '(yaml-mode-hook
-                          web-mode-hook)) ; the list is basically copied from init-edit.el
-            (add-hook hook (lambda () (copilot-mode -1))))
-          (message "Copilot mode is active.")))
-    ;; Code executed when copilot-mode is disabled
-    (message "Copilot mode is inactive.")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
