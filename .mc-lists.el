@@ -62,6 +62,7 @@
 	mark-sexp
 	mouse-set-region
 	org-ctrl-c-ctrl-c
+	org-mouse-down-mouse
 	org-shiftmetaup
 	previous-window-any-frame
 	python-nav-forward-sexp
