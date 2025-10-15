@@ -185,7 +185,7 @@ Feel free to use command to toggle between them."
   (add-hook hook 'copilot-mode))
 (dolist (hook '(yaml-mode-hook
                 web-mode-hook)) ; the list is basically copied from init-edit.el
-  (add-hook hook (lambda () (copilot-mode -1))))
+  (add-hook hook (lambda () (setq copilot-mode nil))))
 (define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
 (add-to-list 'copilot-indentation-alist '(prog-mode 2))
 (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
