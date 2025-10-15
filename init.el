@@ -625,6 +625,8 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'hideif)
 (hide-ifdef-mode)
+(global-set-key (kbd "C-x 7") 'hide-ifdef-block) ; undefined
+(global-set-key (kbd "C-x &") 'show-ifdef-block) ; undefined
 
 
 ;; hideshow.el --- minor mode cmds to selectively display code/comment blocks ;
