@@ -195,7 +195,8 @@ available. Please upgrade if possible." emacs-version))
 ;; files.el --- file input and output commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;
 
 (setq auto-save-default nil
-      make-backup-files nil) ; stop generating a.txt~ after you edit it
+      make-backup-files nil ; stop generating a.txt~ after you edit it
+      enable-local-variables :all) ; apply variables in .dir-locals.el w/o asking
 
 (add-to-list 'auto-mode-alist '("\\.emacs\\.grep\\'"   . grep-mode))
 (add-to-list 'auto-mode-alist '("\\.emacs\\.eshell\\'" . eshell-mode))
