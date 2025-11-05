@@ -108,7 +108,7 @@
   (package-install-init pkg))
 
 (dolist (url '("https://github.com/jkitchin/ox-ipynb" ; org-mode exporter to Jupyter notebooks
-	       "https://github.com/manateelazycat/color-rg"))
+	       ))
   (package-vc-install-init url))
 
 ;; init-progmodes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
