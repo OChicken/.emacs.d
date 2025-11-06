@@ -735,6 +735,13 @@ https://emacs.stackexchange.com/a/64640"
   (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
 (setq org-preview-latex-default-process 'imagemagick)  ; origin: dvipng
 
+;; org-src ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'org-src)
+; Source code examples in Org
+; file:///usr/share/emacs/29.1/lisp/org/org-src.el.gz
+(setq org-edit-src-content-indentation 0)
+
 ;; ob-core.el --- Working with Code Blocks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-confirm-babel-evaluate nil) ;; Do not confirm before evaluation
