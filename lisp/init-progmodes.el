@@ -188,30 +188,6 @@ Feel free to use command to toggle between them."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                   Copilot                                  ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'copilot)
-
-(dolist (hook '(prog-mode-hook
-                emacs-lisp-mode-hook
-                org-mode-hook
-                coq-mode-hook
-                gnuplot-mode-hook
-                latex-mode-hook)) ; the list is basically copied from init-edit.el
-  (add-hook hook 'copilot-mode))
-(dolist (hook '(yaml-mode-hook
-                web-mode-hook)) ; the list is basically copied from init-edit.el
-  (add-hook hook (lambda () (setq copilot-mode nil))))
-(define-key copilot-completion-map (kbd "C-M-<tab>") 'copilot-accept-completion)
-(add-to-list 'copilot-indentation-alist '(prog-mode 2))
-(add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
-(add-to-list 'copilot-indentation-alist '(coq-mode 2))
-(add-to-list 'copilot-indentation-alist '(org-mode 2))
-(add-to-list 'copilot-indentation-alist '(text-mode 2))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   GPT.el                                   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
