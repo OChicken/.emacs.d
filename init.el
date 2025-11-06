@@ -735,11 +735,14 @@ https://emacs.stackexchange.com/a/64640"
   (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
 (setq org-preview-latex-default-process 'imagemagick)  ; origin: dvipng
 
-;; org-src ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ol --- Org links library ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ol)
+(define-key global-map (kbd "C-c l") 'org-store-link)
+
+;; org-src --- Source code examples in Org ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org-src)
-; Source code examples in Org
-; file:///usr/share/emacs/29.1/lisp/org/org-src.el.gz
 (setq org-edit-src-content-indentation 0)
 
 ;; ob-core.el --- Working with Code Blocks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
