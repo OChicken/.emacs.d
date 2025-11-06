@@ -96,6 +96,7 @@
 	       yasnippet ; A template system for Emacs
 	       yasnippet-snippets ; a collection of yasnippet snippets for many languages
 	       wakatime-mode ; Automatic time tracking
+	       txl ; Elisp library for the DeepL API
 	       sunshine ; Weather forecast plugin, display the forecast from OpenWeatherMap
 	       magit ; It's Magit! A Git Porcelain inside Emacs
 	       git-gutter ; Emacs port of GitGutter which is Sublime Text Plugin

@@ -123,6 +123,12 @@
   (define-key yas-minor-mode-map (kbd "C-c &") nil))  ; barely used, but C-c & is used by org-mark-ring-goto
 (diminish 'yas-minor-mode)
 
+;; txl: Elisp library for the DeepL API
+;; https://github.com/emacs-openai/deepl
+(require 'txl)
+(setq txl-deepl-api-key (getenv "DEEPL-API-KEY"))
+(setq txl-languages '(DE . EN-US))
+
 ;; Wakatime: Automatic time tracking
 ;; https://github.com/wakatime/wakatime-mode
 (require 'wakatime-mode)
