@@ -103,7 +103,7 @@
 	       ob-go
 	       ob-php
 	       ob-sagemath
-	       org-fragtog ; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
+	       ; org-fragtog ; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 	       ))
   (package-install-init pkg))
 

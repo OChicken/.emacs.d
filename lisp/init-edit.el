@@ -315,12 +315,6 @@
   (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
 (setq org-preview-latex-default-process 'imagemagick)  ; origin: dvipng
 
-(require 'org-fragtog)
-; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
-; https://github.com/io12/org-fragtog
-(add-hook 'org-mode-hook 'org-fragtog-mode) ; for latex live previous
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                 Utils: Elisp helper functions and commands                 ;
