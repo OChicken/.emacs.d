@@ -117,6 +117,7 @@
 (dolist (pkg '(projectile ; Project Interaction Library for Emacs
 	       ibuffer-vc ; Let Emacs' ibuffer-mode group files by git project etc., and show file state
 	       ibuffer-projectile ; Group buffers in Emacs ibuffer-mode by their projectile root directory
+	       eat
 	       flycheck
                flycheck-clang-tidy
                flycheck-rust
@@ -131,7 +132,12 @@
 	       proof-general
 	       ein ; Jupyter notebook client in Emacs
 	       auctex ; Sophisticated document creation
-	       )))
+	       ))
+  (package-install-init pkg))
+
+(dolist (url '("https://github.com/cpoile/claudemacs" ; AI Pair Programming with Claude Code in Emacs
+	       ))
+  (package-vc-install-init url))
 
 (provide 'init-package)
 ;;; init-package.el ends here
