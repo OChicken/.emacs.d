@@ -298,6 +298,11 @@
 (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)
 
 
+; Export ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ox-ipynb)
+
+
 ; LaTeX preview ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org)
