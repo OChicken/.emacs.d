@@ -256,11 +256,6 @@
 
 ; Babel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'org-src)
-; Source code examples in Org
-; file:///usr/share/emacs/29.1/lisp/org/org-src.el.gz
-(setq org-edit-src-content-indentation 0)
-
 (require 'ob)
 ; Working with Code Blocks in Org
 ; file:///usr/share/emacs/29.1/lisp/org/ob.el.gz
