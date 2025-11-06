@@ -729,6 +729,12 @@ https://emacs.stackexchange.com/a/64640"
 
 (add-hook 'org-babel-after-execute-hook (lambda () (org-display-inline-images nil t)))
 
+; adjust the compiler of imagemagick to XeLaTeX and use it as default process to
+; convert LaTeX fragments to image files
+(let ((pos (assoc 'imagemagick org-preview-latex-process-alist)))
+  (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
+(setq org-preview-latex-default-process 'imagemagick)  ; origin: dvipng
+
 ;; ob-core.el --- Working with Code Blocks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-confirm-babel-evaluate nil) ;; Do not confirm before evaluation
