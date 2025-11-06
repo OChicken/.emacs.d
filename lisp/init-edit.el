@@ -219,14 +219,6 @@
         (tags category-up effort-up)
         (search category-up)))
 
-
-; Link ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'ol)
-; Org links library
-; file:///usr/share/emacs/29.1/lisp/org/ol.el.gz
-(define-key global-map (kbd "C-c l") 'org-store-link)
-
 ; Insert org-mode links from clipboard
 ; https://github.com/rexim/org-cliplink
 (require 'org-cliplink)
