@@ -295,6 +295,40 @@
 
 (require 'ox-ipynb)
 
+(file-name-directory "/home/OChicken/.emacs.d/lisp/init-edit.el")
+
+(defun org-to-ipynb ()
+  "Convert INFILE so that jupyter-python blocks work with ox-ipynb/emacs-jupyter.
+Writes a sibling file named <stem>-jupyter.org and echoes its path."
+  (interactive)
+  (let* ((abs  (buffer-file-name))
+         (dir  (file-name-directory abs))
+         (base (file-name-nondirectory abs))
+         (stem (file-name-sans-extension base))
+         (out-org (expand-file-name (format "%s-jupyter.org" stem) dir)))
+    (with-temp-buffer
+      ;; read
+      (insert-file-contents abs)
+      ; 1. begin_src python --> begin_src jupyter-python
+      (let ((case-fold-search t)) ; case-insensitive like sed -I
+        (goto-char (point-min))
+        (while (re-search-forward
+                "^[[:space:]]*#\\+begin_src[[:space:]]+python\\(?:[[:space:]].*\\)?$"
+                nil t)
+          (replace-match "#+begin_src jupyter-python" t t)))
+      ; 2. Two-line RESULTS-Block with only one [[file:...]]-Link → only the Link
+      (goto-char (point-min))
+      (while (re-search-forward
+              (concat
+               "^[[:space:]]*#\\+RESULTS:[[:space:]]*\\n"
+               "[[:space:]]*\\(\\[\\[file:[^]\n]+\\]\\][[:space:]]*\\)$")
+              nil t)
+        (replace-match "\\1" t))
+      ;; write
+      (write-region (point-min) (point-max) out-org nil 'silent))
+    (ox-ipynb-export-org-file-to-ipynb-file out-org)
+    (delete-file out-org)))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
