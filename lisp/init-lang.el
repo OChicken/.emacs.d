@@ -14,6 +14,12 @@
 (add-hook 'csv-mode-hook 'csv-align-fields)
 
 
+;; dockerfile-mode --- An emacs mode for handling Dockerfile ;;;;;;;;;;;;;;;;;;
+
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("/Dockerfile[^/]*\\'" . dockerfile-mode))
+
+
 ;; markdown-mode --- Markdown Mode for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://jblevins.org/projects/markdown-mode/
 
