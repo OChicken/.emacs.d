@@ -187,6 +187,7 @@ Feel free to use command to toggle between them."
 (require 'claudemacs)
 ; https://github.com/cpoile/claudemacs
 (define-key prog-mode-map (kbd "C-c m") #'claudemacs-transient-menu)
+(define-key  TeX-mode-map (kbd "C-c m") #'claudemacs-transient-menu)
 ; Hint of shortcuts to toggle:
 ; C-c C-e: eat-emacs-mode (select Claude's answer)
 ; C-c C-j: eat-semi-char-mode (continue to ask Claude)
