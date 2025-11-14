@@ -341,14 +341,14 @@ available. Please upgrade if possible." emacs-version))
 With argument ARG, do this that many times."
   (interactive "p")
   (delete-region (point) (progn (forward-word arg) (point))))
-(global-set-key (kbd "M-d")'delete-word) ; kill-word
+(global-set-key (kbd "M-d") 'delete-word) ; kill-word
 
 (defun backward-delete-word (arg)
   "Delete characters backward until encountering the beginning of a word.
 With argument ARG, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
-(global-set-key (kbd "C-<backspace>")'backward-delete-word) ; backward-kill-word
+(global-set-key (kbd "C-<backspace>") 'backward-delete-word) ; backward-kill-word
 
 (defun zap-up-to-nonspace-char ()
   "Zap up to non-space char."
