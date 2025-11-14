@@ -815,6 +815,7 @@ https://emacs.stackexchange.com/a/64640"
   (let ((lite-mode (member "--lite" command-line-args)))
     (setq command-line-args (delete "--lite" command-line-args))
     (when (not lite-mode)
+      (require 'init-package)
       (require 'init-lang)
       (require 'init-view)
       (require 'init-edit)
