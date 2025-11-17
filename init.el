@@ -28,11 +28,6 @@
 ;;; 2. "M-q" (instead of "M-p"): previous-history-element in the minibuffer
 ;;; 3. "M-e" (instead of "RET"): hit `<return>'
 ;;;
-;;; The HIGH RISK for you to know is, I bind "C-x C-c" to "comment-dwim" so you
-;;; cannot use this shortcut to close Emacs; instead, use "C-x C-M-c" to close
-;;; Emacs (deliberately add some inconvenience to exit Emacs is nice to your
-;;; ongoing work 🙂)
-;;;
 ;;; For your convenience, I markdown the Emacs version of various Ubuntu LTS so
 ;;; that you know which features are NOT support on your Ubuntu.
 ;;; - Ubuntu 16.04 LTS: Emacs 24.5.1
@@ -207,16 +202,12 @@ available. Please upgrade if possible." emacs-version))
 (add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.macros\\'" . c-mode))
 
-; I want a quick comment cmd for my left-hand quirk. Some days ago I use
-; "C-x C-M-c" to do so, but very easily to hit "C-x C-c" that close the Emacs.
-; So I bind "C-x C-M-c" to close Emacs, and bind "C-x C-c" to comment-dwim.
-; Check the position "newcomment.el" for detail.
 (defun confirm-before-exit ()
   "Confirm before exiting Emacs."
   (interactive)
   (if (yes-or-no-p "Really exit Emacs?")
       (save-buffers-kill-terminal)))
-(global-set-key (kbd "C-x C-M-c") 'confirm-before-exit) ; undefined
+(global-set-key (kbd "C-x C-c") 'confirm-before-exit) ; save-buffers-kill-terminal
 
 
 ;; fill.el --- fill commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -313,7 +304,7 @@ available. Please upgrade if possible." emacs-version))
 
 ;; newcomment.el --- (un)comment regions of buffers ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-x C-c") 'comment-dwim) ; undefined
+(global-set-key (kbd "C-x C-M-c") 'comment-dwim) ; undefined
 
 
 ;; outline.el --- outline mode commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
