@@ -101,6 +101,7 @@
 	       magit ; It's Magit! A Git Porcelain inside Emacs
 	       git-gutter ; Emacs port of GitGutter which is Sublime Text Plugin
 	       org-cliplink ; Insert org-mode links from clipboard
+	       ob-rust
 	       ob-go
 	       ob-php
 	       ob-sagemath
