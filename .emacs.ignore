@@ -2,3 +2,4 @@
 .emacs.eshell*
 *.code-workspace
 TAGS
+.rgignore
