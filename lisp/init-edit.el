@@ -128,6 +128,8 @@
 (require 'txl)
 (setq txl-deepl-api-key (getenv "DEEPL-API-KEY"))
 (setq txl-languages '(DE . EN-US))
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c t") 'txl-translate-region-or-paragraph))
 
 ;; Wakatime: Automatic time tracking
 ;; https://github.com/wakatime/wakatime-mode
