@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: diff
+# key:  diff_
+# --
+#+begin_src diff
+$0
+#+end_src
