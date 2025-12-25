@@ -137,6 +137,7 @@ available. Please upgrade if possible." emacs-version))
 (defvar display-line-numbers-exceptions-alist '(doc-view-mode
                                                 image-mode
                                                 grep-mode
+						diff-mode
                                                 eshell-mode))
 (defun display-line-numbers-mode-exceptions ()
   "Display line numbers, EXCEPT for the following modes."
