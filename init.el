@@ -211,14 +211,6 @@ available. Please upgrade if possible." emacs-version))
 (global-set-key (kbd "C-x C-c") 'confirm-before-exit) ; save-buffers-kill-terminal
 
 
-;; fill.el --- fill commands for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun unfill-region (start end)
-  "Transform a multi-line region between START & END into a single line."
-  (interactive "r")
-  (let ((fill-column (point-max)))
-    (fill-region start end nil)))
-
 
 ;; frame.el --- multi-frame management independent of window systems ;;;;;;;;;;
 
@@ -779,6 +771,58 @@ https://emacs.stackexchange.com/a/64640"
       org-export-with-tags nil  ; dont export headlines with tags
       org-export-with-broken-links t  ; who cares the broken link errors ...
       org-export-coding-system 'utf-8)
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                 Utils: Elisp helper functions and commands                 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun unfill-region (start end)
+  "Transform a multi-line region between START & END into a single line."
+  (interactive "r")
+  (let ((fill-column (point-max)))
+    (fill-region start end nil)))
+
+(defun replace-asian-punctuation (start end)
+  "Replace Asian punctuation with ASCII equivalents between START & END."
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (point-min) (point-max))))
+  (let ((replacements '(("，" . ", ")
+                        ("。" . ". ")
+                        ("！" . "! ")
+                        ("？" . "? ")
+                        ("：" . ": ")
+                        ("；" . "; ")
+                        ("（" . " (")
+                        ("）" . ") ")
+                        ("、" . ", ")
+                        ("…" . "...")
+                        ("【" . " [")
+                        ("】" . "] ")
+                        ("・" . " · ")
+                        ("—" . "-")
+                        ; quotations
+                        ("“" . " \"")
+                        ("”" . "\" ")
+                        ("‘" . " '")
+                        ("’" . "' ")
+                        ("「" . " \"")
+                        ("」" . "\" ")
+                        ("『" . " '")
+                        ("』" . "' ")))
+        (count 0))
+    (save-excursion
+      (save-restriction
+        (narrow-to-region start end)
+        (dolist (pair replacements)
+          (goto-char (point-min))
+          (while (search-forward (car pair) nil t)
+            (replace-match (cdr pair) nil t)
+            (setq count (1+ count))))))
+    (message "Replaced %d punctuation(s)" count)))
 
 
 
