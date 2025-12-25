@@ -211,7 +211,6 @@ available. Please upgrade if possible." emacs-version))
 (global-set-key (kbd "C-x C-c") 'confirm-before-exit) ; save-buffers-kill-terminal
 
 
-
 ;; frame.el --- multi-frame management independent of window systems ;;;;;;;;;;
 
 (blink-cursor-mode t)
