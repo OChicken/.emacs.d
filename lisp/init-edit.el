@@ -135,8 +135,11 @@
   "Translate a paragraph that copied from pdf, with text between START & END."
   (interactive "r")
   (save-excursion
-    (goto-char start)
     (unfill-region start end)
+    ;; Explicitly set the region for txl-translate-region-or-paragraph
+    (goto-char start)
+    (set-mark end)
+    (activate-mark)
     (txl-translate-region-or-paragraph)
     (txl-accept-translation)
     ;; After translation, point is at the end of replaced text
