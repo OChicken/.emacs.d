@@ -4,3 +4,4 @@
 .rgignore
 *.code-workspace
 TAGS
+TAGS-*
