@@ -222,7 +222,7 @@
 ; Fast note taking in Org
 ; file:///usr/share/emacs/29.1/lisp/org/org-capture.el.gz
 (global-set-key (kbd "C-c c") 'org-capture)
-(setq org-default-notes-file "~/Documents/gtd.org")
+(setq org-default-notes-file "~/gtd.org")
 (setq org-capture-templates
       `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
          "* TODO %?\nCLOCK: %U\n " :clock-resume t)
@@ -233,7 +233,7 @@
 (with-eval-after-load 'org-agenda
   (add-to-list 'org-agenda-after-show-hook 'org-show-entry))
 
-(setq org-agenda-files (list "~/Documents/gtd.org")
+(setq org-agenda-files (list "~/gtd.org")
       org-agenda-compact-blocks t
       org-agenda-sticky t
       org-agenda-start-on-weekday 0
