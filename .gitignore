@@ -22,7 +22,6 @@ session.*
 tramp
 transient/
 url/
-xenops/
 
 # backup
 openedf
