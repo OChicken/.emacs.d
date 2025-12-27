@@ -32,5 +32,5 @@ backupf
 .emacs.desktop
 .emacs.desktop.lock
 
-# math
-lisp/math
+# objects in main
+lisp/
