@@ -31,6 +31,3 @@ backupf
 # Emacs desktop
 .emacs.desktop
 .emacs.desktop.lock
-
-# objects in main
-lisp/
