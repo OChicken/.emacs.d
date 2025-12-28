@@ -186,7 +186,7 @@ Feel free to use command to toggle between them."
 ; https://github.com/cpoile/claudemacs
 (dolist (mode-map '(prog-mode-map
 		    org-mode-map
-		    markdown-mode-map
+		    ; markdown-mode-map
 		    TeX-mode-map))
   (define-key (symbol-value mode-map) (kbd "C-c m") #'claudemacs-transient-menu))
 ; Hint of shortcuts to toggle:
