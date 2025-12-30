@@ -44,6 +44,17 @@
 (define-key pdf-view-mode-map (kbd "q") 'pdf-view-previous-page-command) ; quit-window (global)
 (define-key pdf-view-mode-map (kbd "z") 'pdf-view-next-page-command) ; undefined
 
+(require 'pdf-annot)
+(setq pdf-annot-default-annotation-properties
+      '((t (label . "OChicken"))
+        (text (icon . "Note")
+              (color . "#ff0000"))
+        (highlight (color . "yellow")
+                   (opacity . 0.5))
+        (squiggly (color . "orange"))
+        (strike-out (color . "red"))
+        (underline (color . "blue"))))
+
 
 ;; web-mode --- html template editing for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://web-mode.org/
