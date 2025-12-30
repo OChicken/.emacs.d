@@ -46,7 +46,7 @@
 
 (require 'pdf-annot)
 (setq pdf-annot-default-annotation-properties
-      '((t (label . "OChicken"))
+      '((t (label . ,user-full-name))
         (text (icon . "Note")
               (color . "#ff0000"))
         (highlight (color . "yellow")
