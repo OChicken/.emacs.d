@@ -88,13 +88,12 @@
 (require 'wrap-region)
 (wrap-region-global-mode t)
 (wrap-region-add-wrappers
- '(("\(" "\)" nil c-mode)
-   ("\"" "\"" nil c-mode)
-   ("*" "*" nil org-mode)
-   ("/" "/" nil org-mode)
-   ("~" "~" nil org-mode)
-   ("=" "=" nil org-mode)
-   ("+" "+" nil org-mode)))
+ '(("*" "*" nil org-mode)    ; bold
+   ("/" "/" nil org-mode)    ; italic
+   ("_" "_" nil org-mode)    ; underline
+   ("~" "~" nil org-mode)    ; code
+   ("=" "=" nil org-mode)    ; verbatim
+   ("+" "+" nil org-mode)))  ; strike-through
 (diminish 'wrap-region-mode)
 
 
