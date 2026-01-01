@@ -772,10 +772,8 @@ https://emacs.stackexchange.com/a/64640"
       org-export-coding-system 'utf-8)
 
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                 Utils: Elisp helper functions and commands                 ;
+;;                       Utils: doc processing functions                      ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun unfill-region (start end)
@@ -853,6 +851,22 @@ https://emacs.stackexchange.com/a/64640"
           (replace-match (concat (match-string 1) " " (match-string 2)) t t)
           (setq count (1+ count)))))
     (message "Processed %d markdown marker(s)" count)))
+
+(defun remove-org-custom-id-properties (start end)
+  "Remove :PROPERTIES: drawers containing :CUSTOM_ID: between START & END.
+Equivalent to: perl -0777 -pe 's/:PROPERTIES:\\n:CUSTOM_ID:.*?\\n:END://g'"
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (point-min) (point-max))))
+  (let ((count 0))
+    (save-excursion
+      (save-restriction
+        (narrow-to-region start end)
+        (goto-char (point-min))
+        (while (re-search-forward ":PROPERTIES:\n:CUSTOM_ID:.*\n:END:\n?" nil t)
+          (replace-match "\n" nil nil)
+          (setq count (1+ count)))))
+    (message "Removed %d CUSTOM_ID properties" count)))
 
 
 
