@@ -868,6 +868,35 @@ Equivalent to: perl -0777 -pe 's/:PROPERTIES:\\n:CUSTOM_ID:.*?\\n:END://g'"
           (setq count (1+ count)))))
     (message "Removed %d CUSTOM_ID properties" count)))
 
+(defun convert-md-to-org ()
+  "Complete workflow: process markdown file and convert to org.
+1. Replace Asian punctuation with ASCII
+2. Format markdown emphasis markers
+3. Save the file
+4. Convert to .org using pandoc
+5. Open the .org file and remove CUSTOM_ID properties"
+  (interactive)
+  (unless (string-match "\\.md\\'" (buffer-file-name))
+    (user-error "Current buffer is not a .md file"))
+  (let* ((md-file (buffer-file-name))
+         (org-file (concat (file-name-sans-extension md-file) ".org")))
+    ;; Step 1-2: Process the markdown file
+    (replace-asian-punctuation (point-min) (point-max))
+    (process-md-quote (point-min) (point-max))
+    ;; Step 3: Save
+    (save-buffer)
+    (message "Processed and saved: %s" md-file)
+    ;; Step 4: Convert with pandoc
+    (shell-command (format "pandoc -s %s -o %s --wrap=none"
+                           (shell-quote-argument md-file)
+                           (shell-quote-argument org-file)))
+    (message "Converted to: %s" org-file)
+    ;; Step 5: Open and clean the org file
+    (find-file org-file)
+    (remove-org-custom-id-properties (point-min) (point-max))
+    (save-buffer)
+    (message "Workflow complete! Org file ready: %s" org-file)))
+
 
 
 
