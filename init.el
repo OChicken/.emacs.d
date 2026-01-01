@@ -823,6 +823,37 @@ https://emacs.stackexchange.com/a/64640"
             (setq count (1+ count))))))
     (message "Replaced %d punctuation(s)" count)))
 
+(defun format-md-emphasis (start end)
+  "Add spaces around markdown formatting markers (**bold**, *italic*) between START & END."
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (point-min) (point-max))))
+  (let ((count 0))
+    (save-excursion
+      (save-restriction
+        (narrow-to-region start end)
+        ;; Add space before **content** (match as a unit)
+        (goto-char (point-min))
+        (while (re-search-forward "\\([^ \n]\\)\\(\\*\\*[^*\n]+?\\*\\*\\)" nil t)
+          (replace-match (concat (match-string 1) " " (match-string 2)) t t)
+          (setq count (1+ count)))
+        ;; Add space after **content** (match as a unit)
+        (goto-char (point-min))
+        (while (re-search-forward "\\(\\*\\*[^*\n]+?\\*\\*\\)\\([^ \n]\\)" nil t)
+          (replace-match (concat (match-string 1) " " (match-string 2)) t t)
+          (setq count (1+ count)))
+        ;; Add space before *content* (single asterisk)
+        (goto-char (point-min))
+        (while (re-search-forward "\\([^ \n*]\\)\\(\\*[^*\n]+?\\*\\)" nil t)
+          (replace-match (concat (match-string 1) " " (match-string 2)) t t)
+          (setq count (1+ count)))
+        ;; Add space after *content* (single asterisk)
+        (goto-char (point-min))
+        (while (re-search-forward "\\(\\*[^*\n]+?\\*\\)\\([^ \n*]\\)" nil t)
+          (replace-match (concat (match-string 1) " " (match-string 2)) t t)
+          (setq count (1+ count)))))
+    (message "Processed %d markdown marker(s)" count)))
+
 
 
 
