@@ -822,7 +822,8 @@ https://emacs.stackexchange.com/a/64640"
     (message "Replaced %d punctuation(s)" count)))
 
 (defun format-md-emphasis (start end)
-  "Add spaces around markdown formatting markers (**bold**, *italic*) between START & END."
+  "Add spaces around markdown formatting markers between START & END.
+Markers are **bold**, *italic* etc, also clean up unwanted spaces before punctuation and closing markers."
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end))
                  (list (point-min) (point-max))))
@@ -849,6 +850,21 @@ https://emacs.stackexchange.com/a/64640"
         (goto-char (point-min))
         (while (re-search-forward "\\(\\*[^*\n]+?\\*\\)\\([^ \n*]\\)" nil t)
           (replace-match (concat (match-string 1) " " (match-string 2)) t t)
+          (setq count (1+ count)))
+        ;; Cleanup: remove spaces before punctuation marks
+        (goto-char (point-min))
+        (while (re-search-forward " \\([,.!?:;)\\]]\\)" nil t)
+          (replace-match "\\1" nil nil)
+          (setq count (1+ count)))
+        ;; Cleanup: remove space after opening emphasis markers (* or **)
+        (goto-char (point-min))
+        (while (re-search-forward "\\(\\*\\*?\\) \\([^* \n]\\)" nil t)
+          (replace-match "\\1\\2" nil nil)
+          (setq count (1+ count)))
+        ;; Cleanup: remove space before closing emphasis markers (* or **)
+        (goto-char (point-min))
+        (while (re-search-forward "\\([^* \n]\\) \\(\\*\\*?\\)" nil t)
+          (replace-match "\\1\\2" nil nil)
           (setq count (1+ count)))))
     (message "Processed %d markdown marker(s)" count)))
 
@@ -882,7 +898,7 @@ Equivalent to: perl -0777 -pe 's/:PROPERTIES:\\n:CUSTOM_ID:.*?\\n:END://g'"
          (org-file (concat (file-name-sans-extension md-file) ".org")))
     ;; Step 1-2: Process the markdown file
     (replace-asian-punctuation (point-min) (point-max))
-    (process-md-quote (point-min) (point-max))
+    (format-md-emphasis (point-min) (point-max))
     ;; Step 3: Save
     (save-buffer)
     (message "Processed and saved: %s" md-file)
