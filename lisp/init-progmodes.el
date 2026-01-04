@@ -44,7 +44,8 @@
 ; Closing emacs results in "Current desktop was not loaded from a file" even
 ; though desktop-save-mode was set before start
 ; https://emacs.stackexchange.com/a/66822
-(desktop-change-dir ".")
+(unless (daemonp)
+  (desktop-change-dir "."))
 (desktop-save-mode t)
 (desktop-read)
 
