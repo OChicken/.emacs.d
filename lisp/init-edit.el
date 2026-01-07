@@ -124,30 +124,7 @@
 
 ;; txl: Elisp library for the DeepL API
 ;; https://github.com/emacs-openai/deepl
-(require 'txl)
-(setq txl-deepl-api-key (getenv "DEEPL-API-KEY"))
-(setq txl-languages '(DE . EN-US))
 
-(declare-function unfill-region "init.el")
-(declare-function replace-asian-punctuation "init.el")
-(defun txl-translate-pdf-paragraph (start end)
-  "Translate a paragraph that copied from pdf, with text between START & END."
-  (interactive "r")
-  (save-excursion
-    (unfill-region start end)
-    ;; Explicitly set the region for txl-translate-region-or-paragraph
-    (goto-char start)
-    (set-mark end)
-    (activate-mark)
-    (txl-translate-region-or-paragraph)
-    (txl-accept-translation)
-    ;; After translation, point is at the end of replaced text
-    (let ((new-end (point)))
-      ;; Go back to find the start of the paragraph
-      (backward-paragraph)
-      (replace-asian-punctuation (point) new-end))))
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c t") 'txl-translate-pdf-paragraph))
 
 ;; Wakatime: Automatic time tracking
 ;; https://github.com/wakatime/wakatime-mode
@@ -351,6 +328,36 @@ Writes a sibling file named <stem>-jupyter.org and echoes its path."
 
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;        txl.el --- Provides machine translation via DeepL's REST API        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; URL: https://github.com/tmalsburg/txl.el
+
+(require 'txl)
+(setq txl-deepl-api-key (getenv "DEEPL-API-KEY"))
+(setq txl-languages '(DE . EN-US))
+
+(declare-function unfill-region "init.el")
+(declare-function replace-asian-punctuation "init.el")
+(defun txl-translate-pdf-paragraph (start end)
+  "Translate a paragraph that copied from pdf, with text between START & END."
+  (interactive "r")
+  (save-excursion
+    (unfill-region start end)
+    ;; Explicitly set the region for txl-translate-region-or-paragraph
+    (goto-char start)
+    (set-mark end)
+    (activate-mark)
+    (txl-translate-region-or-paragraph)
+    (txl-accept-translation)
+    ;; After translation, point is at the end of replaced text
+    (let ((new-end (point)))
+      ;; Go back to find the start of the paragraph
+      (backward-paragraph)
+      (replace-asian-punctuation (point) new-end))))
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c t") 'txl-translate-pdf-paragraph))
 
 (provide 'init-edit)
 ;;; init-edit.el ends here
