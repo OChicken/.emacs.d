@@ -127,7 +127,12 @@
 ;; https://github.com/wakatime/wakatime-mode
 (require 'wakatime-mode)
 (add-hook 'after-init-hook 'global-wakatime-mode)
-(setq wakatime-cli-path (expand-file-name "~/.wakatime/wakatime-cli-linux-amd64")
+(setq wakatime-cli-path (expand-file-name
+                        (concat "~/.wakatime/wakatime-cli-linux-"
+                                (cond
+                                 ((string-match-p "x86_64" system-configuration) "amd64")
+                                 ((string-match-p "aarch64\\|arm64" system-configuration) "arm64")
+                                 (t "amd64")))) ; fallback to amd64
       wakatime-api-key (getenv "WAKATIME-API-KEY"))
 (diminish 'wakatime-mode)
 
