@@ -122,9 +122,6 @@
   (define-key yas-minor-mode-map (kbd "C-c &") nil))  ; barely used, but C-c & is used by org-mark-ring-goto
 (diminish 'yas-minor-mode)
 
-;; txl: Elisp library for the DeepL API
-;; https://github.com/emacs-openai/deepl
-
 
 ;; Wakatime: Automatic time tracking
 ;; https://github.com/wakatime/wakatime-mode
@@ -335,8 +332,17 @@ Writes a sibling file named <stem>-jupyter.org and echoes its path."
 ;; URL: https://github.com/tmalsburg/txl.el
 
 (require 'txl)
+
+(defcustom txl-deepl-glossary-id nil
+  "DeepL glossary ID to use for translations.
+Set this to your glossary ID, e.g., \"8b9f2c14-cf2b-424f-958c-60d98f07db75\"."
+  :type '(choice (const :tag "No glossary" nil)
+                 (string :tag "Glossary ID"))
+  :group 'txl)
+
 (setq txl-deepl-api-key (getenv "DEEPL-API-KEY"))
 (setq txl-languages '(DE . EN-US))
+(setq txl-deepl-glossary-id (getenv "DEEPL-API-GLOSSARY"))
 
 (declare-function unfill-region "init.el")
 (declare-function replace-asian-punctuation "init.el")
@@ -358,6 +364,149 @@ Writes a sibling file named <stem>-jupyter.org and echoes its path."
       (replace-asian-punctuation (point) new-end))))
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c t") 'txl-translate-pdf-paragraph))
+
+;; DeepL Glossary Support ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun txl-glossary-list ()
+  "List all DeepL glossaries and display their IDs."
+  (interactive)
+  (let* ((request-backend 'url-retrieve)
+         (api-url (if (string-match-p "api-free" txl-deepl-api-url)
+                      "https://api-free.deepl.com/v3/glossaries"
+                    "https://api.deepl.com/v3/glossaries"))
+         (response (request
+                     api-url
+                     :type "GET"
+                     :sync t
+                     :headers `(("Authorization" . ,(concat "DeepL-Auth-Key " txl-deepl-api-key)))
+                     :parser 'json-read)))
+    (pcase (request-response-status-code response)
+      (200
+       (let* ((data (request-response-data response))
+              (glossaries (cdr (assoc 'glossaries data))))
+         (if (= (length glossaries) 0)
+             (message "No glossaries found")
+           (with-current-buffer (get-buffer-create "*DeepL Glossaries*")
+             (erase-buffer)
+             (insert "DeepL Glossaries:\n\n")
+             (dotimes (i (length glossaries))
+               (let* ((glossary (aref glossaries i))
+                      (id (cdr (assoc 'glossary_id glossary)))
+                      (name (cdr (assoc 'name glossary)))
+                      (dicts (cdr (assoc 'dictionaries glossary))))
+                 (insert (format "%d. %s\n" (1+ i) name))
+                 (insert (format "   ID: %s\n" id))
+                 (dotimes (j (length dicts))
+                   (let* ((dict (aref dicts j))
+                          (src (cdr (assoc 'source_lang dict)))
+                          (tgt (cdr (assoc 'target_lang dict)))
+                          (cnt (cdr (assoc 'entry_count dict))))
+                     (insert (format "   - %s → %s (%d entries)\n" src tgt cnt))))
+                 (insert "\n")))
+             (goto-char (point-min))
+             (display-buffer (current-buffer))))
+         glossaries))
+      (_ (error "Failed to list glossaries")))))
+
+(defun txl-glossary-get-entries (&optional glossary-id source-lang target-lang)
+  "Retrieve and display entries from a DeepL glossary.
+If GLOSSARY-ID is not provided, uses `txl-deepl-glossary-id'.
+If SOURCE-LANG and TARGET-LANG are not provided, prompts for them."
+  (interactive
+   (list nil
+         (read-string "Source language code (e.g., en, zh, de): " "en")
+         (read-string "Target language code (e.g., zh, de, en): " "zh")))
+  (unless glossary-id
+    (setq glossary-id txl-deepl-glossary-id))
+  (unless glossary-id
+    (error "No glossary ID specified"))
+  (let* ((source-lang (downcase source-lang))
+         (target-lang (downcase target-lang))
+         (request-backend 'url-retrieve)
+         (base-url (if (string-match-p "api-free" txl-deepl-api-url)
+                       (format "https://api-free.deepl.com/v3/glossaries/%s/entries" glossary-id)
+                     (format "https://api.deepl.com/v3/glossaries/%s/entries" glossary-id)))
+         (api-url (format "%s?source_lang=%s&target_lang=%s" base-url source-lang target-lang))
+         (response (request
+                     api-url
+                     :type "GET"
+                     :sync t
+                     :headers `(("Authorization" . ,(concat "DeepL-Auth-Key " txl-deepl-api-key))
+                                ("Accept" . "text/tab-separated-values"))
+                     :parser 'buffer-string)))
+    (pcase (request-response-status-code response)
+      (200
+       (let ((entries (request-response-data response)))
+         (with-current-buffer (get-buffer-create "*DeepL Glossary Entries*")
+           (erase-buffer)
+           (insert (format "Glossary ID: %s\n\n" glossary-id))
+           (insert "Entries (TSV format):\n")
+           (insert "---\n")
+           (insert entries)
+           (goto-char (point-min))
+           (display-buffer (current-buffer)))
+         (message "Retrieved entries from glossary")
+         entries))
+      (404 (error "Glossary not found: %s" glossary-id))
+      (_ (error "Failed to retrieve entries. Status: %s"
+                (request-response-status-code response))))))
+
+;; Override txl-translate-string to support glossaries and source_lang
+(defun txl-translate-string-with-glossary (text target-lang &rest more-target-langs)
+  "Translate TEXT to TARGET-LANG with glossary support.
+If `txl-deepl-glossary-id' is set, uses that glossary.
+If MORE-TARGET-LANGS is non-nil, translation will be applied recursively."
+  (message "Requesting translation to %s%s..."
+           target-lang
+           (if txl-deepl-glossary-id " (with glossary)" ""))
+  (let* ((request-backend 'url-retrieve)
+         ;; Determine source language
+         (source-lang (if (eq target-lang (car txl-languages))
+                          (cdr txl-languages)
+                        (car txl-languages)))
+         ;; Normalize source_lang (remove region code)
+         (source-lang-normalized (downcase (car (split-string (symbol-name source-lang) "-"))))
+         ;; Build request data
+         (request-data `(("auth_key"            . ,txl-deepl-api-key)
+                         ("split_sentences"     . ,(pcase txl-deepl-split-sentences
+                                                     ((pred not) "0")
+                                                     ('nonewlines "nonewlines")
+                                                     ((pred (lambda (x) (eq t x))) "1")))
+                         ("preserve_formatting" . ,(if txl-deepl-preserve-formatting "1" "0"))
+                         ("formality"           . ,(symbol-name txl-deepl-formality))
+                         ("text"                . ,text)
+                         ("source_lang"         . ,source-lang-normalized)
+                         ("target_lang"         . ,(downcase (symbol-name target-lang)))))
+         ;; Add glossary_id if configured
+         (request-data (if txl-deepl-glossary-id
+                           (append request-data `(("glossary_id" . ,txl-deepl-glossary-id)))
+                         request-data))
+         (response (request
+                     txl-deepl-api-url
+                     :type "POST"
+                     :sync t
+                     :parser 'json-read
+                     :data request-data)))
+    (pcase (request-response-status-code response)
+      (200
+       (let* ((data (request-response-data response))
+              (translations (cdr (assoc 'translations data)))
+              (translation (cdr (assoc 'text (aref translations 0))))
+              (translation (decode-coding-string (encode-coding-string translation 'latin-1) 'utf-8)))
+         (if more-target-langs
+             (apply #'txl-translate-string-with-glossary translation (car more-target-langs) (cdr more-target-langs))
+           translation)))
+      (400 (error "Bad request. Please check error message and your parameters"))
+      (403 (error "Authorization failed. Please supply a valid auth_key parameter"))
+      (404 (error "The requested resource could not be found"))
+      (413 (error "The request size exceeds the limit"))
+      (429 (error "Too many requests. Please wait and resend your request"))
+      (456 (error "Quota exceeded. The character limit has been reached"))
+      (503 (error "Resource currently unavailable. Try again later"))
+      (_   (error "Internal error")))))
+
+;; Advice to use glossary-enabled version
+(advice-add 'txl-translate-string :override #'txl-translate-string-with-glossary)
 
 (provide 'init-edit)
 ;;; init-edit.el ends here
