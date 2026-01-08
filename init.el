@@ -126,8 +126,15 @@ available. Please upgrade if possible." emacs-version))
 ;; display-fill-column-indicator.el --- interface for display-fill-column-indicator
 ; This feature is available at least Emacs version >= 27.1 (Ubuntu 22.04.5 LTS)
 
+(defvar display-fill-column-indicator-exceptions-alist '(org-mode
+                                                         diff-mode))
+(defun display-fill-column-indicator-mode-exceptions ()
+  "Display fill column indicator, EXCEPT for the following modes."
+  (unless (memq major-mode display-fill-column-indicator-exceptions-alist)
+    (display-fill-column-indicator-mode t)))
+
 (unless (version< emacs-version "27.1")
-  (add-hook 'find-file-hook 'display-fill-column-indicator-mode))
+  (add-hook 'find-file-hook 'display-fill-column-indicator-mode-exceptions))
 
 
 ;; display-line-numbers.el --- interface for display-line-numbers ;;;;;;;;;;;;;
