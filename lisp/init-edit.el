@@ -298,13 +298,15 @@
 
 (defun org-to-ipynb ()
   "Convert INFILE so that jupyter-python blocks work with ox-ipynb/emacs-jupyter.
-Writes a sibling file named <stem>-jupyter.org and echoes its path."
+Writes a sibling file named <stem>.ipynb."
   (interactive)
   (let* ((abs  (buffer-file-name))
          (dir  (file-name-directory abs))
          (base (file-name-nondirectory abs))
          (stem (file-name-sans-extension base))
-         (out-org (expand-file-name (format "%s-jupyter.org" stem) dir)))
+         (out-org (expand-file-name (format "%s-jupyter.org" stem) dir))
+         (temp-ipynb (expand-file-name (format "%s-jupyter.ipynb" stem) dir))
+         (final-ipynb (expand-file-name (format "%s.ipynb" stem) dir)))
     (with-temp-buffer
       ;; read
       (insert-file-contents abs)
@@ -326,7 +328,11 @@ Writes a sibling file named <stem>-jupyter.org and echoes its path."
       ;; write
       (write-region (point-min) (point-max) out-org nil 'silent))
     (ox-ipynb-export-org-file-to-ipynb-file out-org)
-    (delete-file out-org)))
+    (delete-file out-org)
+    ;; Rename the output file from <stem>-jupyter.ipynb to <stem>.ipynb
+    (when (file-exists-p temp-ipynb)
+      (rename-file temp-ipynb final-ipynb t)
+      (message "Wrote %s" final-ipynb))))
 
 
 
