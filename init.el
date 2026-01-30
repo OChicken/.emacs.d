@@ -728,8 +728,9 @@ https://emacs.stackexchange.com/a/64640"
 
 ;; ol --- Org links library ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'ol)
-(define-key global-map (kbd "C-c l") 'org-store-link)
+(when (version<= "27.1" emacs-version)
+  (require 'ol)
+  (define-key global-map (kbd "C-c l") 'org-store-link))
 
 ;; org-src --- Source code examples in Org ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
