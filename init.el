@@ -721,9 +721,10 @@ https://emacs.stackexchange.com/a/64640"
 
 ; adjust the compiler of imagemagick to XeLaTeX and use it as default process to
 ; convert LaTeX fragments to image files
-(let ((pos (assoc 'imagemagick org-preview-latex-process-alist)))
-  (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
-(setq org-preview-latex-default-process 'imagemagick)  ; origin: dvipng
+(when (version<= "29.1" emacs-version)
+  (let ((pos (assoc 'imagemagick org-preview-latex-process-alist)))
+    (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
+  (setq org-preview-latex-default-process 'imagemagick))  ; origin: dvipng
 
 ;; ol --- Org links library ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
