@@ -515,6 +515,10 @@ The `last-last' window will be pop out if this function is executed again."
 ;; xt-mouse.el --- support the mouse when emacs run in an xterm ;;;;;;;;;;;;;;;
 
 (xterm-mouse-mode t)
+(add-hook 'kill-emacs-hook
+          (lambda ()
+            (send-string-to-terminal
+	     "\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?1049l")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
