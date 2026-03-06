@@ -50,6 +50,7 @@
 (setq mc/cmds-to-run-once
       '(
 	c-electric-pound
+	comint-previous-input
 	describe-key-briefly
 	eshell-previous-matching-input-from-input
 	eshell-previous-prompt
@@ -63,6 +64,7 @@
 	mouse-set-region
 	org-ctrl-c-ctrl-c
 	org-mouse-down-mouse
+	org-return
 	org-shiftmetaup
 	previous-window-any-frame
 	python-nav-forward-sexp
