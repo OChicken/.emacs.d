@@ -105,7 +105,7 @@ Make this face blend into the background to render prefixes invisible."
     (remove-text-properties beg end '(line-prefix nil wrap-prefix nil))))
 
 (defun markdown-indent--remove-properties-from-string (string)
-  "Strip indentation text properties from STRING (for kill-ring, etc.)."
+  "Strip indentation text properties from STRING (for `kill-ring', etc.)."
   (remove-text-properties 0 (length string)
                           '(line-prefix nil wrap-prefix nil)
                           string)
