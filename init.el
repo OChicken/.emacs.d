@@ -101,6 +101,10 @@ available. Please upgrade if possible." emacs-version))
 (global-set-key (kbd "C-x C-M-w") 'kill-buffer)                         ; undefined
 
 
+;; Add $HOME/.local/bin to $PATH
+(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                    lisp/                                   ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
