@@ -94,7 +94,7 @@ available. Please upgrade if possible." emacs-version))
       (delete-char N))))
 
 ;; Adjust garbage collection thresholds
-;; (setq gc-cons-threshold (* 1024 1024))
+(setq gc-cons-threshold (* 1024 1024))
 
 (define-key minibuffer-local-map (kbd "M-q") 'previous-history-element) ; fill-paragraph
 (define-key minibuffer-local-map (kbd "M-z") 'next-history-element)     ; zap-to-char
