@@ -42,6 +42,7 @@
 	org-yank
 	overwrite-mode
 	previous-buffer
+	python-nav-backward-sexp
 	scroll-down-line
 	slime-autodoc-space
 	zap-up-to-nonspace-char
