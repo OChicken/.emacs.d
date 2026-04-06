@@ -369,8 +369,8 @@ Feel free to use command to toggle between them."
   reftex-enable-partial-scans t
   reftex-save-parse-info t
   reftex-use-multiple-selection-buffers t
-  reftex-toc-split-windows-horizontally t ;;*toc*buffer在左侧。
-  reftex-toc-split-windows-fraction 0.2  ;;*toc*buffer 使用整个frame的比例。
+  reftex-toc-split-windows-horizontally t ;;*toc*buffer on the left
+  reftex-toc-split-windows-fraction 0.2  ;;*toc*buffer ratio in the whole frame
 )
 (autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
 (autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
