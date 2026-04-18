@@ -69,7 +69,7 @@
 
 (add-hook 'asm-mode-hook
           (lambda ()
-            (setq-local asm-comment-char ?@)))
+            (setq asm-comment-char ?@)))
 
 
 ;; jasmin-mode --- A minimal major mode for the Jasmin DSL ;;;;;;;;;;;;;;;;;;;;
