@@ -62,6 +62,7 @@
 	ignore
 	indent-rigidly
 	mark-sexp
+	mouse-drag-vertical-line
 	mouse-set-region
 	org-ctrl-c-ctrl-c
 	org-mouse-down-mouse
