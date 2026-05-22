@@ -980,38 +980,7 @@ Equivalent to: perl -0777 -pe 's/:PROPERTIES:\\n:CUSTOM_ID:.*?\\n:END://g'"
 
 (provide 'init)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ai-code-onboarding-seen t)
- '(package-selected-packages
-   '(ai-code aio alert anzu auto-compile avy bbdb bibtex-completion cfrs citeproc
-	     claudemacs clipetty cmake-mode company-auctex company-c-headers
-	     company-coq company-org-block consult copilot crontab-mode csv-mode
-	     cuda-mode cython-mode diminish dockerfile-mode eat ein
-	     flycheck-clang-tidy flycheck-rust git-gutter
-	     gnu-elpa-keyring-update gnuplot gnuplot-mode go-mode gptel
-	     grammarly haskell-mode highlight-escape-sequences
-	     highlight-indentation htmlize hydra ibuffer-projectile ibuffer-vc
-	     imenu-list immortal-scratch ivy list-unicode-display magit
-	     magma-mode markdown-toc mode-line-bell move-dup multiple-cursors
-	     ob-go ob-php ob-rust ob-sagemath org-cliplink org-fragtog
-	     outline-indent ox-ipynb ox-pandoc page-break-lines pdf-tools
-	     persist pfuture php-mode pkg-info popup proof-general pyvenv
-	     rainbow-delimiters rainbow-mode rust-mode shell-maker simple-httpd
-	     slime spinner sunshine symbol-overlay taxy-magit-section tsc tuareg
-	     txl undo-tree visual-fill-column vscode-dark-plus-theme vterm
-	     wakatime-mode web-mode which-key wrap-region xclip yaml yaml-mode
-	     yasnippet-snippets zmq)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
- ;; Local Variables:
+;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
