@@ -248,18 +248,6 @@ Feel free to use command to toggle between them."
 (add-hook 'haskell-cabal-mode 'subword-mode)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                     Coq                                    ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'proof-general)
-(add-hook 'coq-mode-hook
-          (lambda ()
-            (define-key coq-mode-map (kbd "M-e") (kbd "RET"))))  ; proof-forward-command
-(require 'proof-useropts)
-(setq proof-three-window-enable nil)
-
-(add-to-list 'auto-mode-alist '("\\.ec\\'" . coq-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -376,6 +364,20 @@ Feel free to use command to toggle between them."
 (autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
 (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
 (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                     Coq                                    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (require 'proof-general)
+;; (add-hook 'coq-mode-hook
+;;           (lambda ()
+;;             (define-key coq-mode-map (kbd "M-e") (kbd "RET"))))  ; proof-forward-command
+;; (require 'proof-useropts)
+;; (setq proof-three-window-enable nil)
+
+;; (add-to-list 'auto-mode-alist '("\\.ec\\'" . coq-mode))
 
 
 (provide 'init-progmodes)
