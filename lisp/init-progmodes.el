@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;   lisp/ (desktop session related)   ;
+;;                       lisp/ (desktop session related)                      ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; recentf.el --- keep track of recently opened files ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -95,7 +95,7 @@ Feel free to use command to toggle between them."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;   Flycheck syntax checker settings  ;
+;;                      Flycheck syntax checker settings                      ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'flycheck)
@@ -111,7 +111,7 @@ Feel free to use command to toggle between them."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;                 Xref                ;
+;;                                    Xref                                    ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'xref)
@@ -121,7 +121,7 @@ Feel free to use command to toggle between them."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-					;              Completion             ;
+;;                                 Completion                                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; company-mode for Emacs
@@ -186,10 +186,10 @@ Feel free to use command to toggle between them."
 (require 'claudemacs)
 ; https://github.com/cpoile/claudemacs
 (dolist (mode-map '(prog-mode-map
-		    org-mode-map
-		    ; markdown-mode-map
+                    org-mode-map
+                    ; markdown-mode-map
                     eshell-mode-map
-		    TeX-mode-map))
+                    TeX-mode-map))
   (define-key (symbol-value mode-map) (kbd "C-c m") #'claudemacs-transient-menu))
 ; Hint of shortcuts to toggle:
 ; C-c C-e: eat-emacs-mode (select Claude's answer)
@@ -214,7 +214,7 @@ Feel free to use command to toggle between them."
   '((t :foreground "#756cbd"))
   "Face for 0x-based hex constants.")
 (add-hook 'prog-mode-hook
-	  (lambda ()
+          (lambda ()
             (font-lock-add-keywords
              nil
              '(("\\b0x[0-9A-Fa-f]+\\b" 0 'font-lock-hex-num-face t)))))
@@ -270,10 +270,10 @@ Feel free to use command to toggle between them."
       (cond
        ((eq temp ?1)
         (call-process "clang-format" nil nil nil
-		      (concat "-style=file:"
-			      (expand-file-name user-emacs-directory)
-			      "clang-format/Linux")
-		      "-i" (buffer-name)))
+                      (concat "-style=file:"
+                              (expand-file-name user-emacs-directory)
+                              "clang-format/Linux")
+                      "-i" (buffer-name)))
        ((eq temp ?2)
         (call-process "clang-format" nil nil nil
                       (concat "-style=file:"
