@@ -201,7 +201,7 @@ available. Please upgrade if possible." emacs-version))
 (set-face-attribute 'default nil
                     :slant   'normal
                     :weight  'regular
-                    :height  68     ; (Hack 7: height 68; Hack 8: height 83)
+                    :height  70
                     :width   'normal)
 
 
