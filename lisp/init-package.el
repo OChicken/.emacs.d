@@ -32,7 +32,10 @@
   "Install PACKAGE if not exists."
   (setq package (extract-package-name url))
   (unless (package-installed-p package)
-    (package-vc-install url)))
+    ;; package-vc-install is only available in Emacs 29+
+    (if (fboundp 'package-vc-install)
+        (package-vc-install url)
+      (message "package-vc-install unavailable (Emacs < 29); skipping %s" url))))
 
 (unless (package-installed-p 'gnu-elpa-keyring-update)
   ; gnu-elpa-keyring-update need special treatment since without the keyring
