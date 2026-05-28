@@ -144,7 +144,7 @@ Feel free to use command to toggle between them."
 (add-to-list 'company-backends 'company-math-symbols-latex)
 (add-to-list 'company-backends 'company-math-symbols-unicode)
 
-(company-auctex-init)
+(add-hook 'after-init-hook #'company-auctex-init)
 
 (require 'company-org-block)
 ; xenodium/company-org-block
