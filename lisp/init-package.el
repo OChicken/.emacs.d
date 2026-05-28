@@ -131,13 +131,11 @@
                company-math
                company-c-headers
                company-auctex
-               slime
-               haskell-mode
                ein ; Jupyter notebook client in Emacs
                auctex ; Sophisticated document creation
                ))
   (package-install-init pkg))
-;; archived: copilot, gptel, proof-general
+;; archived: haskell-mode, slime, copilot, gptel, proof-general
 
 (add-to-list 'load-path (expand-file-name "elpa/claudemacs" user-emacs-directory))
 (dolist (url '("https://github.com/cpoile/claudemacs" ; AI Pair Programming with Claude Code in Emacs
