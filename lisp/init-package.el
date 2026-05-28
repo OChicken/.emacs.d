@@ -116,24 +116,24 @@
 ;; init-progmodes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (dolist (pkg '(projectile ; Project Interaction Library for Emacs
-	       ibuffer-vc ; Let Emacs' ibuffer-mode group files by git project etc., and show file state
-	       ibuffer-projectile ; Group buffers in Emacs ibuffer-mode by their projectile root directory
-	       eat
-	       flycheck
+               ibuffer-vc ; Let Emacs' ibuffer-mode group files by git project etc., and show file state
+               ibuffer-projectile ; Group buffers in Emacs ibuffer-mode by their projectile root directory
+               eat
+               flycheck
                flycheck-clang-tidy
                flycheck-rust
-	       company
+               company
                company-math
                company-c-headers
                company-auctex
-	       copilot
-	       gptel
-	       slime
-	       haskell-mode
-	       proof-general
-	       ein ; Jupyter notebook client in Emacs
-	       auctex ; Sophisticated document creation
-	       ))
+               copilot
+               gptel
+               slime
+               haskell-mode
+               ; proof-general
+               ein ; Jupyter notebook client in Emacs
+               auctex ; Sophisticated document creation
+               ))
   (package-install-init pkg))
 
 (dolist (url '("https://github.com/cpoile/claudemacs" ; AI Pair Programming with Claude Code in Emacs
