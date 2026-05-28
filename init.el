@@ -199,8 +199,6 @@ available. Please upgrade if possible." emacs-version))
 ;; faces.el --- Lisp faces ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-face-attribute 'default nil
-                    :family  "Hack"
-                    :foundry "SRC"
                     :slant   'normal
                     :weight  'regular
                     :height  68     ; (Hack 7: height 68; Hack 8: height 83)
