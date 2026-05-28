@@ -202,8 +202,8 @@ Feel free to use command to toggle between them."
 
 ;; A simple LLM client for Emacs
 ; https://github.com/karthink/gptel
-(require 'gptel)
-(setq gptel-api-key (getenv "GPTEL-API-KEY"))
+;; (require 'gptel)
+;; (setq gptel-api-key (getenv "GPTEL-API-KEY"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
