@@ -112,6 +112,7 @@
 	       ))
   (package-install-init pkg))
 
+(add-to-list 'load-path (expand-file-name "elpa/ox-ipynb" user-emacs-directory))
 (dolist (url '("https://github.com/jkitchin/ox-ipynb" ; org-mode exporter to Jupyter notebooks
 	       ))
   (package-vc-install-init url))
@@ -139,6 +140,7 @@
                ))
   (package-install-init pkg))
 
+(add-to-list 'load-path (expand-file-name "elpa/claudemacs" user-emacs-directory))
 (dolist (url '("https://github.com/cpoile/claudemacs" ; AI Pair Programming with Claude Code in Emacs
 	       ))
   (package-vc-install-init url))
