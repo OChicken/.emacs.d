@@ -146,14 +146,6 @@ Feel free to use command to toggle between them."
 
 (add-hook 'after-init-hook #'company-auctex-init)
 
-(require 'company-org-block)
-; xenodium/company-org-block
-; https://github.com/xenodium/company-org-block
-(add-hook 'org-mode-hook
-          (lambda ()
-            (add-to-list (make-local-variable 'company-backends)
-                         'company-org-block)))
-
 (defun company-files-no-space-post-completion ()
   "Disable space insertion after file name completion in Eshell."
   )
