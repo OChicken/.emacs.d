@@ -131,6 +131,7 @@
                company-math
                company-c-headers
                company-auctex
+	       immortal-scratch
                ein ; Jupyter notebook client in Emacs
                auctex ; Sophisticated document creation
                ))
