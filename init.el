@@ -885,17 +885,16 @@ Markers are **bold**, *italic* etc, also clean up unwanted spaces before punctua
         ;; Cleanup steps below DISABLED: a symmetric ** can't be told apart
         ;; from a closing **, so these also strip the legit spaces OUTSIDE the
         ;; markers, producing "*foo*bar" instead of "*foo* bar".
-        ;; ;; Cleanup: remove space after opening emphasis markers (* or **)
-        ;; (goto-char (point-min))
-        ;; (while (re-search-forward "\\(\\*\\*?\\) \\([^* \n]\\)" nil t)
-        ;;   (replace-match "\\1\\2" nil nil)
-        ;;   (setq count (1+ count)))
-        ;; ;; Cleanup: remove space before closing emphasis markers (* or **)
-        ;; (goto-char (point-min))
-        ;; (while (re-search-forward "\\([^* \n]\\) \\(\\*\\*?\\)" nil t)
-        ;;   (replace-match "\\1\\2" nil nil)
-        ;;   (setq count (1+ count)))
-        ))
+        ;; Cleanup: remove space after opening emphasis markers (* or **)
+        (goto-char (point-min))
+        (while (re-search-forward "\\(\\*\\*?\\) \\([^* \n]\\)" nil t)
+          (replace-match "\\1\\2" nil nil)
+          (setq count (1+ count)))
+        ;; Cleanup: remove space before closing emphasis markers (* or **)
+        (goto-char (point-min))
+        (while (re-search-forward "\\([^* \n]\\) \\(\\*\\*?\\)" nil t)
+          (replace-match "\\1\\2" nil nil)
+          (setq count (1+ count)))))
     (message "Processed %d markdown marker(s)" count)))
 
 (defun remove-org-custom-id-properties (start end)
