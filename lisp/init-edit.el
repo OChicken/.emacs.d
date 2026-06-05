@@ -478,7 +478,12 @@ If MORE-TARGET-LANGS is non-nil, translation will be applied recursively."
          ;; Normalize source_lang (remove region code)
          (source-lang-normalized (downcase (car (split-string (symbol-name source-lang) "-"))))
          ;; Build request data
-         (request-data `(("auth_key"            . ,txl-deepl-api-key)
+         ;; FIX (403): DeepL v2 no longer accepts auth_key in the POST body
+         ;; (returns 403 "Authorization failed"). Remove the auth_key line below
+         ;; and pass the key via the Authorization header on the request instead
+         ;; (see :headers added to the `request' call). This matches the working
+         ;; txl-glossary-* functions above.
+         (request-data `(;; ("auth_key"         . ,txl-deepl-api-key)  ; <- delete this
                          ("split_sentences"     . ,(pcase txl-deepl-split-sentences
                                                      ((pred not) "0")
                                                      ('nonewlines "nonewlines")
@@ -496,6 +501,8 @@ If MORE-TARGET-LANGS is non-nil, translation will be applied recursively."
                      txl-deepl-api-url
                      :type "POST"
                      :sync t
+                     ;; FIX (403): authenticate via header, not auth_key body param
+                     :headers `(("Authorization" . ,(concat "DeepL-Auth-Key " txl-deepl-api-key)))
                      :parser 'json-read
                      :data request-data)))
     (pcase (request-response-status-code response)
