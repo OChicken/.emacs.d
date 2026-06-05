@@ -910,7 +910,7 @@ Equivalent to: perl -0777 -pe 's/:PROPERTIES:\\n:CUSTOM_ID:.*?\\n:END://g'"
           (setq count (1+ count)))))
     (message "Removed %d CUSTOM_ID properties" count)))
 
-(defun convert-md-to-org ()
+(defun convert-file-md-to-org ()
   "Complete workflow: process markdown file and convert to org.
 1. Replace Asian punctuation with ASCII
 2. Format markdown emphasis markers
@@ -938,6 +938,25 @@ Equivalent to: perl -0777 -pe 's/:PROPERTIES:\\n:CUSTOM_ID:.*?\\n:END://g'"
     (remove-org-custom-id-properties (point-min) (point-max))
     (save-buffer)
     (message "Workflow complete! Org file ready: %s" org-file)))
+
+(defun convert-region-md-to-org (start end)
+  "Convert markdown in region START..END to org in place via pandoc.
+Mirrors `convert-file-md-to-org' but operates on a region instead of a file:
+preprocess, pipe through pandoc, then strip CUSTOM_ID drawers."
+  (interactive "r")
+  (save-restriction
+    ;; Narrow so the preprocessors and pandoc only touch the selection,
+    ;; and so we don't have to track shifting START/END positions.
+    (narrow-to-region start end)
+    (replace-asian-punctuation (point-min) (point-max))
+    (format-md-emphasis (point-min) (point-max))
+    ;; -f markdown -t org: pandoc's builtin org writer. Stdin->stdout,
+    ;; t t = put output in this buffer, replacing the (narrowed) region.
+    (shell-command-on-region (point-min) (point-max)
+                             "pandoc -f markdown -t org --wrap=none"
+                             t t)
+    ;; pandoc adds :PROPERTIES:/:CUSTOM_ID: drawers under each heading.
+    (remove-org-custom-id-properties (point-min) (point-max))))
 
 
 
