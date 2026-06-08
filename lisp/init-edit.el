@@ -96,6 +96,24 @@
    ("+" "+" nil org-mode)))  ; strike-through
 (diminish 'wrap-region-mode)
 
+;; unwrap-region --- Strip one matching char from each end of the region ;;;;;
+(defun unwrap-region (start end)
+  "Remove the START and END character of the active region.
+Strips one layer of org emphasis markers, e.g. **bold** -> *bold*,
+or //it// -> /it/.  Only acts when the leading and trailing chars
+match, so it won't touch a region whose ends differ."
+  (interactive "r")
+  (when (and (use-region-p) (> (- end start) 1))
+    (let ((head (char-after start))
+          (tail (char-before end)))
+      (when (and (eq head tail)
+                 (memq head '(?* ?/ ?_ ?~ ?= ?+)))  ; same set as wrap-region
+        (save-excursion
+          (goto-char (1- end)) (delete-char 1)        ; delete tail first
+          (goto-char start)      (delete-char 1))))))    ; positions stay valid
+
+(define-key org-mode-map (kbd "C-c u") #'unwrap-region)
+
 
 ;; xclip --- Copy&paste GUI clipboard from text terminal ;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/emacsmirror/xclip/tree/master
