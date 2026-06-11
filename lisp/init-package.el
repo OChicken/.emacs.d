@@ -124,6 +124,7 @@
                ibuffer-vc ; Let Emacs' ibuffer-mode group files by git project etc., and show file state
                ibuffer-projectile ; Group buffers in Emacs ibuffer-mode by their projectile root directory
                eat
+	       claudemacs
                flycheck
                flycheck-clang-tidy
                flycheck-rust
