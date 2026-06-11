@@ -188,6 +188,14 @@ Feel free to use command to toggle between them."
 ; C-c C-e: eat-emacs-mode (select Claude's answer)
 ; C-c C-j: eat-semi-char-mode (continue to ask Claude)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                   Gemini                                   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ai-code)
+(setq ai-code-session-link-enabled nil)
+(ai-code-set-backend 'gemini)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                    Font                                    ;
