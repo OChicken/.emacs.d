@@ -227,6 +227,8 @@ available. Please upgrade if possible." emacs-version))
       (save-buffers-kill-terminal)))
 (global-set-key (kbd "C-x C-c") 'confirm-before-exit) ; save-buffers-kill-terminal
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 
 ;; frame.el --- multi-frame management independent of window systems ;;;;;;;;;;
 
