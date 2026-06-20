@@ -393,6 +393,7 @@ Set this to your glossary ID, e.g., \"8b9f2c14-cf2b-424f-958c-60d98f07db75\"."
       (replace-asian-punctuation (point) new-end))))
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c t") 'txl-translate-pdf-paragraph))
+(define-key text-mode-map (kbd "C-c t") 'txl-translate-pdf-paragraph)
 
 ;; DeepL Glossary Support ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
