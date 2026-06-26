@@ -2,6 +2,6 @@
 # name: python-file
 # key:  pyf
 # --
-#+begin_src python :session :results file :exports both
+#+begin_src python :results file replace :exports both
 $0
 #+end_src

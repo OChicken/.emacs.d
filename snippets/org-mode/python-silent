@@ -2,6 +2,6 @@
 # name: python-silent
 # key:  pys
 # --
-#+begin_src python :session :results silent
+#+begin_src python
 $0
 #+end_src

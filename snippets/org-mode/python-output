@@ -2,6 +2,6 @@
 # name: python-output
 # key:  pyo
 # --
-#+begin_src python :session :results output :exports both
+#+begin_src python :results output replace :exports both
 $0
 #+end_src

@@ -2,6 +2,6 @@
 # name: python-value
 # key:  pyv
 # --
-#+begin_src python :session :results value
+#+begin_src python :results value replace
 $0
 #+end_src
