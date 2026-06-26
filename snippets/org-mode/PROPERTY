@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: PROPERTY
+# key:  PROPERTY_
+# --
+#+PROPERTY: header-args:python  :session Python/subproject1
+#+PROPERTY: header-args:python+ :results silent
+#+PROPERTY: header-args:python+ :tangle subproject1.py
