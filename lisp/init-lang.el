@@ -65,13 +65,6 @@
 (add-to-list 'html-mode-hook 'web-mode)
 
 
-;; asm-mode --- ARM assembly (arm-none-eabi-objdump output) ;;;;;;;;;;;;;;;;;;
-
-(add-hook 'asm-mode-hook
-          (lambda ()
-            (setq asm-comment-char ?@)))
-
-
 ;; jasmin-mode --- A minimal major mode for the Jasmin DSL ;;;;;;;;;;;;;;;;;;;;
 
 (require 'jasmin-mode)
