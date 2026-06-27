@@ -602,12 +602,6 @@ The `last-last' window will be pop out if this function is executed again."
 (setq ispell-dictionary "en")
 
 
-;; css-mode.el --- Major mode to edit CSS files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'css-mode)
-(add-to-list 'html-mode-hook 'web-mode)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               lisp/progmodes/                              ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
