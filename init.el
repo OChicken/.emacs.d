@@ -602,6 +602,12 @@ The `last-last' window will be pop out if this function is executed again."
 (setq ispell-dictionary "en")
 
 
+;; css-mode.el --- Major mode to edit CSS files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'css-mode)
+(add-to-list 'html-mode-hook 'web-mode)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               lisp/progmodes/                              ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -616,6 +622,21 @@ The `last-last' window will be pop out if this function is executed again."
 	      (local-set-key (kbd "C-c C-c") 'compile)          ; comment-region
 	      (local-set-key (kbd "M-e") (kbd "RET"))           ; c-end-of-statement
 	      (local-set-key (kbd "M-a") 'beginning-of-line)))) ; c-beginning-of-statement
+
+
+;; asm-mode.el --- mode for editing assembler code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'asm-mode)
+(add-hook 'asm-mode-hook
+          (lambda ()
+            (setq asm-comment-char ?@)))
+
+
+;; json-ts-mode.el --- tree-sitter support for JSON ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'js-json-mode-hook
+          (lambda ()
+            (setq-local js-indent-level 2)))
 
 
 ;; elisp-mode.el --- Emacs Lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
