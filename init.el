@@ -630,7 +630,8 @@ The `last-last' window will be pop out if this function is executed again."
 
 (add-hook 'js-json-mode-hook
           (lambda ()
-            (setq-local js-indent-level 2)))
+            (setq-local js-indent-level 2)
+	    (setq-local indent-tabs-mode nil)))
 
 
 ;; elisp-mode.el --- Emacs Lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
