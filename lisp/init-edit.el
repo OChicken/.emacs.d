@@ -307,6 +307,12 @@ match, so it won't touch a region whose ends differ."
 (set-variable 'sage-shell:use-simple-prompt  t)
 (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)
 
+;; Run each org-babel python *session* inside its own systemd cgroup.
+;; If it exceeds MemoryMax, the cgroup OOM killer reaps only this
+;; session - Emacs is untouched. MemorySwapMax=0 stops it thrashing swap.
+(setq org-babel-python-command-session
+      "systemd-run --user --scope -q -p MemoryMax=6G -p MemorySwapMax=0 python3 -i")
+
 
 ; Export ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
