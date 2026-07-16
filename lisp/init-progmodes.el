@@ -319,7 +319,8 @@ Feel free to use command to toggle between them."
 (defun latex-settings ()
   "LaTeX settings."
   (LaTeX-math-mode t)     ; real-time preview
-  (setq TeX-engine 'xetex ; use XeLaTeX default
+  (setq TeX-engine 'default ; use XeLaTeX default
+        TeX-PDF-mode t
         preview-colors '((nil nil nil)
                          (1.0 1.0 1.0)
                          (nil nil nil))))
