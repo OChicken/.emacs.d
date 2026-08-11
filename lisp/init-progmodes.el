@@ -195,7 +195,6 @@ Feel free to use command to toggle between them."
 
 (require 'ai-code)
 (setq ai-code-session-link-enabled nil)
-(ai-code-set-backend 'codex)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
