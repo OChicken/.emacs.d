@@ -33,6 +33,8 @@
 	insert-char
 	kill-region
 	magit-copy-buffer-revision
+	markdown-end-of-line
+	markdown-outdent-or-delete
 	multiple-cursors-mode
 	org-cycle
 	org-delete-char

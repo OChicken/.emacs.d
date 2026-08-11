@@ -141,7 +141,7 @@
 (add-to-list 'load-path (expand-file-name "elpa/claudemacs" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "elpa/ai-code" user-emacs-directory))
 (dolist (url '("https://github.com/cpoile/claudemacs" ; AI Pair Programming with Claude Code in Emacs
-	       ; "https://github.com/tninja/ai-code-interface.el"
+	       "https://github.com/tninja/ai-code-interface.el"
 	       ))
   (package-vc-install-init url))
 
