@@ -572,7 +572,7 @@ The `last-last' window will be pop out if this function is executed again."
 
 (require 'em-alias)
 (setq eshell-command-aliases-list
-      '(("ll" "ls -al $1 $2")
+      '(("ll" "ls -alFo $1 $2")
         ("la" "ls -A $1 $2")
         ("l" "ls -C $1")
         ("grep" "grep --color=always --exclude=.emacs.desktop --exclude-dir=.ipynb_checkpoints $1 $2 $3 $4 $5 $6 $7 $8 $9")
