@@ -70,5 +70,11 @@
 (require 'jasmin-mode)
 
 
+;; Verilog ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'verilog-mode)
+(add-to-list 'auto-mode-alist '("\\.v\\'" . verilog-mode))
+
+
 (provide 'init-lang)
 ;;; init-lang.el ends here
