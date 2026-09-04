@@ -23,7 +23,9 @@
 ;; markdown-mode --- Markdown Mode for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://jblevins.org/projects/markdown-mode/
 
+(require 'markdown-mode)
 (require 'markdown-indent)
+(require 'md-ts-mode)
 (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist
@@ -31,7 +33,20 @@
 (autoload 'gfm-mode "markdown-mode"
   "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(add-hook 'markdown-mode-hook #'markdown-indent-mode)
+;; (add-hook 'markdown-mode-hook #'markdown-indent-mode)
+(setq markdown-hide-markup t ; Make bold/italic actually render visually
+      markdown-hide-urls t
+      markdown-fontify-whole-heading-line t
+      markdown-header-scaling t)
+; No variable-height headers: all six levels stay at the body size.
+; Note both variables have a :set that rebuilds the header faces, so they
+; must be set with customize-set-variable, not setq -- and they travel
+; together: leaving scaling at t without values falls back to markdown's
+; stock (2.0 1.7 1.4 1.1 1.0 1.0), i.e. h1 at double size.
+; (customize-set-variable 'markdown-header-scaling nil)
+
+; The tree-sitter markdown / markdown-inline grammar recipes are not
+; registered here: md-ts-mode already adds both, pinned to v0.4.1.
 
 
 ;; Emacs support library for PDF files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

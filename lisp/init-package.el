@@ -61,6 +61,7 @@
                htmlize
                magma-mode
                markdown-mode ; Markdown Mode for Emacs
+	       md-ts-mode
                pdf-tools ; Emacs support library for PDF files
                php-mode
                rust-mode
