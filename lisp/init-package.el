@@ -81,7 +81,7 @@
                mode-line-bell ; Flash the Emacs mode line instead of ringing the bell
                page-break-lines ; Display ugly ^L page breaks as tidy horizontal lines
                highlight-escape-sequences ; Highlight escape sequences in Emacs
-	       valign-mode ; better table alignment
+	       valign ; better table alignment
                ; vertico ; Vertical Interactive Completion
                ))
   (package-install-init pkg))
