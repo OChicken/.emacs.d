@@ -29,7 +29,7 @@
 (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist
-  '("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
+  '("\\.\\(?:md\\|markdown\\)\\'" . markdown-mode))
 (autoload 'gfm-mode "markdown-mode"
   "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
@@ -47,6 +47,9 @@
 
 ; The tree-sitter markdown / markdown-inline grammar recipes are not
 ; registered here: md-ts-mode already adds both, pinned to v0.4.1.
+
+(require 'valign)
+(add-hook 'markdown-mode-hook valign-mode)
 
 
 ;; Emacs support library for PDF files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
