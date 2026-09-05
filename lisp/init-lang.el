@@ -33,11 +33,11 @@
 (autoload 'gfm-mode "markdown-mode"
   "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-;; (add-hook 'markdown-mode-hook #'markdown-indent-mode)
-(setq markdown-hide-markup t ; Make bold/italic actually render visually
-      markdown-hide-urls t
-      markdown-fontify-whole-heading-line t
-      markdown-header-scaling t)
+(add-hook 'markdown-mode-hook #'markdown-indent-mode)
+(setq-default markdown-hide-markup t ; Make bold/italic actually render visually
+	      markdown-hide-urls t
+	      markdown-fontify-whole-heading-line t
+	      markdown-header-scaling t)
 ; No variable-height headers: all six levels stay at the body size.
 ; Note both variables have a :set that rebuilds the header faces, so they
 ; must be set with customize-set-variable, not setq -- and they travel
@@ -49,7 +49,7 @@
 ; registered here: md-ts-mode already adds both, pinned to v0.4.1.
 
 (require 'valign)
-(add-hook 'markdown-mode-hook valign-mode)
+(add-hook 'markdown-mode-hook #'valign-mode)
 
 
 ;; Emacs support library for PDF files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
