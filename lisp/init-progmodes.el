@@ -179,7 +179,7 @@ Feel free to use command to toggle between them."
 ; https://github.com/cpoile/claudemacs
 (dolist (mode-map '(prog-mode-map
                     org-mode-map
-                    ; markdown-mode-map
+                    markdown-mode-map
                     eshell-mode-map))
   (define-key (symbol-value mode-map) (kbd "C-c m") #'claudemacs-transient-menu))
 (with-eval-after-load 'tex
@@ -273,6 +273,21 @@ Feel free to use command to toggle between them."
 (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)  ; forward-sexp
 (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp) ; backward-sexp
 (add-hook 'python-mode-hook (lambda () (eldoc-mode -1)))
+
+;; Pick the interpreter according to the machine we are sitting on.
+;; `system-name' is the elisp counterpart of `hostname' (it may be a FQDN).
+(let ((host (system-name)))
+  (cond
+   ((string-suffix-p "lunarc" host t)
+    (setq python-shell-interpreter
+          "/sw/easybuild_milan/software/Anaconda3/2024.06-1/bin/python"))
+   ((string-suffix-p "abcd" host t)
+    (setq python-shell-interpreter
+          "/sw/easybuild_milan/software/Anaconda3/2027.06-1/bin/python"))
+   (t  ; the OS's own python
+    (setq python-shell-interpreter (or (executable-find "python3")
+                                       (executable-find "python")
+                                       "python3")))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
