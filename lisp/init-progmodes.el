@@ -275,13 +275,13 @@ Feel free to use command to toggle between them."
 (add-hook 'python-mode-hook (lambda () (eldoc-mode -1)))
 
 ;; Pick the interpreter according to the machine we are sitting on.
-;; `system-name' is the elisp counterpart of `hostname' (it may be a FQDN).
+;; `system-name' is the elisp counterpart of `hostname' (it returns the FQDN).
 (let ((host (system-name)))
   (cond
-   ((string-suffix-p "lunarc" host t)
+   ((string-match-p "\\`cosmos[0-9]+\\.int\\.lunarc\\'" host)   ; cosmos3.int.lunarc
     (setq python-shell-interpreter
           "/sw/easybuild_milan/software/Anaconda3/2024.06-1/bin/python"))
-   ((string-suffix-p "abcd" host t)
+   ((string-match-p "\\`berzelius[0-9]+\\.nsc\\.liu\\.se\\'" host)  ; berzelius1.nsc.liu.se
     (setq python-shell-interpreter
           "/sw/easybuild_milan/software/Anaconda3/2027.06-1/bin/python"))
    (t  ; the OS's own python
