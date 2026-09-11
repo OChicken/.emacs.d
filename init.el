@@ -323,6 +323,11 @@ available. Please upgrade if possible." emacs-version))
 (outline-minor-mode t)
 
 
+;; paren.el --- highlight matching paren ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'org-mode-hook (lambda () (show-paren-local-mode -1)))
+
+
 ;; savehist.el --- Save minibuffer history ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-hook 'after-init-hook 'savehist-mode)
