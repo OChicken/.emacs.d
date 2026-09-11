@@ -64,6 +64,7 @@
 	help-for-help
 	ignore
 	indent-rigidly
+	keyboard-escape-quit
 	mark-sexp
 	mouse-drag-vertical-line
 	mouse-set-region
