@@ -128,6 +128,7 @@ match, so it won't touch a region whose ends differ."
 ; https://emacs.stackexchange.com/questions/41339/copy-paste-between-ssh-terminal-emacs-and-macos
 
 (require 'clipetty)
+(setq clipetty-tmux-ssh-tty "tmux display-message -p 'SSH_TTY=#{client_tty}'")
 (global-clipetty-mode)
 
 
