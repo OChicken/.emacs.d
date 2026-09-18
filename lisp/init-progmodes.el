@@ -187,6 +187,10 @@ Feel free to use command to toggle between them."
 ; Hint of shortcuts to toggle:
 ; C-c C-e: eat-emacs-mode (select Claude's answer)
 ; C-c C-j: eat-semi-char-mode (continue to ask Claude)
+(add-hook 'eat-mode-hook
+          (lambda () (setq-local window-adjust-process-window-size-function
+                                 #'window-adjust-process-window-size-largest)))
+(add-to-list 'claudemacs-process-environment "CLAUDE_CODE_NO_FLICKER=1")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
