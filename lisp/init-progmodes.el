@@ -284,7 +284,7 @@ Feel free to use command to toggle between them."
           "/sw/easybuild_milan/software/Anaconda3/2024.06-1/bin/python"))
    ((string-match-p "\\`berzelius[0-9]+\\.nsc\\.liu\\.se\\'" host)  ; berzelius1.nsc.liu.se
     (setq python-shell-interpreter
-          "/sw/easybuild_milan/software/Anaconda3/2027.06-1/bin/python"))
+          "/home/x_masho/.conda/envs/.conda/bin/python"))
    (t  ; the OS's own python
     (setq python-shell-interpreter (or (executable-find "python3")
                                        (executable-find "python")
