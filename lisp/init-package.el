@@ -12,6 +12,15 @@
 
 (require 'package)
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
+;; Pin magit and friends to the coherent GNU/NonGNU ELPA releases instead of
+;; MELPA's independent snapshots, which can briefly go out of sync with each
+;; other (e.g. magit built against a transient API not yet on MELPA) and
+;; throw errors like "void-variable magit-commit-absorb" at startup.
+(setq package-pinned-packages
+      '((transient     . "gnu")
+        (magit         . "nongnu")
+        (magit-section . "nongnu")
+        (with-editor   . "nongnu")))
 (package-initialize)
 
 ; fetch the list of packages available
