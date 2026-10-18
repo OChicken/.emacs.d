@@ -378,6 +378,11 @@ Set this to your glossary ID, e.g., \"8b9f2c14-cf2b-424f-958c-60d98f07db75\"."
 
 (setq txl-deepl-api-key (getenv "DEEPL-API-KEY"))
 (setq txl-languages '(DE . EN-US))
+;; FIX: guess-language defaults to '(en de fr) and detects short German text
+;; ("Guten Morgen") as fr; txl then treats it as EN-US and "translates" en→de,
+;; returning the text unchanged. Restrict detection to the languages in use
+;; (keep in sync with txl-languages, e.g. add sv when translating to Swedish):
+(setq guess-language-languages '(en de sv))
 (setq txl-deepl-glossary-id (getenv "DEEPL-API-GLOSSARY"))
 
 (declare-function unfill-region "init.el")
