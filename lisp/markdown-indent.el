@@ -102,40 +102,75 @@ Make this face blend into the background to render prefixes invisible."
 (defun markdown-indent--remove-properties (beg end)
   "Remove `line-prefix' and `wrap-prefix' properties between BEG and END."
   (with-silent-modifications
-    (remove-text-properties beg end '(line-prefix nil wrap-prefix nil))))
+    (remove-text-properties beg end '(line-prefix nil wrap-prefix nil markdown-indent--state nil))))
 
 (defun markdown-indent--remove-properties-from-string (string)
   "Strip indentation text properties from STRING (for `kill-ring', etc.)."
   (remove-text-properties 0 (length string)
-                          '(line-prefix nil wrap-prefix nil)
+                          '(line-prefix nil wrap-prefix nil markdown-indent--state nil)
                           string)
   string)
 
 ;;; Core property-setting logic
 
-(defun markdown-indent--heading-level-at-point ()
-  "Return ATX heading level of the current line, or nil if not a heading."
-  (save-excursion
-    (forward-line 0)
-    (when (looking-at "^\\(#+\\)[[:blank:]]")
-      (min (length (match-string-no-properties 1))
-           markdown-indent--deepest-level))))
+;; The parsing state at the start of a line is a cons (LEVEL . FENCE):
+;; LEVEL is the heading level in effect, FENCE is the opening fence string
+;; (e.g. "```" or "~~~~") when inside a fenced code block, else nil.
+;; It is cached on every line as the `markdown-indent--state' property, so
+;; that refreshes can start anywhere and stop once the state converges.
 
-(defun markdown-indent--level-at (pos)
-  "Return the heading level in effect at POS (0 when before any heading)."
+(defconst markdown-indent--heading-re "^\\(#+\\)[[:blank:]]"
+  "Regexp matching an ATX heading line.")
+
+(defconst markdown-indent--fence-re "^ \\{0,3\\}\\(`\\{3,\\}\\|~\\{3,\\}\\)"
+  "Regexp matching the opening of a fenced code block.")
+
+(defconst markdown-indent--fence-close-re
+  "^ \\{0,3\\}\\(`\\{3,\\}\\|~\\{3,\\}\\)[[:blank:]\r]*$"
+  "Regexp matching the closing of a fenced code block.")
+
+(defun markdown-indent--scan-line (state)
+  "Parse the line at point given STATE at its start.
+Return (HEADING . NEW-STATE), where HEADING is the heading level of the
+line or nil, and NEW-STATE is the state at the start of the next line."
+  (let ((level (car state))
+        (fence (cdr state)))
+    (cond
+     ;; Inside a fenced block: only a matching closing fence ends it.
+     (fence
+      (if (and (looking-at markdown-indent--fence-close-re)
+               (string-prefix-p fence (match-string-no-properties 1)))
+          (cons nil (cons level nil))
+        (cons nil state)))
+     ((looking-at markdown-indent--fence-re)
+      (cons nil (cons level (match-string-no-properties 1))))
+     ((looking-at markdown-indent--heading-re)
+      (let ((n (min (length (match-string-no-properties 1))
+                    markdown-indent--deepest-level)))
+        (cons n (cons n nil))))
+     (t (cons nil state)))))
+
+(defun markdown-indent--state-at (pos)
+  "Return the parsing state at the start of the line containing POS."
   (save-excursion
     (goto-char pos)
     (forward-line 0)
-    ;; Check if POS is itself on a heading line.
-    (or (markdown-indent--heading-level-at-point)
-        ;; Otherwise search backwards for the last heading.
-        (and (re-search-backward "^\\(#+\\)[[:blank:]]" nil t)
-             (min (length (match-string-no-properties 1))
-                  markdown-indent--deepest-level))
-        0)))
+    (let ((target (point))
+          state)
+      ;; Walk back to the nearest line with a cached state (or bob) ...
+      (while (and (not state) (not (bobp)))
+        (forward-line -1)
+        (setq state (get-text-property (point) 'markdown-indent--state)))
+      (unless state (setq state (cons 0 nil)))
+      ;; ... then parse forward to the target line.
+      (while (< (point) target)
+        (setq state (cdr (markdown-indent--scan-line state)))
+        (forward-line 1))
+      state)))
 
-(defun markdown-indent--set-line-properties (level heading-p)
+(defun markdown-indent--set-line-properties (state level heading-p)
   "Set `line-prefix'/`wrap-prefix' on the current line and advance one line.
+STATE is the parsing state at the start of the line, cached on it.
 LEVEL is the heading depth that governs indentation.
 HEADING-P non-nil means this line is a heading line."
   (let* ((prefix (aref (if heading-p
@@ -145,22 +180,32 @@ HEADING-P non-nil means this line is a heading line."
          ;; wrap-prefix matches line-prefix so continuation lines align.
          (wrap prefix))
     (add-text-properties (line-beginning-position) (line-beginning-position 2)
-                         `(line-prefix ,prefix wrap-prefix ,wrap)))
+                         `(line-prefix ,prefix wrap-prefix ,wrap
+                           markdown-indent--state ,state)))
   (forward-line 1))
 
 (defun markdown-indent--add-properties (beg end &optional delay)
   "Add indentation properties from BEG to END.
+Past END, keep going until the cached state of a line matches the newly
+computed one, so that a changed heading or fence propagates as far as needed.
 When DELAY (a time value) is non-nil the process is interruptible: it
 throws the tag `interrupt' with the current point when interrupted."
   (save-match-data
     (save-excursion
       (goto-char beg)
       (forward-line 0)
-      (let ((level (markdown-indent--level-at (point)))
-            (time-limit (and delay (time-add nil delay))))
+      (let ((state (markdown-indent--state-at (point)))
+            (time-limit (and delay (time-add nil delay)))
+            (done nil))
         (with-silent-modifications
-          (while (and (<= (point) end) (not (eobp)))
+          (while (and (not done) (not (eobp)))
             (cond
+             ;; Past the changed region and state converged (or the rest
+             ;; is not initialized yet and left to the agent): stop.
+             ((and (> (point) end)
+                   (let ((old (get-text-property (point) 'markdown-indent--state)))
+                     (or (null old) (equal old state))))
+              (setq done t))
              ;; Interruptible: pending user input.
              ((and delay (input-pending-p))
               (throw 'interrupt (point)))
@@ -172,13 +217,14 @@ throws the tag `interrupt' with the current point when interrupted."
                                markdown-indent--agent-resume-delay)
                      nil #'markdown-indent--initialize-agent))
               (throw 'interrupt (point)))
-             ;; Heading line: update current level, set heading prefix.
-             ((markdown-indent--heading-level-at-point)
-              (setq level (markdown-indent--heading-level-at-point))
-              (markdown-indent--set-line-properties level t))
-             ;; Body line: set text prefix for current level.
+             ;; Heading line gets the heading prefix of its own level,
+             ;; anything else (incl. code blocks) the text prefix.
              (t
-              (markdown-indent--set-line-properties level nil)))))))))
+              (let* ((res (markdown-indent--scan-line state))
+                     (heading (car res)))
+                (markdown-indent--set-line-properties
+                 state (or heading (car state)) heading)
+                (setq state (cdr res)))))))))))
 
 ;;; Async initialization agent (mirrors org-indent's agent machinery)
 
@@ -229,18 +275,9 @@ Called from `after-change-functions'."
     (save-match-data
       (save-restriction
         (widen)
-        (let* ((region-beg (save-excursion
-                             (goto-char beg)
-                             (forward-line 0)
-                             (point)))
-               ;; Extend to the next heading boundary so that level changes
-               ;; propagate to all affected body lines.
-               (region-end (save-excursion
-                             (goto-char end)
-                             (if (re-search-forward "^#" nil t)
-                                 (line-beginning-position)
-                               (point-max)))))
-          (markdown-indent--add-properties region-beg region-end))))))
+        ;; `markdown-indent--add-properties' itself extends past END until
+        ;; the cached line state converges.
+        (markdown-indent--add-properties beg end)))))
 
 ;;; Minor mode
 
