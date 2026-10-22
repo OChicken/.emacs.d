@@ -281,7 +281,7 @@ Feel free to use command to toggle between them."
   (cond
    ((string-match-p "\\`cosmos[0-9]+\\.int\\.lunarc\\'" host)   ; cosmos3.int.lunarc
     (setq python-shell-interpreter
-          "/sw/easybuild_milan/software/Anaconda3/2024.06-1/bin/python"))
+          "/home/shouran/.conda/envs/.conda/bin/python"))
    ((string-match-p "\\`berzelius[0-9]+\\.nsc\\.liu\\.se\\'" host)  ; berzelius1.nsc.liu.se
     (setq python-shell-interpreter
           "/home/x_masho/.conda/envs/.conda/bin/python"))
