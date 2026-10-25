@@ -406,6 +406,9 @@ With argument ARG, do this that many times."
 ; This feature is available at least Emacs version >= 27.1 (Ubuntu 22.04.5 LTS)
 
 (unless (version< emacs-version "27.1")
+  ; Emacs >= 30: don't let `tab-bar-mode-map' grab C-<tab> and C-S-<tab>,
+  ; which would shadow the global `other-window' bindings set below.
+  (setq tab-bar-define-keys 'numeric)
   (tab-bar-mode t)
   ; (set-face-attribute 'tab-bar nil :height 100)
   (global-set-key (kbd "C-<prior>") 'tab-bar-switch-to-prev-tab) ; scroll-right
