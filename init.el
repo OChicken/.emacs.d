@@ -199,6 +199,7 @@ available. Please upgrade if possible." emacs-version))
 ;; faces.el --- Lisp faces ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-face-attribute 'default nil
+		    :family  "Hack"
                     :slant   'normal
                     :weight  'regular
                     :height  70
