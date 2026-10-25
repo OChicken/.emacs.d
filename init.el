@@ -1020,6 +1020,7 @@ preprocess, pipe through pandoc, then strip CUSTOM_ID drawers."
       (require 'init-view)
       (require 'init-edit)
       (require 'init-progmodes)
+      (require 'init-desktop)
       (when (file-exists-p "lisp/init-gnus.el")
         (require 'init-gnus))
       )
