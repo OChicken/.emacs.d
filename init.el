@@ -777,7 +777,7 @@ https://emacs.stackexchange.com/a/64640"
 ; convert LaTeX fragments to image files
 (when (version<= "29.1" emacs-version)
   (let ((pos (assoc 'imagemagick org-preview-latex-process-alist)))
-    (plist-put (cdr pos) :latex-compiler '("xelatex -interaction nonstopmode -output-directory %o %f")))
+    (plist-put (cdr pos) :latex-compiler '("xetex -interaction nonstopmode -output-directory %o %f")))
   (setq org-preview-latex-default-process 'imagemagick))  ; origin: dvipng
 
 ;; ol --- Org links library ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -799,7 +799,7 @@ https://emacs.stackexchange.com/a/64640"
 
 (require 'ox-latex)
 
-(setq org-latex-compiler "xelatex"                    ; origin: "pdflatex"
+(setq org-latex-compiler "xetex"                      ; origin: pdflatex
       org-latex-image-default-width ".5\\linewidth")  ; origin: ".9\\linewidth"
 
 (add-to-list 'org-latex-classes
