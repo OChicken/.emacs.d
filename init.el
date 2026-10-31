@@ -156,7 +156,7 @@ available. Please upgrade if possible." emacs-version))
 (defvar display-line-numbers-exceptions-alist '(doc-view-mode
                                                 image-mode
                                                 grep-mode
-						diff-mode
+                                                diff-mode
                                                 eshell-mode))
 (defun display-line-numbers-mode-exceptions ()
   "Display line numbers, EXCEPT for the following modes."
@@ -199,7 +199,7 @@ available. Please upgrade if possible." emacs-version))
 ;; faces.el --- Lisp faces ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-face-attribute 'default nil
-		    :family  "Hack"
+                    :family  "Hack"
                     :slant   'normal
                     :weight  'regular
                     :height  70
@@ -308,9 +308,9 @@ available. Please upgrade if possible." emacs-version))
 
 (setq mouse-wheel-scroll-amount
       '(3 ((shift)  . hscroll)
-	  ((meta))
-	  ((control meta) . global-text-scale)
-	  ((control) . text-scale))
+          ((meta))
+          ((control meta) . global-text-scale)
+          ((control) . text-scale))
       mouse-wheel-progressive-speed nil)  ; don't accelerate scrolling
 
 
@@ -538,11 +538,11 @@ The `last-last' window will be pop out if this function is executed again."
 (xterm-mouse-mode t)
 (add-hook 'kill-emacs-hook
           (lambda ()
-	    (when (not (display-graphic-p))
+            (when (not (display-graphic-p))
               ;; Fix: guard with (when (not (display-graphic-p))) to avoid
               ;; "Device 1 is not a termcap terminal device" in GUI frames.
-	      (send-string-to-terminal
-	       "\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?1049l"))))
+              (send-string-to-terminal
+               "\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?1049l"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -620,13 +620,13 @@ The `last-last' window will be pop out if this function is executed again."
 (require 'cc-mode)
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
-	    (lambda()
-	      (setq c-basic-offset 4
+            (lambda()
+              (setq c-basic-offset 4
                     indent-tabs-mode nil)
-	      (local-set-key (kbd "C-M-q") 'scroll-down-line)   ; c-indent-exp
-	      (local-set-key (kbd "C-c C-c") 'compile)          ; comment-region
-	      (local-set-key (kbd "M-e") (kbd "RET"))           ; c-end-of-statement
-	      (local-set-key (kbd "M-a") 'beginning-of-line)))) ; c-beginning-of-statement
+              (local-set-key (kbd "C-M-q") 'scroll-down-line)   ; c-indent-exp
+              (local-set-key (kbd "C-c C-c") 'compile)          ; comment-region
+              (local-set-key (kbd "M-e") (kbd "RET"))           ; c-end-of-statement
+              (local-set-key (kbd "M-a") 'beginning-of-line)))) ; c-beginning-of-statement
 
 
 ;; asm-mode.el --- mode for editing assembler code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -642,11 +642,14 @@ The `last-last' window will be pop out if this function is executed again."
 (add-hook 'js-json-mode-hook
           (lambda ()
             (setq-local js-indent-level 2)
-	    (setq-local indent-tabs-mode nil)))
+            (setq-local indent-tabs-mode nil)))
 
 
 ;; elisp-mode.el --- Emacs Lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-hook emacs-lisp-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)))
 (define-key emacs-lisp-mode-map (kbd "C-M-z") 'scroll-up-line)   ; undefined
 (define-key emacs-lisp-mode-map (kbd "C-M-q") 'scroll-down-line) ; indent-pp-sexp
 
