@@ -618,7 +618,6 @@ The `last-last' window will be pop out if this function is executed again."
 ;; cc-mode.el --- major mode for editing C and similar languages ;;;;;;;;;;;;;;
 
 (require 'cc-mode)
-(setq c-default-style "linux")
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
 	    (lambda()
