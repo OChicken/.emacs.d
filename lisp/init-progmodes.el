@@ -161,10 +161,6 @@ Feel free to use command to toggle between them."
 ;;                                 Emacs Lisp                                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(dolist (hook '(lisp-mode-hook lisp-interaction-mode-hook))
-  (add-hook hook 'display-line-numbers-mode))
-
-
 ; Respawn the scratch buffer when it's killed
 ; https://github.com/jpkotta/immortal-scratch
 (require 'immortal-scratch)
