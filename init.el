@@ -618,10 +618,11 @@ The `last-last' window will be pop out if this function is executed again."
 ;; cc-mode.el --- major mode for editing C and similar languages ;;;;;;;;;;;;;;
 
 (require 'cc-mode)
-(setq c-default-style "linux")
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
 	    (lambda()
+	      (setq c-basic-offset 4
+                    indent-tabs-mode nil)
 	      (local-set-key (kbd "C-c C-c") 'compile)          ; comment-region
 	      (local-set-key (kbd "M-e") (kbd "RET"))           ; c-end-of-statement
 	      (local-set-key (kbd "M-a") 'beginning-of-line)))) ; c-beginning-of-statement
