@@ -623,6 +623,7 @@ The `last-last' window will be pop out if this function is executed again."
 	    (lambda()
 	      (setq c-basic-offset 4
                     indent-tabs-mode nil)
+	      (local-set-key (kbd "C-M-q") 'scroll-down-line)   ; c-indent-exp
 	      (local-set-key (kbd "C-c C-c") 'compile)          ; comment-region
 	      (local-set-key (kbd "M-e") (kbd "RET"))           ; c-end-of-statement
 	      (local-set-key (kbd "M-a") 'beginning-of-line)))) ; c-beginning-of-statement
