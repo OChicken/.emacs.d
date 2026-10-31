@@ -615,6 +615,17 @@ The `last-last' window will be pop out if this function is executed again."
 ;;                               lisp/progmodes/                              ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; elisp-mode.el --- Emacs Lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook emacs-lisp-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)))
+(dolist (hook '(lisp-mode-hook lisp-interaction-mode-hook))
+  (add-hook hook 'display-line-numbers-mode))
+(define-key emacs-lisp-mode-map (kbd "C-M-z") 'scroll-up-line)   ; undefined
+(define-key emacs-lisp-mode-map (kbd "C-M-q") 'scroll-down-line) ; indent-pp-sexp
+
+
 ;; cc-mode.el --- major mode for editing C and similar languages ;;;;;;;;;;;;;;
 
 (require 'cc-mode)
@@ -643,15 +654,6 @@ The `last-last' window will be pop out if this function is executed again."
           (lambda ()
             (setq-local js-indent-level 2)
             (setq-local indent-tabs-mode nil)))
-
-
-;; elisp-mode.el --- Emacs Lisp mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-hook emacs-lisp-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode nil)))
-(define-key emacs-lisp-mode-map (kbd "C-M-z") 'scroll-up-line)   ; undefined
-(define-key emacs-lisp-mode-map (kbd "C-M-q") 'scroll-down-line) ; indent-pp-sexp
 
 
 ;; grep.el --- run `grep' and display the results ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
