@@ -176,7 +176,6 @@ Feel free to use command to toggle between them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'cc-mode)
-(define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
 (setq flycheck-clang-language-standard "gnu11")
 
 ; (setq c-default-style "linux")
