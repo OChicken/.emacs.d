@@ -179,6 +179,7 @@ Feel free to use command to toggle between them."
 (define-key c-mode-map (kbd "C-M-q") 'scroll-down-line)
 (setq flycheck-clang-language-standard "gnu11")
 
+; (setq c-default-style "linux")
 (defun c-format-style ()
   "Format the current buffer with clang-format using the specified style file."
   (interactive)
