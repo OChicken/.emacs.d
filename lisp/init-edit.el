@@ -23,6 +23,15 @@
 (diminish 'anzu-mode)
 
 
+;; Clipetty --- Manipulate the system (clip)board with (e)macs from a (tty) ;;;
+; https://github.com/spudlyo/clipetty
+; https://emacs.stackexchange.com/questions/41339/copy-paste-between-ssh-terminal-emacs-and-macos
+
+(require 'clipetty)
+(setq clipetty-tmux-ssh-tty "tmux display-message -p 'SSH_TTY=#{client_tty}'")
+(global-clipetty-mode)
+
+
 ;; imenu-list --- Show the current buffer's imenu entries in a separate buffer
 ; https://github.com/bmag/imenu-list
 
@@ -44,12 +53,17 @@
 ; https://github.com/magnars/multiple-cursors.el
 
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
-(global-set-key (kbd "C-M-l")   'mc/mark-next-like-this)     ; origin: reposition-window
-(global-set-key (kbd "C-M-S-l") 'mc/mark-previous-like-this) ; origin: recenter-other-window
-(global-set-key (kbd "C-M-w")   'mc/mark-next-like-this-word)      ; origin: append-next-kill
-(global-set-key (kbd "C-M-S-w") 'mc/mark-previous-like-this-word)  ; origin: NULL
+(global-set-key (kbd "C-M-l")   'mc/mark-next-like-this)     ; reposition-window
+(global-set-key (kbd "C-M-S-l") 'mc/mark-previous-like-this) ; recenter-other-window
+(global-set-key (kbd "C-M-w")   'mc/mark-next-like-this-word)      ; append-next-kill
+(global-set-key (kbd "C-M-S-w") 'mc/mark-previous-like-this-word)  ; NULL
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
+
+;; immortal-scratch.el --- respawn the scratch buffer when it's killed ;;;;;;;;
+; https://github.com/jpkotta/immortal-scratch
+(require 'immortal-scratch)
+(add-hook 'after-init-hook 'immortal-scratch-mode)
 
 ;; symbol-overlay --- Highlight symbols with keymap-enabled overlays ;;;;;;;;;;
 ; https://github.com/wolray/symbol-overlay
@@ -69,6 +83,25 @@
   (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
 (diminish 'symbol-overlay-mode)
+
+
+;; unwrap-region --- Strip one matching char from each end of the region ;;;;;
+(defun unwrap-region (start end)
+  "Remove the START and END character of the active region.
+Strips one layer of org emphasis markers, e.g. **bold** -> *bold*,
+or //it// -> /it/.  Only acts when the leading and trailing chars
+match, so it won't touch a region whose ends differ."
+  (interactive "r")
+  (when (and (use-region-p) (> (- end start) 1))
+    (let ((head (char-after start))
+          (tail (char-before end)))
+      (when (and (eq head tail)
+                 (memq head '(?* ?/ ?_ ?~ ?= ?+)))  ; same set as wrap-region
+        (save-excursion
+          (goto-char (1- end)) (delete-char 1)        ; delete tail first
+          (goto-char start)      (delete-char 1))))))    ; positions stay valid
+
+(define-key org-mode-map (kbd "C-c u") #'unwrap-region)
 
 
 ;; which-key --- Displays available keybindings in popup ;;;;;;;;;;;;;;;;;;;;;;
@@ -96,40 +129,12 @@
    ("+" "+" nil org-mode)))  ; strike-through
 (diminish 'wrap-region-mode)
 
-;; unwrap-region --- Strip one matching char from each end of the region ;;;;;
-(defun unwrap-region (start end)
-  "Remove the START and END character of the active region.
-Strips one layer of org emphasis markers, e.g. **bold** -> *bold*,
-or //it// -> /it/.  Only acts when the leading and trailing chars
-match, so it won't touch a region whose ends differ."
-  (interactive "r")
-  (when (and (use-region-p) (> (- end start) 1))
-    (let ((head (char-after start))
-          (tail (char-before end)))
-      (when (and (eq head tail)
-                 (memq head '(?* ?/ ?_ ?~ ?= ?+)))  ; same set as wrap-region
-        (save-excursion
-          (goto-char (1- end)) (delete-char 1)        ; delete tail first
-          (goto-char start)      (delete-char 1))))))    ; positions stay valid
-
-(define-key org-mode-map (kbd "C-c u") #'unwrap-region)
-
-
 ;; xclip --- Copy&paste GUI clipboard from text terminal ;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/emacsmirror/xclip/tree/master
 
 (when (or (getenv "DISPLAY")
           (getenv "WAYLAND_DISPLAY"))
   (xclip-mode t))
-
-
-;; Clipetty --- Manipulate the system (clip)board with (e)macs from a (tty) ;;;
-; https://github.com/spudlyo/clipetty
-; https://emacs.stackexchange.com/questions/41339/copy-paste-between-ssh-terminal-emacs-and-macos
-
-(require 'clipetty)
-(setq clipetty-tmux-ssh-tty "tmux display-message -p 'SSH_TTY=#{client_tty}'")
-(global-clipetty-mode)
 
 
 ;; yasnippet --- A template system for Emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
