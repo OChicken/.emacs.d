@@ -41,6 +41,8 @@
 	org-end-of-line
 	org-force-self-insert
 	org-kill-line
+	org-open-line
+	org-return-and-maybe-indent
 	org-self-insert-command
 	org-yank
 	overwrite-mode
