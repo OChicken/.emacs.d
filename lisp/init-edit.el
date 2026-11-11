@@ -182,6 +182,15 @@ match, so it won't touch a region whose ends differ."
 (global-unset-key (kbd "C-x g")) ; magit-status (use "magit" to open it instead)
 (setq magit-section-visibility-indicator '(magit-fringe-bitmap> . magit-fringe-bitmapv))
 (global-set-key (kbd "C-x g m") 'magit)
+; Log margin: show "2026-11-09 18:28" instead of "1 week ago", and no author
+; column.  Equivalent to typing "L l l d" in the log buffer, made permanent.
+; Must be set BEFORE magit loads: magit-status-margin and magit-refs-margin
+; copy their STYLE out of magit-log-margin when their defcustoms are evaluated.
+; Form is (INIT STYLE WIDTH AUTHOR AUTHOR-WIDTH); keep magit-log-margin-width in
+; the WIDTH slot, it is the function that recomputes the width per style.
+(setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width nil 18))
+; Style that "L l" cycles to, so the cycler agrees with the default above.
+(setq magit-margin-default-time-format "%Y-%m-%d %H:%M ")
 
 
 ;; Emacs port of GitGutter which is Sublime Text Plugin ;;;;;;;;;;;;;;;;;;;;;;;
