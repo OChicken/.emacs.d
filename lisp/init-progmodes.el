@@ -165,6 +165,57 @@ Feel free to use command to toggle between them."
 (setq flycheck-clang-language-standard "gnu11")
 
 ; (setq c-default-style "linux")
+
+;; Two styles I switch between: my default (4 columns, spaces only) and the
+;; Linux kernel one (8 columns, hard tabs).  `indent-tabs-mode' is set by hand
+;; on purpose: `c-set-style' silently ignores non-style variables that already
+;; have a value, so an (indent-tabs-mode . nil) entry inside a style does
+;; nothing -- that is why plain `c-default-style' can never cover both.
+(defconst c-style-specs
+  '((default . ("gnu"   4 nil))
+    (linux   . ("linux" 8 t)))
+  "For each style I toggle: CC Mode style, `c-basic-offset', `indent-tabs-mode'.")
+
+(defvar c-style-key 'default
+  "Style that C/C++ buffers visited from now on will use.
+`c-toggle-style' flips it, so the choice sticks for later files too.")
+
+(defvar-local c-style-current nil
+  "Style in force in this buffer, a key of `c-style-specs'.")
+
+(defun c-apply-style (&optional key)
+  "Install style KEY, a key of `c-style-specs', in the current buffer.
+KEY defaults to `c-style-key'.  Run from `c-mode-hook'/`c++-mode-hook'."
+  (interactive (list (intern (completing-read "C style: " c-style-specs nil t))))
+  (setq key (or key c-style-key))
+  (let ((spec (cdr (assq key c-style-specs))))
+    (c-set-style (nth 0 spec))
+    (setq c-basic-offset   (nth 1 spec)
+          indent-tabs-mode (nth 2 spec)
+          c-style-current  key)))
+
+(defun c-toggle-style ()
+  "Toggle this buffer between my 4-space style and the Linux tab style.
+The new style also becomes `c-style-key', so C/C++ files visited
+afterwards open the same way; buffers already open keep theirs until
+toggled.  Existing text is left alone -- re-indent with \\[indent-region]
+or reformat with \\[c-format-style]."
+  (interactive)
+  (c-apply-style (setq c-style-key
+                       (if (eq (or c-style-current c-style-key) 'linux)
+                           'default
+                         'linux)))
+  (message "C style: %s (%s, offset %d, %s)"
+           c-style-current c-indentation-style c-basic-offset
+           (if indent-tabs-mode "hard tabs" "spaces only")))
+
+;; The APPEND argument is load-bearing: init.el's own c-mode-hook still does
+;; (setq c-basic-offset 4) and this file is loaded later (init.el:1035), so a
+;; prepended hook would run first and lose.
+(dolist (hook '(c-mode-hook c++-mode-hook))
+  (add-hook hook #'c-apply-style t))
+(define-key c-mode-map (kbd "C-c C-t") 'c-toggle-style)  ; undefined
+
 (defun c-format-style ()
   "Format the current buffer with clang-format using the specified style file."
   (interactive)
