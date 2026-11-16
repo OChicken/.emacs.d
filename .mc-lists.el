@@ -36,6 +36,7 @@
 	markdown-end-of-line
 	markdown-outdent-or-delete
 	multiple-cursors-mode
+	org-beginning-of-line
 	org-cycle
 	org-delete-char
 	org-end-of-line
