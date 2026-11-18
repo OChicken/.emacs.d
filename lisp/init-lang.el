@@ -66,14 +66,19 @@
 
 (require 'pdf-annot)
 (setq pdf-annot-default-annotation-properties
-      '((t (label . ,user-full-name))
+      `((t (label . ,user-full-name))
         (text (icon . "Note")
               (color . "#ff0000"))
         (highlight (color . "yellow")
                    (opacity . 0.5))
         (squiggly (color . "orange"))
         (strike-out (color . "red"))
-        (underline (color . "blue"))))
+        (underline (color . "blue")))
+      pdf-annot-color-history '("yellow" "cornflower blue"))
+; cornflower blue  #6495ed  rgb(100 149 237)   HSL  220°  79%  66%
+; Okular           #729fcf  rgb(114 159 207)   HSL  213°  49%  63%
+; Δrgb             (+14 +10 −30)
+; CIEDE2000        4.54
 
 
 ;; web-mode --- html template editing for emacs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
